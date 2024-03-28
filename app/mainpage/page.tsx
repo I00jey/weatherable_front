@@ -26,6 +26,7 @@ const MainPage: React.FC = () => {
     setIsModalOpen(false);
     router.push('/login');
   };
+
   return (
     <div className={styles.all}>
       <hr />

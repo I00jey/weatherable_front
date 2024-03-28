@@ -160,7 +160,6 @@ export default function ClothesInfo({ params: { id } }) {
         />
       </div>
       <div className={clothStyles.imgContainer}>
-        {/* <Image src={} alt="로고" />; */}
         <img src={image_path} alt="" />
       </div>
       <div className={clothStyles.infoContainer}>

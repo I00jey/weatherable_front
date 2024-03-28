@@ -5,11 +5,15 @@ import {
   selectMajor,
   selectMiddle,
 } from '../../../Store/closetSlice/selectDataSlice';
-
+import { useSelector } from 'react-redux';
 import styles from '../../../styles/closet/closet.module.scss';
 
 export default function SelectBox() {
-  const [isMajorCat, setIsMajorCat] = useState('All');
+  const selectMajorData = useSelector((state: any) => state.search.selectMajor);
+  const selectMiddleData = useSelector(
+    (state: any) => state.search.selectMiddle
+  );
+  const [isMajorCat, setIsMajorCat] = useState(selectMajorData);
   const [isMiddleCat, setIsMiddleCat] = useState('All');
 
   useEffect(() => {
@@ -29,6 +33,7 @@ export default function SelectBox() {
       dispatch(selectMajor({ value: '' }));
     } else {
       dispatch(selectMajor({ value: value }));
+      dispatch(selectMiddle({ value: '' }));
     }
   };
 
@@ -83,7 +88,12 @@ export default function SelectBox() {
     ],
   };
 
-  console.log(Object.values(categoryArr[isMajorCat][0])[0]);
+  // console.log(Object.values(categoryArr[isMajorCat][0])[0]);
+
+  // console.log('1', selectMajorData);
+  // console.log('2', selectMiddleData);
+  // console.log('3', isMajorCat);
+
   return (
     <>
       <ul className={styles.selectUl}>
@@ -111,7 +121,9 @@ export default function SelectBox() {
                   : cat
               }
               className={
-                cat === isMajorCat ? styles.bigCatChecked : styles.bigCat
+                selectMajorData === '' || cat !== selectMajorData
+                  ? styles.bigCat
+                  : styles.bigCatChecked
               }
               onClick={() => {
                 majorSelected(cat);
@@ -120,13 +132,13 @@ export default function SelectBox() {
           </li>
         ))}
       </ul>
-      <ul className={styles.selectUl}>
-        {categoryArr[isMajorCat].map((category, index) => (
+      {/* <ul className={styles.selectUl}>
+        {categoryArr[selectMajorData].map((category, index) => (
           <li key={index}>
             <input
               type="button"
               className={
-                Object.keys(category)[0] === isMiddleCat
+                Object.keys(category)[0] === selectMiddleData
                   ? styles.smallCatChecked
                   : styles.smallCat
               }
@@ -137,7 +149,27 @@ export default function SelectBox() {
             />
           </li>
         ))}
-      </ul>
+      </ul> */}
+      {selectMajorData !== '' && (
+        <ul className={styles.selectUl}>
+          {categoryArr[selectMajorData].map((category, index) => (
+            <li key={index}>
+              <input
+                type="button"
+                className={
+                  Object.keys(category)[0] === selectMiddleData
+                    ? styles.smallCatChecked
+                    : styles.smallCat
+                }
+                value={String(Object.values(category)[0])}
+                onClick={() => {
+                  midSelected(Object.keys(category)[0]);
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }

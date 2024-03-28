@@ -2,23 +2,31 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  selectMajor,
-  selectMiddle,
-} from '../../../Store/closetSlice/selectDataSlice';
+  selectMajorCraw,
+  selectMiddleCraw,
+} from '../../../Store/closetSlice/selectDataCrawlingSlice';
+import { useSelector } from 'react-redux';
 
 import styles from '../../../styles/closet/addclothes.module.scss';
 
 export default function SelectBoxCrawling() {
-  const [isMajorCat, setIsMajorCat] = useState('All');
+  const selectMajorDataCraw = useSelector(
+    (state: any) => state.searchCrawling.selectMajorCraw
+  );
+  const selectMiddleDataCraw = useSelector(
+    (state: any) => state.searchCrawling.selectMiddleCraw
+  );
+
+  const [isMajorCat, setIsMajorCat] = useState(selectMajorDataCraw);
   const [isMiddleCat, setIsMiddleCat] = useState('All');
 
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const category = queryParams.get('category');
-    if (category && category in categoryArr) {
-      setIsMajorCat(category);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const queryParams = new URLSearchParams(window.location.search);
+  //   const category = queryParams.get('category');
+  //   if (category && category in categoryArr) {
+  //     setIsMajorCat(category);
+  //   }
+  // }, []);
 
   const dispatch = useDispatch();
 
@@ -26,9 +34,10 @@ export default function SelectBoxCrawling() {
     console.log('대분류', value);
     setIsMajorCat(value);
     if (value == 'All') {
-      dispatch(selectMajor({ value: '' }));
+      dispatch(selectMajorCraw({ value: '' }));
     } else {
-      dispatch(selectMajor({ value: value }));
+      dispatch(selectMajorCraw({ value: value }));
+      dispatch(selectMiddleCraw({ value: '' }));
     }
   };
 
@@ -36,9 +45,9 @@ export default function SelectBoxCrawling() {
     console.log('중분류', value);
     setIsMiddleCat(value);
     if (value == 'All') {
-      dispatch(selectMiddle({ value: '' }));
+      dispatch(selectMiddleCraw({ value: '' }));
     } else {
-      dispatch(selectMiddle({ value: value }));
+      dispatch(selectMiddleCraw({ value: value }));
     }
   };
 
@@ -110,7 +119,9 @@ export default function SelectBoxCrawling() {
                   : cat
               }
               className={
-                cat === isMajorCat ? styles.bigCatChecked : styles.bigCat
+                selectMajorDataCraw === '' || cat !== selectMajorDataCraw
+                  ? styles.bigCat
+                  : styles.bigCatChecked
               }
               onClick={() => {
                 majorSelected(cat);
@@ -119,33 +130,26 @@ export default function SelectBoxCrawling() {
           </li>
         ))}
       </ul>
-      <ul className={styles.selectUl}>
-        {/* {Object.keys(categoryArr[isCat]).map((index) => (
-          <li key={index}>
-            <input
-              type="button"
-              className={styles.smallCat}
-              value={Object.values(categoryArr[isCat][index])[0]}
-            />
-          </li>
-        ))} */}
-        {categoryArr[isMajorCat].map((category, index) => (
-          <li key={index}>
-            <input
-              type="button"
-              className={
-                Object.keys(category)[0] === isMiddleCat
-                  ? styles.smallCatChecked
-                  : styles.smallCat
-              }
-              value={String(Object.values(category)[0])}
-              onClick={() => {
-                midSelected(Object.keys(category)[0]);
-              }}
-            />
-          </li>
-        ))}
-      </ul>
+      {selectMajorDataCraw !== '' && (
+        <ul className={styles.selectUl}>
+          {categoryArr[selectMajorDataCraw].map((category, index) => (
+            <li key={index}>
+              <input
+                type="button"
+                className={
+                  Object.keys(category)[0] === selectMiddleDataCraw
+                    ? styles.smallCatChecked
+                    : styles.smallCat
+                }
+                value={String(Object.values(category)[0])}
+                onClick={() => {
+                  midSelected(Object.keys(category)[0]);
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }

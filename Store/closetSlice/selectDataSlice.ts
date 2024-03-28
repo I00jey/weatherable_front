@@ -8,8 +8,8 @@ interface searchData {
 }
 
 const initialState: searchData = {
-  selectMajor: '',
-  selectMiddle: '',
+  selectMajor: 'All',
+  selectMiddle: 'All',
 };
 
 const selectDataSlice = createSlice({

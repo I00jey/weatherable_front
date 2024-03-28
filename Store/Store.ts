@@ -42,6 +42,7 @@ import { showListReducer } from './closetSlice/showListSlice';
 import { selectDataReducer } from './closetSlice/selectDataSlice';
 import { aiRecommedRuducer } from './aiSlice/aiSlice';
 import mainPageReducer from './mainSlice/mainPageSlice';
+import { selectCrawlingDataReducer } from './closetSlice/selectDataCrawlingSlice';
 
 const userPersistConfig = {
   key: 'user',
@@ -53,13 +54,27 @@ const weatherPersistConfig = {
   storage,
 };
 
+const searchDataPersistConfig = {
+  key: 'search',
+  storage,
+};
+
+const searchCrawDataPersistConfig = {
+  key: 'searchCrawling',
+  storage,
+};
+
 export type RootState = ReturnType<typeof rootReducer>;
 
 const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
   status: showListReducer,
   clothes: addClothesReducer,
-  search: selectDataReducer,
+  search: persistReducer(searchDataPersistConfig, selectDataReducer),
+  searchCrawling: persistReducer(
+    searchCrawDataPersistConfig,
+    selectCrawlingDataReducer
+  ),
   calendar: calendarReducer,
   aiRecommend: persistReducer(weatherPersistConfig, aiRecommedRuducer),
   mainPage: mainPageReducer,
