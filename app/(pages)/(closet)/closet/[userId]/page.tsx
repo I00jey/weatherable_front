@@ -101,7 +101,7 @@ export default function Closet({ params: { userId } }) {
         // 카테고리 필터링
         if (selectedCategory) {
           clothesData = clothesData.filter(
-            (item) => item.majorCategory === selectedCategory
+            (item) => item.middleCategory === selectedCategory
           );
         }
 

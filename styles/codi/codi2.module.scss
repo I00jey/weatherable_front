@@ -1,66 +1,58 @@
-// codi.module.scss
-
 @import '../common.scss';
 
-// .container {
-//   display: flex;
-//   flex-direction: column; /* 세로로 아이템을 정렬합니다. */
-//   gap: 10px;
-// }
-
-.uploadButtonHat,
-.uploadButtonTop,
-.uploadButtonOuter,
-.uploadButtonPants,
-.uploadButtonShoes {
-  width: 120px;
-  height: 120px;
-  border: 2px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #333;
-  margin-bottom: 10px; /* 아이템 간격을 설정합니다. */
+.mainContainer {
+  position: relative;
+  width: 90%;
+  height: 80vh;
+  @include flex();
+  img {
+    height: 60vh;
+  }
+  div {
+    position: absolute;
+    background-color: white;
+    width: 8rem;
+    height: 6rem;
+    border-radius: $radius-s;
+    border: 1px solid $lightgray;
+    @include flex();
+    span {
+      position: absolute;
+      color: $theme-blue-2;
+    }
+  }
+  .outerBox {
+    top: 25%;
+    left: 50%;
+  }
+  .topBox {
+    top: 30%;
+    left: 10%;
+  }
+  .pantsBox {
+    top: 60%;
+  }
+  .shoesBox {
+    top: 80%;
+  }
+  .accessoryBox {
+    top: 15%;
+    width: 4rem;
+    height: 3rem;
+  }
 }
-
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-}
-
 .modalContent {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.img {
-  width: 124px;
-  height: 124px;
-  object-fit: cover;
-  object-position: center;
+.uploadButton {
+  width: 4rem;
+  height: 3rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
 }
