@@ -49,62 +49,28 @@ export default function Closet({ params: { userId } }) {
   // console.log('검색분류 (소) >>', selectMiddleData);
 
   const [userClothesData, setUserClothesData] = useState<clothes[]>([]);
-  //
-  // 전체
+
   useEffect(() => {
-    const userClothesData = async () => {
+    const fetchData = async () => {
       try {
-        const userClothesData = await getUserClothes();
-        setUserClothesData(userClothesData);
+        let data;
+        if (selectMajorData !== '') {
+          if (selectMiddleData !== '') {
+            data = await getUserClothesByCatMiddle(selectMiddleData);
+          } else {
+            data = await getUserClothesByCatMajor(selectMajorData);
+          }
+        } else {
+          data = await getUserClothes();
+        }
+        setUserClothesData(data);
       } catch (error) {
-        console.log(error, '유저 옷장 데이터 가져오기 오류 (전체) ');
+        console.log(error, '유저 옷장 데이터 가져오기 오류');
       }
     };
-    userClothesData();
-  }, []);
 
-  // 중분류 카테고리
-  useEffect(() => {
-    const userClothesData = async () => {
-      if (selectMajorData !== '') {
-        try {
-          const userClothesDataByCat = await getUserClothesByCatMajor(
-            selectMajorData
-          );
-          setUserClothesData(userClothesDataByCat);
-        } catch (error) {
-          console.log(error, '유저 옷장 데이터 가져오기 오류 (카테고리)');
-        }
-      } else {
-        try {
-          const userClothesData = await getUserClothes();
-          setUserClothesData(userClothesData);
-        } catch (error) {
-          console.log(error, '유저 옷장 데이터 가져오기 오류 (중분류) ');
-        }
-      }
-    };
-    userClothesData();
-  }, [selectMajorData]);
-
-  // 소분류 카테고리
-  useEffect(() => {
-    const userClothesData = async () => {
-      if (selectMajorData !== '') {
-        try {
-          const userClothesDataByCat = await getUserClothesByCatMiddle(
-            selectMiddleData
-          );
-          setUserClothesData(userClothesDataByCat);
-        } catch (error) {
-          console.log(error, '유저 옷장 데이터 가져오기 오류 (소분류)');
-        }
-      }
-    };
-    userClothesData();
-  }, [selectMiddleData]);
-
-  console.log(userClothesData);
+    fetchData();
+  }, [selectMajorData, selectMiddleData]);
 
   return (
     <div className={styles.container}>
@@ -113,10 +79,10 @@ export default function Closet({ params: { userId } }) {
           <span>{getUserId}</span>님의 옷장
         </p>
         <div>
-          <button>
+          {/* <button>
             <span className="material-symbols-outlined">bookmark</span>
           </button>
-          <span>50</span>
+          <span>50</span> */}
         </div>
       </div>
       <div className={styles.selectBox}>

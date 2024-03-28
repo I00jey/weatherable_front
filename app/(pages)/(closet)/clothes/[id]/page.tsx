@@ -46,8 +46,7 @@ export default function Clothes({ params: { id } }) {
   const [isPrice, setIsPrice] = useState('');
   const [isStyle, setIsStyle] = useState('');
   const [isclothId, setIsClothId] = useState('');
-  const [isLiked, setIsLiked] = useState('');
-
+  const [isLike, setIsLike] = useState<boolean>();
   const categoryArr = require('../../../../../data/categoryData');
 
   // id 기반 옷 정보 가져오기
@@ -61,7 +60,7 @@ export default function Clothes({ params: { id } }) {
         setIsName(crawlingClothes.productName);
         setIsPrice(crawlingClothes.price);
         setIsClothId(crawlingClothes.id);
-        setIsLiked(crawlingClothes.liked);
+        setIsLike(crawlingClothes.liked);
         switch (crawlingClothes.style) {
           case 'Casual':
             setIsStyle('캐주얼');
@@ -133,15 +132,20 @@ export default function Clothes({ params: { id } }) {
     const response = await modifyCloth(modifyData);
     console.log(modifyData);
     console.log(response);
-    window.location.reload();
+    alert('수정이 완료되었습니다!');
   };
 
   const likeBtn = async () => {
     const likedData = { id: id, liked: liked };
     // console.log(likedData);
     const likeRes = await likedCloth(likedData);
-    window.location.reload();
+    setIsLike(!isLike);
   };
+
+  useEffect(() => {
+    console.log(isLike);
+    console.log('좋아요 여부', liked);
+  }, [isLike]);
 
   return (
     <div className={styles.container}>
@@ -163,7 +167,7 @@ export default function Clothes({ params: { id } }) {
         <button className={clothStyles.likedBtn} onClick={likeBtn}>
           <span
             className="material-symbols-outlined"
-            style={liked ? { color: '#4d77b6' } : { color: '#d3d3d3' }}
+            style={isLike ? { color: '#4d77b6' } : { color: '#d3d3d3' }}
           >
             favorite
           </span>

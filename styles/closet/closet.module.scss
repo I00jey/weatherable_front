@@ -112,6 +112,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .bigCatChecked {
     color: $theme-blue-5 !important;
     font-weight: 700 !important;
@@ -135,10 +136,9 @@
     margin: 0;
     padding: 0;
     @include flex();
-    // justify-content: flex-start;
+    justify-content: flex-start;
     li > input {
       background: none;
-
       border: none;
     }
   }
@@ -172,17 +172,23 @@
 
 .mainInfoBoxDefault {
   width: 90%;
+  max-width: 90%;
   margin-top: 1rem;
   display: grid;
+  // background-color: red;
+  // grid-template-columns: repeat(2, auto);
+  // column-gap: 1vh;
+  // row-gap: 1vh;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 5%;
-  row-gap: 2%;
+  column-gap: 1vh;
+  row-gap: 1vh;
   justify-content: center;
   .infoSmallBox {
-    // background-color: blue;
+    box-sizing: border-box;
+    background-color: white;
     box-shadow: 0px 2px 8px -5px #333;
     border-radius: $radius-s;
-    width: 100%;
+    width: 42vw;
     height: 180px;
     min-height: 180px;
     display: flex;
@@ -191,10 +197,10 @@
     flex-direction: column;
     div {
       width: 80%;
+      // background-color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       button {
         background: none;
         border: none;
@@ -202,11 +208,15 @@
         align-items: center;
       }
       .title {
-        display: flex;
-        align-items: center;
-
+        // display: flex;
+        // align-items: center;
         height: 100%;
-
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        // background-color: pink;
+        display: block;
         span {
           color: $black;
           font-size: 1rem;
@@ -218,15 +228,20 @@
       }
     }
     a {
-      display: flex;
-      // width: 100%;
+      width: 70%;
       height: 70%;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      // @include flex();
+      display: block;
+      overflow: hidden;
+      position: relative;
       img {
-        height: 70%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
   }
@@ -255,7 +270,7 @@
     box-shadow: 0px 2px 8px -5px #333;
     border-radius: $radius-s;
     display: flex;
-    // background-color: pink;
+    background-color: white;
     flex-direction: row-reverse;
     justify-content: space-around;
     align-items: center;
@@ -281,13 +296,26 @@
       }
       .title {
         color: $black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
       }
     }
     a {
-      // width: 30%;
+      width: 35px;
+      height: 35px;
+      position: relative;
+      display: block;
+      overflow: hidden;
       img {
-        height: 35px;
-        max-height: 35px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
   }

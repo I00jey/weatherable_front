@@ -134,7 +134,7 @@ export default function AiRecommend() {
 
       setIsAccessory(groupedData['Accessory']);
       setIsTop(groupedData['Top']);
-      setIsPants(groupedData['Bottoms']);
+      setIsPants(groupedData['Pants']);
       setIsOuter(groupedData['Outer']);
       setIsShoes(groupedData['Shoes']);
 
@@ -144,11 +144,11 @@ export default function AiRecommend() {
       // console.log(isPants[0]);
       // console.log(isShoes[0]);
 
-      // console.log(isAccessory);
-      // console.log(isTop);
-      // console.log(isOuter);
-      // console.log(isPants);
-      // console.log(isShoes);
+      console.log(isAccessory);
+      console.log(isTop);
+      console.log(isOuter);
+      console.log(isPants);
+      console.log(isShoes);
 
       // console.log(isAccessory[0].imagePath);
       // console.log(isTop[0].imagePath);
@@ -176,15 +176,17 @@ export default function AiRecommend() {
       <button onClick={aiRecommendBtn} className={styles.refreshBtn}>
         AI 옷 추천 받기
       </button>
+
       <div className={styles.mainContainer}>
+        <span className={styles.descText}>
+          버튼을 눌러 AI 추천 코디를 받아보세요!
+        </span>
         <img
           src="https://weatherable.s3.ap-northeast-2.amazonaws.com/default_ai.png"
           alt=""
         />
         <div className={styles.outerBox}>
-          {/* {isOuter.length == 0 && (
-            <span className="material-symbols-outlined">add_circle</span>
-          )} */}
+          <span className="material-symbols-outlined">add_circle</span>
           <Link
             href={
               isOuter && isOuter.length > 0 && isOuter[0].id
@@ -198,7 +200,7 @@ export default function AiRecommend() {
           </Link>
         </div>
         <div className={styles.topBox}>
-          {/* <span className="material-symbols-outlined">add_circle</span> */}
+          <span className="material-symbols-outlined">add_circle</span>
           <Link
             href={
               isTop && isTop.length > 0 && isTop[0].id
@@ -212,7 +214,7 @@ export default function AiRecommend() {
           </Link>
         </div>
         <div className={styles.pantsBox}>
-          {/* <span className="material-symbols-outlined">add_circle</span> */}
+          <span className="material-symbols-outlined">add_circle</span>
           <Link
             href={
               isPants && isPants.length > 0 && isPants[0].id
@@ -226,7 +228,7 @@ export default function AiRecommend() {
           </Link>
         </div>
         <div className={styles.shoesBox}>
-          {/* <span className="material-symbols-outlined">add_circle</span> */}
+          <span className="material-symbols-outlined">add_circle</span>
           <Link
             href={
               isShoes && isShoes.length > 0 && isShoes[0].id
@@ -240,7 +242,7 @@ export default function AiRecommend() {
           </Link>
         </div>
         <div className={styles.accessoryBox}>
-          {/* <span className="material-symbols-outlined">add_circle</span> */}
+          <span className="material-symbols-outlined">add_circle</span>
           <Link
             href={
               isAccessory && isAccessory.length > 0 && isAccessory[0].id

@@ -24,7 +24,7 @@ export default function SelectSize() {
   return (
     <>
       <label htmlFor="Size">사이즈</label>
-      <section>
+      <section className={styles.sizeBox}>
         <button
           className={styles.sizeBtn}
           onClick={(e) => {

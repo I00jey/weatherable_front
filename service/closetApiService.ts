@@ -265,7 +265,7 @@ export const searchClothesGet = async (keyWord: string) => {
       }
     );
     console.log(response.data.data);
-    return response;
+    return response.data.data;
   } catch (error) {
     console.error(error);
     throw new Error('예상치 못한 오류가 발생했습니다! (크롤링 데이터 검색)');
@@ -305,7 +305,7 @@ export const likedCloth = async (likeData: any) => {
       }
     );
     console.log(response.data.statusCode);
-    return response.data.statusCode;
+    return response;
   } catch (error) {
     console.log(error);
     throw new Error('좋아요 오류');
@@ -349,7 +349,7 @@ export const aiRecommendPost = async (aiData: any) => {
         withCredentials: true,
       }
     );
-    console.log(response);
+    console.log(response.data);
     return response.data.message; // 응답 데이터만 반환
   } catch (error) {
     console.log(error);
