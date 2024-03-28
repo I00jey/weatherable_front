@@ -19,7 +19,7 @@ const categoryArr = {
     { Padded_jacket: '패딩' },
     { Blazer: '블레이저' },
     { Mustang: '무스탕' },
-    { Sport_shirt: '스포츠 자켓' },
+    { Sport_Jacket: '스포츠 자켓' },
   ],
   Shoes: [
     { Running_shoes: '러닝 슈즈' },

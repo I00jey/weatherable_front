@@ -38,7 +38,6 @@ export default function SideBar({ open, close }: props) {
     // 로그아웃 시 userId 상태 초기화
     dispatch(setUserId(''));
     sessionStorage.clear(); // 세션 스토리지의 모든 값 제거. (2개 토큰 - R.T , A.T) 제거.
-
     // 로그아웃 시 UI 갱신
     setLoggedIn(false);
     close();

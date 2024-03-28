@@ -13,10 +13,10 @@ import { RootState } from '../Store/Store';
 export default function Header() {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
-  const backButtonVisible = useSelector(
-    (state: RootState) => state.mainPage.backButtonVisible
-  );
-  console.log(backButtonVisible);
+  // const backButtonVisible = useSelector(
+  //   (state: RootState) => state.mainPage.backButtonVisible
+  // );
+  // console.log(backButtonVisible);
 
   // 닫기 버튼
   const close = () => {
@@ -49,13 +49,18 @@ export default function Header() {
         </li>
 
         <li>
-          {backButtonVisible && (
+          {/* {backButtonVisible && (
             <button onClick={back}>
               <span className="material-symbols-outlined">
                 keyboard_backspace
               </span>
             </button>
-          )}
+          )} */}
+          <button onClick={back}>
+            <span className="material-symbols-outlined">
+              keyboard_backspace
+            </span>
+          </button>
         </li>
       </ul>
       {/* {isOpen && <SideBar open={isOpen} close={close} width={width} />} */}
