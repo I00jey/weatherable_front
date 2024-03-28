@@ -82,6 +82,12 @@ export default function Closet({ params: { userId } }) {
         } else {
           data = await getUserClothes();
 
+
+        if (selectedCategory) {
+          clothesData = clothesData.filter(
+            (item) => item.middleCategory === selectedCategory
+          );
+
         }
         setUserClothesData(data);
       } catch (error) {

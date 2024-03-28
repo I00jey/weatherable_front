@@ -93,7 +93,7 @@ const Calendar = () => {
   };
 
   const renderUploadButton = () => {
-    if (selectedDate) {
+    if (selectedDate && !hasCodi) {
       const selectedDay = parseInt(selectedDate.split(' ')[2]);
       const today = new Date().getDate();
 
