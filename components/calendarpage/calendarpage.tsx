@@ -1,17 +1,24 @@
-'use client';
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/calendar/calendar.module.scss';
 import Link from 'next/link';
+import { getCodiInfo } from '../../service/getCodiInfoApi';
 
 const Calendar = () => {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [month, setMonth] = useState<number>(new Date().getMonth() + 1);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [hasCodi, setHasCodi] = useState<boolean>(false);
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 오늘 날짜를 선택한 날짜로 설정합니다.
     setSelectedDate(getFormattedDate(new Date()));
   }, []);
+
+  useEffect(() => {
+    if (selectedDate) {
+      checkCodiExistence(selectedDate);
+    }
+  }, [selectedDate]);
 
   const prevMonth = () => {
     if (month === 1) {
@@ -93,8 +100,6 @@ const Calendar = () => {
       // 선택한 날짜가 오늘 날짜 또는 내일 날짜인 경우에만 버튼을 보여줌
       if (selectedDay === today || Math.abs(selectedDay - today) <= 1) {
         const formattedDate = encodeURIComponent(selectedDate);
-        console.log('인코딩값', formattedDate);
-        console.log('디코딩값', decodeURIComponent(formattedDate));
         const path = `/codipage?selectedDate=${formattedDate}`;
         return (
           <a href={path}>
@@ -104,6 +109,25 @@ const Calendar = () => {
       }
     }
     return null;
+  };
+
+  const checkCodiExistence = async (selectedDate: string) => {
+    try {
+      const codiInfo = await getCodiInfo({ selectedDate });
+      console.log('코디 정보:', codiInfo);
+
+      // 선택한 날짜의 코디 정보가 있는지 확인
+      const matchingCodi = codiInfo.find((codi) => {
+        const codiDate = new Date(codi.codiDate).toLocaleDateString();
+        const clickedDate = new Date(selectedDate).toLocaleDateString();
+        return codiDate === clickedDate;
+      });
+
+      // 코디 정보가 있고, 선택한 날짜와 일치하는 경우에만 버튼 표시
+      setHasCodi(!!matchingCodi);
+    } catch (error) {
+      console.error('코디 정보를 불러오는 데 실패했습니다.', error);
+    }
   };
 
   return (
@@ -138,6 +162,13 @@ const Calendar = () => {
       <div className={styles['selected-date-box']}>
         <p>선택한 날짜: {selectedDate || getFormattedDate(new Date())}</p>
         {renderUploadButton()}
+        {hasCodi && (
+          <Link
+            href={`/codipage?selectedDate=${encodeURIComponent(selectedDate)}`}
+          >
+            <button>코디 확인하기</button>
+          </Link>
+        )}
       </div>
     </div>
   );

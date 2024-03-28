@@ -35,7 +35,9 @@ const ClothesInfoBox: React.FC<ClothesInfoBoxProps> = ({
           <span className="material-symbols-outlined">favorite</span>
         </button>
       </div>
-      <img src={imagePath} alt="" />
+      <div className={styles.a}>
+        <img src={imagePath} alt="" />
+      </div>
     </div>
   );
 };

@@ -34,7 +34,24 @@ interface clothes {
   user_id: number;
   userid: string;
 }
+function findCategory() {
+  if (typeof window !== 'undefined') {
+    const url = window.location.href;
+    const queryString = url.split('?')[1];
+    if (!queryString) return null;
 
+    const queryParams = queryString.split('&');
+
+    for (const param of queryParams) {
+      if (param.startsWith('category=')) {
+        const category = param.split('=')[1];
+        return decodeURIComponent(category);
+      }
+    }
+  }
+
+  return null;
+}
 export default function Closet({ params: { userId } }) {
   const sortStatus = useSelector((state: any) => state.status.status);
   // console.log('sort 상태', sortStatus);
@@ -50,6 +67,8 @@ export default function Closet({ params: { userId } }) {
 
   const [userClothesData, setUserClothesData] = useState<clothes[]>([]);
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,6 +81,7 @@ export default function Closet({ params: { userId } }) {
           }
         } else {
           data = await getUserClothes();
+
         }
         setUserClothesData(data);
       } catch (error) {
