@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUserId } from '../../../Store/userSlice/userSlice';
+import Loading from '../../../components/Loading';
+import LoginFailModal from '../../../components/LoginFailModal';
 
 interface UserData {
   userid: string;
@@ -22,12 +24,14 @@ const Login: React.FC = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const [userData, setUserData] = useState<UserData>({
-    userid: 'test1',
+    userid: 'test',
     password: '111111',
   });
 
   const [useridError, setUseridError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -48,6 +52,8 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
 
     // 아이디 유효성 검사
     if (!userData.userid) {
@@ -81,66 +87,77 @@ const Login: React.FC = () => {
 
       dispatch(setUserId(userData.userid));
       console.log('로그인 성공');
-      router.push('/mainpage');
+      setTimeout(() => {
+        setIsLoading(false); // 3초 후 로딩 화면 숨기기
+        router.push('/mainpage');
+      }, 3000);
     } catch (error) {
       console.log('로그인 실패!', error);
-      alert(
-        '아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.'
-      );
+      setIsLoading(false);
+      setIsModalOpen(true);
     }
+  };
+  const handleModalConfirm = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <div className={styles.login_Container}>
-        <div className={styles.title}>로그인</div>
-
-        <form onSubmit={handleLogin}>
-          <div className={styles.content}>
-            {/* id */}
-            <div className={styles.login_Content_Container}>
-              <div className={styles.login_title}>아이디</div>
-              <input
-                ref={useridInputRef}
-                className={styles.login_input}
-                name="userid"
-                type="text"
-                value={userData.userid}
-                onChange={handleChange}
-                placeholder="아이디"
-              />
-              {useridError && <p className={styles.errorMsg}>{useridError}</p>}
+      {/* 로딩 상태에 따라 로딩 화면을 표시 */}
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <div className={styles.login_Container}>
+          <div className={styles.title}>로그인</div>
+          <form onSubmit={handleLogin}>
+            <div className={styles.content}>
+              {/* id */}
+              <div className={styles.login_Content_Container}>
+                <div className={styles.login_title}>아이디</div>
+                <input
+                  ref={useridInputRef}
+                  className={styles.login_input}
+                  name="userid"
+                  type="text"
+                  value={userData.userid}
+                  onChange={handleChange}
+                  placeholder="아이디"
+                />
+                {useridError && (
+                  <p className={styles.errorMsg}>{useridError}</p>
+                )}
+              </div>
+              {/* password */}
+              <div className={styles.login_Content_Container}>
+                <div className={styles.login_title}>비밀번호</div>
+                <input
+                  ref={passwordInputRef}
+                  className={styles.login_input}
+                  type="password"
+                  name="password"
+                  value={userData.password}
+                  onChange={handleChange}
+                  placeholder="비밀번호"
+                />
+                {passwordError && (
+                  <p className={styles.errorMsg}>{passwordError}</p>
+                )}
+              </div>
+              {/* etc */}
+              <div className={styles.login_info}>
+                <div>아직 Weatherable Member가 아니신가요? </div>
+                <img src="bar.png" alt="" />
+                <Link href={'/signup'} className={styles.signup_text}>
+                  <div>회원가입</div>
+                </Link>
+              </div>
             </div>
-            {/* password */}
-            <div className={styles.login_Content_Container}>
-              <div className={styles.login_title}>비밀번호</div>
-              <input
-                ref={passwordInputRef}
-                className={styles.login_input}
-                type="password"
-                name="password"
-                value={userData.password}
-                onChange={handleChange}
-                placeholder="비밀번호"
-              />
-              {passwordError && (
-                <p className={styles.errorMsg}>{passwordError}</p>
-              )}
-            </div>
-            {/* etc */}
-            <div className={styles.login_info}>
-              <div>아직 Weatherable Member가 아니신가요? </div>
-              <img src="bar.png" alt="" />
-              <Link href={'/signup'} className={styles.signup_text}>
-                <div>회원가입</div>
-              </Link>
-            </div>
-          </div>
-          <button type="submit" className={styles.login_Btn}>
-            로그인
-          </button>
-        </form>
-      </div>
+            <button type="submit" className={styles.login_Btn}>
+              로그인
+            </button>
+          </form>
+          <LoginFailModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
+        </div>
+      )}
     </>
   );
 };

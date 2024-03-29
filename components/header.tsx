@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/header.module.scss';
 import '../styles/icons.scss';
 import SideBar from './sidebar';
@@ -13,18 +13,20 @@ import { RootState } from '../Store/Store';
 export default function Header() {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
-  // const backButtonVisible = useSelector(
-  //   (state: RootState) => state.mainPage.backButtonVisible
-  // );
-  // console.log(backButtonVisible);
+  const router = useRouter();
 
+  const backButtonVisible = useSelector(
+    (state: RootState) => state.mainPage.backButtonVisible
+  );
+  console.log('backButtonVisible >', backButtonVisible);
   // 닫기 버튼
   const close = () => {
     setIsOpen(false);
   };
 
+  useEffect(() => {}, []);
+
   // 뒤로가기 버튼
-  const router = useRouter();
   const back = () => {
     router.back();
   };
@@ -49,14 +51,10 @@ export default function Header() {
         </li>
 
         <li>
-          {/* {backButtonVisible && (
-            <button onClick={back}>
-              <span className="material-symbols-outlined">
-                keyboard_backspace
-              </span>
-            </button>
-          )} */}
-          <button onClick={back}>
+          <button
+            style={{ visibility: backButtonVisible ? 'visible' : 'hidden' }}
+            onClick={back}
+          >
             <span className="material-symbols-outlined">
               keyboard_backspace
             </span>

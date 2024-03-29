@@ -1,7 +1,5 @@
 import styles from '../styles/header.module.scss';
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../public/logo.png';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,11 +65,6 @@ export default function SideBar({ open, close }: props) {
                     <span>마이페이지</span>
                   </Link>
                 </li>
-                {/* <li>
-                  <Link href={'/login'} onClick={logOut}>
-                    <span>로그아웃</span>
-                  </Link>
-                </li> */}
               </ul>
             ) : (
               <>
