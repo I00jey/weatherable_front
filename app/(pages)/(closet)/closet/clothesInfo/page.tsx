@@ -16,7 +16,7 @@ import {
   selectMajorCraw,
   selectMiddleCraw,
 } from '../../../../../Store/closetSlice/selectDataCrawlingSlice';
-import Loading from './loading';
+import Loading from '../../../../../components/Loading';
 
 export default function AllClothes() {
   const [searchData, setSearchData] = useState('');
