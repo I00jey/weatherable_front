@@ -8,13 +8,12 @@ import { useRouter } from 'next/navigation';
 import { hideBackButton } from '../../Store/mainSlice/mainPageSlice';
 import { useDispatch } from 'react-redux';
 import MoveLoginModal from '../../components/MoveLoginModal';
-import Loading from '../../components/Loading';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
-  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const accessToken = sessionStorage.getItem('accessToken');
     if (!accessToken) {
@@ -28,19 +27,18 @@ const MainPage: React.FC = () => {
     router.push('/login');
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
   return (
     <div className={styles.all}>
-      <hr />
-      <div className={styles.mainContainer}>
+
+      <div className={styles.maincontainer}>
+
         <div className={styles.test}>
           <LocationWeather />
         </div>
-
-        <div className={styles.mainbuttoncontainer}>
-          <Mainpage_button />
+        <div className={styles.borderline}>
+          <div className={styles.mainbuttoncontainer}>
+            <Mainpage_button />
+          </div>
         </div>
       </div>
       <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
