@@ -14,7 +14,7 @@ const MainPage: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
-  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const accessToken = sessionStorage.getItem('accessToken');
     if (!accessToken) {
@@ -28,9 +28,9 @@ const MainPage: React.FC = () => {
     router.push('/login');
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
   return (
     <div className={styles.all}>
       <hr />
