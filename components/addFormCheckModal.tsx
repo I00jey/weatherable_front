@@ -2,8 +2,10 @@
 
 import React from 'react';
 import styles from '../styles/WithdrawalModal.module.scss';
+import { useRouter } from 'next/navigation';
 
-export const AddFormCheckModal = ({ isOpen, onConfirm }) => {
+export const AddFormCheckModal = ({ isOpen }) => {
+  const router = useRouter();
   return (
     isOpen && (
       <div className={styles.modal}>
@@ -12,7 +14,16 @@ export const AddFormCheckModal = ({ isOpen, onConfirm }) => {
           <p className={styles.modalText}>
             옷장 페이지에서 상제 정보를 확인해주세요!
           </p>
-          <div className={styles.modalActions}></div>
+          <div className={styles.modalActions}>
+            <button
+              className={styles.withdrawalModalButtonNo}
+              onClick={() => {
+                router.back();
+              }}
+            >
+              취소
+            </button>
+          </div>
         </div>
       </div>
     )

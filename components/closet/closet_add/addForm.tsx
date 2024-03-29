@@ -71,19 +71,18 @@ export default function AddForm() {
     e.preventDefault();
     try {
       const closetDTO = convertToClosetDTO(totalData);
-
-      if (
-        Object.values(closetDTO).some(
-          (value) => value === '' || isNaN(value as number)
-        )
-      ) {
+      if (Object.values(closetDTO).some((value) => value === '')) {
+        console.log(Object.values(closetDTO));
+        console.log('...');
         setCheckValue(false);
-      } else {
-        await postAddClothes(closetDTO);
-        console.log('post 완료');
-        console.log(closetDTO);
+        return;
       }
-      // setShowSaveModal(true);
+      // setCheckValue(true);
+      // console.log(checkValue);
+      await postAddClothes(closetDTO);
+      console.log('post 완료');
+      console.log(closetDTO);
+      setShowSaveModal(true);
       // router.back();
     } catch (error) {
       console.error('실패: ', error);
@@ -91,23 +90,25 @@ export default function AddForm() {
   };
 
   return (
-    <form action="" className={styles.addFormContainer} onSubmit={addClothes}>
-      <SelectImg />
-      <div className={styles.infoBox}>
-        <SelectName check={checkValue} />
-        <SelectBrand check={checkValue} />
-        <SelectCat check={checkValue} />
-        <SelectSize check={checkValue} />
-        <SelectWeather check={checkValue} />
-        <SelectThickness check={checkValue} />
-        <SelectStyles check={checkValue} />
-        <SelectPrice check={checkValue} />
-      </div>
-      <div className={styles.btnBox}>
-        <button className={styles.submit}>저장하기</button>
-        {/* <button className={styles.temSubmit}>임시저장하기</button> */}
-      </div>
-      <AddFormCheckModal isOpen={showSaveModal} onConfirm={!showSaveModal} />
-    </form>
+    <>
+      <form action="" className={styles.addFormContainer} onSubmit={addClothes}>
+        <SelectImg />
+        <div className={styles.infoBox}>
+          <SelectName check={checkValue} />
+          <SelectBrand check={checkValue} />
+          <SelectCat check={checkValue} />
+          <SelectSize check={checkValue} />
+          <SelectWeather check={checkValue} />
+          <SelectThickness check={checkValue} />
+          <SelectStyles check={checkValue} />
+          <SelectPrice check={checkValue} />
+        </div>
+        <div className={styles.btnBox}>
+          <button className={styles.submit}>저장하기</button>
+          {/* <button className={styles.temSubmit}>임시저장하기</button> */}
+        </div>
+      </form>
+      <AddFormCheckModal isOpen={showSaveModal} />
+    </>
   );
 }
