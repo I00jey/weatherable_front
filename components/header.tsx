@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { RootState } from '../Store/Store';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
@@ -18,6 +19,9 @@ export default function Header() {
   // );
   // console.log(backButtonVisible);
 
+  const path = usePathname();
+
+  console.log(path);
   // 닫기 버튼
   const close = () => {
     setIsOpen(false);
@@ -56,11 +60,15 @@ export default function Header() {
               </span>
             </button>
           )} */}
-          <button onClick={back}>
-            <span className="material-symbols-outlined">
-              keyboard_backspace
-            </span>
-          </button>
+          {path !== '/' ? (
+            <button onClick={back}>
+              <span className="material-symbols-outlined">
+                keyboard_backspace
+              </span>
+            </button>
+          ) : (
+            ''
+          )}
         </li>
       </ul>
       {/* {isOpen && <SideBar open={isOpen} close={close} width={width} />} */}
