@@ -67,8 +67,30 @@ export default function Closet({ params: { userId } }) {
 
   const [userClothesData, setUserClothesData] = useState<clothes[]>([]);
 
-  const selectedCategory = findCategory(); // 수정된 부분
-
+  const selectedCategory = findCategory();
+  useEffect(() => {
+    const fetchUserClothesData = async () => {
+      try {
+        let clothesData;
+        if (selectMajorData !== '') {
+          clothesData = await getUserClothesByCatMajor(selectMajorData);
+        } else {
+          clothesData = await getUserClothes();
+        }
+        // 카테고리 필터링
+        if (selectedCategory) {
+          clothesData = clothesData.filter(
+            (item) => item.middleCategory === selectedCategory
+          );
+        }
+        setUserClothesData(clothesData);
+      } catch (error) {
+        console.log(error, '유저 옷장 데이터 가져오기 오류');
+      }
+    };
+    fetchUserClothesData();
+  }, [selectMajorData, selectedCategory]);
+  console.log(selectedCategory);
   // 하나로 합침
   useEffect(() => {
     const fetchData = async () => {
