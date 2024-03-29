@@ -19,14 +19,14 @@
 
       &.changedComponent {
         border-bottom: 3px solid black;
-        color: black;
-        background-color: $bg-gray;
+        color: $black;
+        background-color: $theme-red-2;
       }
     }
   }
 }
 .changedComponent2 {
   border-bottom: 3px solid black !important;
-  color: black !important;
-  background-color: $bg-gray;
+  color: $black !important;
+  background-color: $theme-red-2;
 }
