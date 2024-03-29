@@ -16,7 +16,6 @@ export default function Header() {
 
   const router = useRouter();
 
-
   const path = usePathname();
 
   console.log(path);
@@ -53,7 +52,6 @@ export default function Header() {
         </li>
 
         <li>
-
           {/* {backButtonVisible && (
             <button onClick={back}>
               <span className="material-symbols-outlined">
@@ -68,9 +66,15 @@ export default function Header() {
               </span>
             </button>
           ) : (
-            ''
+            <button>
+              <span
+                className="material-symbols-outlined"
+                style={{ color: '#f6f6f6' }}
+              >
+                keyboard_backspace
+              </span>
+            </button>
           )}
-
         </li>
       </ul>
       {/* {isOpen && <SideBar open={isOpen} close={close} width={width} />} */}
