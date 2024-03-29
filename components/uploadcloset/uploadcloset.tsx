@@ -38,6 +38,7 @@ const ClothesInfoBoxComponent: React.FC<ClosetPageProps> = ({
 
     fetchData();
   }, []);
+  const [filteredClothesData, setFilteredClothesData] = useState<any[]>([]);
 
   useEffect(() => {
     const filteredData = userClothesData.filter((item) => {
@@ -53,7 +54,7 @@ const ClothesInfoBoxComponent: React.FC<ClosetPageProps> = ({
       }
     });
 
-    setUserClothesData(filteredData);
+    setFilteredClothesData(filteredData);
   }, [selectMajorData, selectMiddleData, userClothesData]);
 
   return (
@@ -61,15 +62,13 @@ const ClothesInfoBoxComponent: React.FC<ClosetPageProps> = ({
       <div className={styles.selectBox}>
         <SelectBox />
       </div>
-      <div className={styles.sortBox}>
-        <SortBox />
-      </div>
+      <div className={styles.sortBox}></div>
       <div
         className={
           sortStatus ? styles.mainInfoBoxDefault : styles.mainInfoBoxSmall
         }
       >
-        {userClothesData.map((clothesItem, index) => (
+        {filteredClothesData.map((clothesItem, index) => (
           <ClothesInfoBox
             key={clothesItem.id}
             clothes={clothesItem}

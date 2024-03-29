@@ -148,33 +148,36 @@ const LocationWeather: React.FC = () => {
         <p>Loading...</p>
       ) : (
         <>
-          <div className={styles.weatherIcon}>
-            <img src={iconUrl} alt="Weather Icon" />
+          <div className={styles.weatherbox}>
+            <div className={styles.weatherIcon}>
+              <img src={iconUrl} alt="Weather Icon" />
+            </div>
+            <p className={styles.locationText}>{locationName}</p>
+
+            <p className={styles.temperatureTextmain}>
+              {Math.round((weatherData?.main.temp - 273) * 10) / 10}
+              °C
+            </p>
+            <p className={styles.temperatureTextcolor}>
+              <span style={{ color: 'red' }}>
+                ▲{Math.round((weatherData?.main.temp_max - 273) * 10) / 10}°C
+              </span>{' '}
+              &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {}
+              <span style={{ color: 'blue' }}>
+                ▼{Math.round((weatherData?.main.temp_min - 273) * 10) / 10}°C
+              </span>{' '}
+            </p>
           </div>
-          <p className={styles.locationText}>{locationName}</p>
-
-          <p className={styles.temperatureTextmain}>
-            {Math.round((weatherData?.main.temp - 273) * 10) / 10}
-            °C
-          </p>
-          <p className={styles.temperatureTextcolor}>
-            <span style={{ color: 'red' }}>
-              ▲{Math.round((weatherData?.main.temp_max - 273) * 10) / 10}°C
-            </span>{' '}
-            &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {}
-            <span style={{ color: 'blue' }}>
-              ▼{Math.round((weatherData?.main.temp_min - 273) * 10) / 10}°C
-            </span>{' '}
-          </p>
-
+          <div className={styles.hi}></div>
           <div className={styles.temperatureText}>
             <div className={styles.today}>오늘의 날씨</div>
-
-            {temperatureText ? (
-              <>{getTemperatureDescription(temperatureText)}</>
-            ) : null}
+            <br />
+            <div className={styles.temperatureTextBox}>
+              {temperatureText ? (
+                <>{getTemperatureDescription(temperatureText)}</>
+              ) : null}
+            </div>
           </div>
-          <hr />
         </>
       )}
     </div>

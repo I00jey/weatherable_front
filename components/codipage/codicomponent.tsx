@@ -191,8 +191,9 @@ const CodiPage: React.FC<{}> = () => {
                   imageSrc={targetCodi.cap.imagePath}
                   onClick={() => openModal('capIndex')}
                 />
-              )) ||
-              '모자'
+              )) || (
+                <span className="material-symbols-outlined">add_circle</span>
+              )
             )}
           </div>
           <div
@@ -210,8 +211,9 @@ const CodiPage: React.FC<{}> = () => {
                   imageSrc={targetCodi.outer.imagePath}
                   onClick={() => openModal('outerIndex')}
                 />
-              )) ||
-              '아우터'
+              )) || (
+                <span className="material-symbols-outlined">add_circle</span>
+              )
             )}
           </div>
 
@@ -230,8 +232,9 @@ const CodiPage: React.FC<{}> = () => {
                   imageSrc={targetCodi.top.imagePath}
                   onClick={() => openModal('topIndex')}
                 />
-              )) ||
-              '상의'
+              )) || (
+                <span className="material-symbols-outlined">add_circle</span>
+              )
             )}
           </div>
 
@@ -252,8 +255,9 @@ const CodiPage: React.FC<{}> = () => {
                     imageSrc={targetCodi.bottom.imagePath}
                     onClick={() => openModal('bottomIndex')}
                   />
-                )) ||
-              '하의'
+                )) || (
+                <span className="material-symbols-outlined">add_circle</span>
+              )
             )}
           </div>
 
@@ -272,8 +276,9 @@ const CodiPage: React.FC<{}> = () => {
                   imageSrc={targetCodi.shoes.imagePath}
                   onClick={() => openModal('shoesIndex')}
                 />
-              )) ||
-              '신발'
+              )) || (
+                <span className="material-symbols-outlined">add_circle</span>
+              )
             )}
           </div>
         </div>

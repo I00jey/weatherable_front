@@ -33,14 +33,14 @@ const MainPage: React.FC = () => {
   }
   return (
     <div className={styles.all}>
-      <hr />
       <div className={styles.maincontainer}>
         <div className={styles.test}>
           <LocationWeather />
         </div>
-
-        <div className={styles.mainbuttoncontainer}>
-          <Mainpage_button />
+        <div className={styles.borderline}>
+          <div className={styles.mainbuttoncontainer}>
+            <Mainpage_button />
+          </div>
         </div>
       </div>
       <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />

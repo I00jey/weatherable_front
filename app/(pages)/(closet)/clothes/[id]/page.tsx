@@ -131,7 +131,7 @@ export default function Clothes({ params: { id } }) {
     };
     const response = await modifyCloth(modifyData);
     console.log(modifyData);
-    console.log(response);
+    console.log('>>>>>>>>>>', response);
     alert('수정이 완료되었습니다!');
   };
 
