@@ -128,28 +128,19 @@ export default function SelectBox() {
               onClick={() => {
                 majorSelected(cat);
               }}
+              // style={
+              //   cat === 'All'
+              //     ? {
+              //         color: '#ff5656',
+              //         fontWeight: '900',
+              //         fontSize: '1rem',
+              //       }
+              //     : {}
+              // }
             />
           </li>
         ))}
       </ul>
-      {/* <ul className={styles.selectUl}>
-        {categoryArr[selectMajorData].map((category, index) => (
-          <li key={index}>
-            <input
-              type="button"
-              className={
-                Object.keys(category)[0] === selectMiddleData
-                  ? styles.smallCatChecked
-                  : styles.smallCat
-              }
-              value={String(Object.values(category)[0])}
-              onClick={() => {
-                midSelected(Object.keys(category)[0]);
-              }}
-            />
-          </li>
-        ))}
-      </ul> */}
       {selectMajorData !== '' && (
         <ul className={styles.selectUl}>
           {categoryArr[selectMajorData].map((category, index) => (

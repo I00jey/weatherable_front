@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../../styles/closet/addform.module.scss';
 import { selectSize as selectSizeAction } from '../../../../Store/closetSlice/addClothesSlice';
 
-export default function SelectSize() {
+export default function SelectSize({ check }) {
   const dispatch = useDispatch();
   const [isSizeDisabled, setIsSizeDisabled] = useState(false);
   const categoryData = useSelector((state: any) => ({
@@ -23,7 +23,13 @@ export default function SelectSize() {
 
   return (
     <>
-      <label htmlFor="Size">사이즈</label>
+      <label htmlFor="Size">
+        사이즈
+        <span className={styles.essentialcheck}>*</span>
+        {check == false && size === '' && (
+          <span className={styles.checkText}>사이즈를 선택해주세요</span>
+        )}
+      </label>
       <section className={styles.sizeBox}>
         <button
           className={styles.sizeBtn}

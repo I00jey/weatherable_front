@@ -11,7 +11,7 @@ import {
 } from '../../../../Store/closetSlice/addClothesSlice';
 import { postAddStyles } from '../../../../service/closetApiService';
 
-export default function SelectCat() {
+export default function SelectCat({ check }) {
   //  const categoryArr = {
   //   Top: [
   //     { Shirt: '티셔츠' },
@@ -145,7 +145,13 @@ export default function SelectCat() {
 
   return (
     <>
-      <label htmlFor="">카테고리</label>
+      <label htmlFor="">
+        카테고리
+        <span className={styles.essentialcheck}>*</span>
+        {check == false && category === '' && (
+          <span className={styles.checkText}>카테고리를 선택해주세요</span>
+        )}
+      </label>
       <div className={styles.catContainer}>
         <section className={styles.catBox}>
           <button

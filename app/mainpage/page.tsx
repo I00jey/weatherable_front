@@ -34,7 +34,7 @@ const MainPage: React.FC = () => {
   return (
     <div className={styles.all}>
       <hr />
-      <div className={styles.maincontainer}>
+      <div className={styles.mainContainer}>
         <div className={styles.test}>
           <LocationWeather />
         </div>

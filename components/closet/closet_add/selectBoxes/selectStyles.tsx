@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectStyle_str } from '../../../../Store/closetSlice/addClothesSlice';
 
-export default function SelectStyles() {
+export default function SelectStyles({ check }) {
   interface aiStyles {
     style_num: string;
     score: string;
@@ -52,7 +52,15 @@ export default function SelectStyles() {
 
   return (
     <>
-      <label htmlFor="style">스타일</label>
+      <label htmlFor="style">
+        스타일
+        <span className={styles.essentialcheck}>*</span>
+        {check == false && styleState === '' && (
+          <span className={styles.checkText}>
+            사진 및 카테고리를 선택해주세요
+          </span>
+        )}
+      </label>
       <div>
         <input
           className={styles.inputBox}

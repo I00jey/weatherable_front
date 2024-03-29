@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { selectThickness } from '../../../../Store/closetSlice/addClothesSlice';
 
-export default function SelectThickness() {
+export default function SelectThickness({ check }) {
   const [isClicked, setIsClicked] = useState(null);
   const dispatch = useDispatch();
 
@@ -16,7 +16,13 @@ export default function SelectThickness() {
 
   return (
     <>
-      <label htmlFor="thickNess">두께</label>
+      <label htmlFor="thickNess">
+        두께
+        <span className={styles.essentialcheck}>*</span>
+        {check == false && isClicked === null && (
+          <span className={styles.checkText}>두께를 선택해주세요</span>
+        )}
+      </label>
       <div className={styles.thicknessBox}>
         <input
           type="button"

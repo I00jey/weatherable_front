@@ -8,7 +8,7 @@
   min-height: 6vh;
   margin-top: 3vh;
   border-radius: $radius-m;
-  box-shadow: 0px 2px 6px -5px #333;
+  box-shadow: $shadow;
   input {
     width: 90%;
     text-align: center;
@@ -16,6 +16,10 @@
     font-size: 1.1rem;
     border: none;
   }
+}
+
+.editcheck {
+  color: $theme-red-5;
 }
 
 .imgContainer {
@@ -59,8 +63,7 @@
   @include flex();
   flex-direction: column;
   border-radius: $radius-m;
-  box-shadow: 0px 2px 6px -5px #333;
-
+  box-shadow: $shadow;
   div {
     width: 90%;
     height: 10%;
@@ -70,7 +73,7 @@
     .title {
       width: 30%;
       margin-right: 1vh;
-      color: $lightgray;
+      color: $gray;
       font-size: 0.9rem;
     }
     .desc {
@@ -82,6 +85,7 @@
       width: 70%;
       border: 0.5px solid $lightgray;
       border-radius: $radius-s;
+      padding: 0.5rem;
     }
   }
   .sizeBox {
@@ -96,6 +100,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0.2rem 0.2rem;
     }
     .sizeSelectBox {
       background-color: white;
@@ -168,15 +175,17 @@
   button {
     border: none;
     background: none;
-    color: $theme-red-3;
-    border: 1px solid $theme-red-3;
     border-radius: $radius-m;
-    padding: 0.2rem 0.9rem;
+    padding: 0.5rem 1rem;
     width: 30vw;
     min-width: 30vw;
   }
-  button:hover {
-    background: $theme-red-3;
-    color: white;
+  .modifyBtn {
+    background-color: $black;
+    color: $white;
+  }
+  .deleteBtn {
+    background-color: $theme-red-5;
+    color: $white;
   }
 }

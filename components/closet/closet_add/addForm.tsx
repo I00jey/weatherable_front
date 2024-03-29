@@ -11,6 +11,7 @@ import SelectImg from './selectBoxes/selectImg';
 import SelectName from './selectBoxes/selectName';
 import SelectBrand from './selectBoxes/selectBrand';
 import SelectPrice from './selectBoxes/selectPrice';
+import { AddFormCheckModal } from '../../../components/addFormCheckModal';
 
 import { useRouter } from 'next/navigation';
 import { postAddClothes } from '../../../service/closetApiService';
@@ -62,15 +63,28 @@ export default function AddForm() {
   };
 
   const router = useRouter();
+
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [checkValue, setCheckValue] = useState<boolean>(true);
+
   const addClothes = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const closetDTO = convertToClosetDTO(totalData);
-      await postAddClothes(closetDTO);
-      console.log('post 완료');
-      console.log(closetDTO);
-      alert('옷 추가 완료!');
-      router.back();
+
+      if (
+        Object.values(closetDTO).some(
+          (value) => value === '' || isNaN(value as number)
+        )
+      ) {
+        setCheckValue(false);
+      } else {
+        await postAddClothes(closetDTO);
+        console.log('post 완료');
+        console.log(closetDTO);
+      }
+      // setShowSaveModal(true);
+      // router.back();
     } catch (error) {
       console.error('실패: ', error);
     }
@@ -80,19 +94,20 @@ export default function AddForm() {
     <form action="" className={styles.addFormContainer} onSubmit={addClothes}>
       <SelectImg />
       <div className={styles.infoBox}>
-        <SelectName />
-        <SelectBrand />
-        <SelectCat />
-        <SelectSize />
-        <SelectWeather />
-        <SelectThickness />
-        <SelectStyles />
-        <SelectPrice />
+        <SelectName check={checkValue} />
+        <SelectBrand check={checkValue} />
+        <SelectCat check={checkValue} />
+        <SelectSize check={checkValue} />
+        <SelectWeather check={checkValue} />
+        <SelectThickness check={checkValue} />
+        <SelectStyles check={checkValue} />
+        <SelectPrice check={checkValue} />
       </div>
       <div className={styles.btnBox}>
         <button className={styles.submit}>저장하기</button>
         {/* <button className={styles.temSubmit}>임시저장하기</button> */}
       </div>
+      <AddFormCheckModal isOpen={showSaveModal} onConfirm={!showSaveModal} />
     </form>
   );
 }
