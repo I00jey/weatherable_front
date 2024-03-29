@@ -12,14 +12,13 @@
   .refreshBtn {
     border: none;
     margin: 1rem 0;
-    background-color: white;
-    padding: 0.5rem 2rem;
-    border-radius: $radius-s;
+    width: 50vw;
+    height: 5vh;
+    font-weight: 900;
+    border-radius: $radius-m;
     color: white;
-    border: 1px solid $theme-blue-3;
-    background: $theme-blue-3;
+    background: $black;
   }
-
   .mainContainer {
     position: relative;
     width: 70%;
@@ -29,8 +28,7 @@
     .descText {
       position: absolute;
       top: 1vh;
-      color: $theme-blue-3;
-      // background-color: red;
+      color: $gray;
     }
     img {
       height: 60vh;
@@ -64,7 +62,7 @@
       span {
         position: absolute;
         font-size: 2rem;
-        color: $theme-blue-2;
+        color: $theme-red-5;
       }
     }
     .outerBox {
