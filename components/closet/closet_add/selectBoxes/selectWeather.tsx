@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import styles from '../../../../styles/closet/addform.module.scss';
 import { selectWeather } from '../../../../Store/closetSlice/addClothesSlice';
 
-export default function SelectWeather() {
+export default function SelectWeather({ check }) {
   const [isClicked, setIsClicked] = useState(null);
   const dispatch = useDispatch();
 
@@ -16,7 +16,13 @@ export default function SelectWeather() {
 
   return (
     <>
-      <label htmlFor="weather">계절</label>
+      <label htmlFor="weather">
+        계절
+        <span className={styles.essentialcheck}>*</span>
+        {check == false && isClicked === null && (
+          <span className={styles.checkText}>계절을 선택해주세요</span>
+        )}
+      </label>
       <div className={styles.weatherBox}>
         <input
           type="button"

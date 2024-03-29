@@ -160,14 +160,14 @@ export default function Clothes({ params: { id } }) {
             setIsName(e.target.value);
           }}
         />
+        <span className={clothStyles.editcheck}>*</span>
       </form>
       <div className={clothStyles.imgContainer}>
-        {/* <Image src={} alt="로고" />; */}
         <img src={imagePath} alt="" />
         <button className={clothStyles.likedBtn} onClick={likeBtn}>
           <span
             className="material-symbols-outlined"
-            style={isLike ? { color: '#4d77b6' } : { color: '#d3d3d3' }}
+            style={isLike ? { color: '#ff5656' } : { color: '#d3d3d3' }}
           >
             favorite
           </span>
@@ -206,7 +206,10 @@ export default function Clothes({ params: { id } }) {
           </span>
         </div>
         <div>
-          <span className={clothStyles.title}>사이즈</span>
+          <span className={clothStyles.title}>
+            사이즈 <span className={clothStyles.editcheck}>*</span>
+          </span>
+
           <section className={clothStyles.sizeBox}>
             <button
               className={clothStyles.sizeBtn}
@@ -366,7 +369,9 @@ export default function Clothes({ params: { id } }) {
           <span className={clothStyles.desc}>{isStyle}</span>
         </div>
         <div>
-          <span className={clothStyles.title}>구매가격</span>
+          <span className={clothStyles.title}>
+            구매가격 <span className={clothStyles.editcheck}>*</span>
+          </span>
           <input
             type="text"
             name="price"
@@ -380,8 +385,12 @@ export default function Clothes({ params: { id } }) {
         </div>
       </div>
       <div className={clothStyles.btnContainer}>
-        <button onClick={modifyClothes}>수정하기</button>
-        <button onClick={deleteClothes}>삭제하기</button>
+        <button onClick={modifyClothes} className={clothStyles.modifyBtn}>
+          수정하기
+        </button>
+        <button onClick={deleteClothes} className={clothStyles.deleteBtn}>
+          삭제하기
+        </button>
       </div>
     </div>
   );

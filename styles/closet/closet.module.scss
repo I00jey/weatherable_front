@@ -123,7 +123,7 @@
     font-size: 1rem;
   }
   .smallCatChecked {
-    color: $theme-red-4 !important;
+    color: $gray !important;
     font-weight: 900 !important;
     font-size: 0.9rem;
   }
@@ -185,7 +185,7 @@
     box-sizing: border-box;
     background-color: $white;
     box-shadow: $shadow;
-    border-radius: $radius-s;
+    border-radius: $radius-m;
     width: 42vw;
     height: 180px;
     min-height: 180px;
@@ -259,7 +259,7 @@
     flex-direction: column;
     top: 30vh;
     span {
-      color: $theme-red-5;
+      color: $gray;
     }
   }
 }
@@ -273,8 +273,8 @@
   flex-direction: column;
   // background-color: pink;
   .infoSmallBox {
-    box-shadow: 0px 2px 8px -5px #333;
-    border-radius: $radius-s;
+    box-shadow: $shadow;
+    border-radius: $radius-m;
     display: flex;
     background-color: white;
     flex-direction: row-reverse;
@@ -331,14 +331,9 @@
     width: 90%;
     @include flex();
     flex-direction: column;
-    top: 50vh;
+    top: 30vh;
     span {
-      color: $theme-red-1;
+      color: $gray;
     }
   }
-}
-
-.noResultBox {
-  background-color: pink;
-  width: 100%;
 }
