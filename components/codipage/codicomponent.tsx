@@ -171,126 +171,111 @@ const CodiPage: React.FC<{}> = () => {
   return (
     <div>
       <div className={styles2.container}>
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('topIndex')}
-        >
-          {selectedImages['topIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['topIndex']}
-              onClick={() => openModal('topIndex')}
-            />
-          ) : (
-            (targetCodi && targetCodi.top && targetCodi.top.imagePath && (
+        <div className={styles2.mainContainer}>
+          <img
+            src="https://weatherable.s3.ap-northeast-2.amazonaws.com/default_ai.png"
+            alt=""
+          />
+          <div
+            className={`${styles2.uploadButton} ${styles2.accessoryBox}`}
+            onClick={() => openModal('capIndex')}
+          >
+            {selectedImages['capIndex'] ? (
               <MyComponent
-                imageSrc={targetCodi.top.imagePath}
-                onClick={() => openModal('topIndex')}
-              />
-            )) ||
-            '상의'
-          )}
-        </div>
-
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('bottomIndex')}
-        >
-          {selectedImages['bottomIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['bottomIndex']}
-              onClick={() => openModal('bottomIndex')}
-            />
-          ) : (
-            (targetCodi && targetCodi.bottom && targetCodi.bottom.imagePath && (
-              <MyComponent
-                imageSrc={targetCodi.bottom.imagePath}
-                onClick={() => openModal('bottomIndex')}
-              />
-            )) ||
-            '하의'
-          )}
-        </div>
-
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('outerIndex')}
-        >
-          {selectedImages['outerIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['outerIndex']}
-              onClick={() => openModal('outerIndex')}
-            />
-          ) : (
-            (targetCodi && targetCodi.outer && targetCodi.outer.imagePath && (
-              <MyComponent
-                imageSrc={targetCodi.outer.imagePath}
-                onClick={() => openModal('outerIndex')}
-              />
-            )) ||
-            '아우터'
-          )}
-        </div>
-
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('shoesIndex')}
-        >
-          {selectedImages['shoesIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['shoesIndex']}
-              onClick={() => openModal('shoesIndex')}
-            />
-          ) : (
-            (targetCodi && targetCodi.shoes && targetCodi.shoes.imagePath && (
-              <MyComponent
-                imageSrc={targetCodi.shoes.imagePath}
-                onClick={() => openModal('shoesIndex')}
-              />
-            )) ||
-            '신발'
-          )}
-        </div>
-
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('accessoryIndex')}
-        >
-          {selectedImages['accessoryIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['accessoryIndex']}
-              onClick={() => openModal('accessoryIndex')}
-            />
-          ) : (
-            (targetCodi &&
-              targetCodi.accessory &&
-              targetCodi.accessory.imagePath && (
-                <MyComponent
-                  imageSrc={targetCodi.accessory.imagePath}
-                  onClick={() => openModal('accessoryIndex')}
-                />
-              )) ||
-            '악세사리'
-          )}
-        </div>
-
-        <div
-          className={styles2.uploadButtonHat}
-          onClick={() => openModal('capIndex')}
-        >
-          {selectedImages['capIndex'] ? (
-            <MyComponent
-              imageSrc={selectedImages['capIndex']}
-              onClick={() => openModal('capIndex')}
-            />
-          ) : (
-            (targetCodi && targetCodi.cap && targetCodi.cap.imagePath && (
-              <MyComponent
-                imageSrc={targetCodi.cap.imagePath}
+                imageSrc={selectedImages['capIndex']}
                 onClick={() => openModal('capIndex')}
               />
-            )) ||
-            '모자'
-          )}
+            ) : (
+              (targetCodi && targetCodi.cap && targetCodi.cap.imagePath && (
+                <MyComponent
+                  imageSrc={targetCodi.cap.imagePath}
+                  onClick={() => openModal('capIndex')}
+                />
+              )) ||
+              '모자'
+            )}
+          </div>
+          <div
+            className={`${styles2.uploadButton} ${styles2.outerBox}`}
+            onClick={() => openModal('outerIndex')}
+          >
+            {selectedImages['outerIndex'] ? (
+              <MyComponent
+                imageSrc={selectedImages['outerIndex']}
+                onClick={() => openModal('outerIndex')}
+              />
+            ) : (
+              (targetCodi && targetCodi.outer && targetCodi.outer.imagePath && (
+                <MyComponent
+                  imageSrc={targetCodi.outer.imagePath}
+                  onClick={() => openModal('outerIndex')}
+                />
+              )) ||
+              '아우터'
+            )}
+          </div>
+
+          <div
+            className={`${styles2.uploadButton} ${styles2.topBox}`}
+            onClick={() => openModal('topIndex')}
+          >
+            {selectedImages['topIndex'] ? (
+              <MyComponent
+                imageSrc={selectedImages['topIndex']}
+                onClick={() => openModal('topIndex')}
+              />
+            ) : (
+              (targetCodi && targetCodi.top && targetCodi.top.imagePath && (
+                <MyComponent
+                  imageSrc={targetCodi.top.imagePath}
+                  onClick={() => openModal('topIndex')}
+                />
+              )) ||
+              '상의'
+            )}
+          </div>
+
+          <div
+            className={`${styles2.uploadButton} ${styles2.pantsBox}`}
+            onClick={() => openModal('bottomIndex')}
+          >
+            {selectedImages['bottomIndex'] ? (
+              <MyComponent
+                imageSrc={selectedImages['bottomIndex']}
+                onClick={() => openModal('bottomIndex')}
+              />
+            ) : (
+              (targetCodi &&
+                targetCodi.bottom &&
+                targetCodi.bottom.imagePath && (
+                  <MyComponent
+                    imageSrc={targetCodi.bottom.imagePath}
+                    onClick={() => openModal('bottomIndex')}
+                  />
+                )) ||
+              '하의'
+            )}
+          </div>
+
+          <div
+            className={`${styles2.uploadButton} ${styles2.shoesBox}`}
+            onClick={() => openModal('shoesIndex')}
+          >
+            {selectedImages['shoesIndex'] ? (
+              <MyComponent
+                imageSrc={selectedImages['shoesIndex']}
+                onClick={() => openModal('shoesIndex')}
+              />
+            ) : (
+              (targetCodi && targetCodi.shoes && targetCodi.shoes.imagePath && (
+                <MyComponent
+                  imageSrc={targetCodi.shoes.imagePath}
+                  onClick={() => openModal('shoesIndex')}
+                />
+              )) ||
+              '신발'
+            )}
+          </div>
         </div>
       </div>
 

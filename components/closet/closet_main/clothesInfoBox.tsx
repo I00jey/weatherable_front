@@ -2,12 +2,12 @@ import styles from '../../../styles/closet/closet.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { likedCloth } from '../../../service/closetApiService';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ClothesInfoBox(data: any) {
-  const [isLike, setIsLike] = useState(false);
-
   const { imagePath, id, productName, liked } = data.clothes;
+
+  const [isLike, setIsLike] = useState(liked);
 
   // console.log(liked);
 
@@ -17,8 +17,12 @@ export default function ClothesInfoBox(data: any) {
     const likedData = { id: id, liked: liked };
     // console.log(likedData);
     const likeRes = await likedCloth(likedData);
-    window.location.reload();
+    setIsLike(!isLike);
   };
+
+  useEffect(() => {
+    // console.log(isLike);
+  }, [isLike]);
 
   return (
     <div className={styles.infoSmallBox}>
@@ -29,7 +33,7 @@ export default function ClothesInfoBox(data: any) {
         <button onClick={likeBtn}>
           <span
             className="material-symbols-outlined"
-            style={liked ? { color: '#4d77b6' } : { color: '#d3d3d3' }}
+            style={isLike ? { color: '#4d77b6' } : { color: '#d3d3d3' }}
           >
             favorite
           </span>

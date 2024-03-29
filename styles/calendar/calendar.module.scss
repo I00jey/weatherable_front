@@ -1,4 +1,7 @@
+/* common.scss */
 @import '../common.scss';
+
+/* calendar.module.scss */
 .h1 {
   @include flex();
 }
@@ -6,9 +9,7 @@
   width: 100vh;
   height: 60%;
 }
-.today {
-  background-color: yellow;
-}
+.today,
 .selectedDate {
   background-color: yellow;
 }
@@ -37,13 +38,18 @@
 }
 
 .calendar-buttons button {
-  background-color: transparent;
+  background-color: #4caf50;
+  color: white;
   border: none;
   cursor: pointer;
   margin-left: 5px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+}
+
+.calendar-buttons button:hover {
+  background-color: #45a049;
 }
 
 .calendar-body table {
@@ -51,11 +57,7 @@
   border-collapse: collapse;
 }
 
-.calendar-body th {
-  padding: 8px 0;
-  text-align: center;
-}
-
+.calendar-body th,
 .calendar-body td {
   padding: 10px 0;
   text-align: center;
@@ -63,4 +65,53 @@
 
 .calendar-body .empty-cell {
   visibility: hidden;
+}
+.calendar-buttons button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.calendar-buttons button:hover {
+  background-color: #45a049;
+}
+
+/* 코디 확인하기 버튼 스타일 */
+.selected-date-box {
+  margin-top: 20px;
+}
+
+.selected-date-box button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.selected-date-box button:hover {
+  background-color: #0b7dda;
+}
+
+/* 코디 등록하기 버튼 스타일 */
+.selected-date-box a button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.selected-date-box a button:hover {
+  background-color: #e64a19;
 }
