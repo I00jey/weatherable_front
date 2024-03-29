@@ -16,6 +16,7 @@ import {
   selectMajorCraw,
   selectMiddleCraw,
 } from '../../../../../Store/closetSlice/selectDataCrawlingSlice';
+import Loading from './loading';
 
 export default function AllClothes() {
   const [searchData, setSearchData] = useState('');
@@ -141,7 +142,9 @@ export default function AllClothes() {
 
       <div className={styles.mainInfoBoxDefault}>
         {crawClothes.map((clothes) => (
-          <ClothesInfoBoxCrawling data={clothes} key={clothes.id} />
+          <Suspense fallback={<Loading />}>
+            <ClothesInfoBoxCrawling data={clothes} key={clothes.id} />
+          </Suspense>
         ))}
       </div>
     </div>
