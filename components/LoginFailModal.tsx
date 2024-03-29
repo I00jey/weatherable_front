@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/MoveLoginModal.module.scss';
+import Image from 'next/image';
 
 const LoginFailModal = ({ isOpen, onConfirm }) => {
   return (
@@ -7,7 +8,7 @@ const LoginFailModal = ({ isOpen, onConfirm }) => {
       <div className={styles.modal}>
         <div className={styles.modalContent}>
           <div className={styles.modalLogo}>
-            <img src="/logo.png" alt="" />
+            <Image src="/logo.png" alt="" width={220} height={150} />
           </div>
           <p className={styles.modalText}>
             아이디 또는 비밀번호를 잘못 입력하셨습니다.

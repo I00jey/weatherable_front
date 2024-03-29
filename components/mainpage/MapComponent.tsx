@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from '../../styles/mainpage/mainpage.module.scss';
 import { useDispatch } from 'react-redux';
 import { setTemp, setWeather } from '../../Store/aiSlice/aiSlice';
+import Loading from '../../components/Loading';
 interface WeatherData {
   main: {
     temp: number;
@@ -34,7 +35,7 @@ const LocationWeather: React.FC = () => {
     longitude: number;
   } | null>(null);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [isTemp, setIsTemp] = useState<number>(0);
   const [isWeather, setIsWeather] = useState('');
 
@@ -53,7 +54,7 @@ const LocationWeather: React.FC = () => {
         setWeatherData(response.data);
         setIsTemp(Math.round((response.data.main.temp - 273) * 10) / 10);
         setIsWeather(response.data.weather[0].main);
-        setLoading(false);
+        setLoading(true);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
@@ -144,9 +145,8 @@ const LocationWeather: React.FC = () => {
 
   return (
     <div className={styles.weatherContainer}>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
+      {loading && <Loading />}
+      {!loading && (
         <>
           <div className={styles.weatherIcon}>
             <img src={iconUrl} alt="Weather Icon" />
