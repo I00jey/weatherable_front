@@ -69,7 +69,6 @@ const Login: React.FC = () => {
     } else {
       setPasswordError(null);
     }
-
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_DB_HOST}/login`,

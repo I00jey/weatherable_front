@@ -5,13 +5,18 @@
 .h1 {
   @include flex();
 }
-.all {
-  width: 100vh;
+.Datetext {
+  display: flex;
+  width: 100%;
   height: 60%;
+  flex-direction: column;
+  align-items: center; /* 수직 가운데 정렬 */
+  margin-top: 50px;
 }
 .today,
 .selectedDate {
-  background-color: yellow;
+  background-color: #ff5c5c;
+  color: antiquewhite;
 }
 
 .calendar-container {
@@ -38,8 +43,7 @@
 }
 
 .calendar-buttons button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #ff5656;
   border: none;
   cursor: pointer;
   margin-left: 5px;
@@ -49,7 +53,7 @@
 }
 
 .calendar-buttons button:hover {
-  background-color: #45a049;
+  background-color: #ff5656;
 }
 
 .calendar-body table {
@@ -67,7 +71,7 @@
   visibility: hidden;
 }
 .calendar-buttons button {
-  background-color: #4caf50;
+  background-color: #ff5656;
   color: white;
   border: none;
   cursor: pointer;
@@ -78,7 +82,7 @@
 }
 
 .calendar-buttons button:hover {
-  background-color: #45a049;
+  background-color: #ff5656;
 }
 
 /* 코디 확인하기 버튼 스타일 */
@@ -102,7 +106,7 @@
 
 /* 코디 등록하기 버튼 스타일 */
 .selected-date-box a button {
-  background-color: #ff5722;
+  background-color: #ff5656;
   color: white;
   border: none;
   cursor: pointer;
@@ -113,5 +117,5 @@
 }
 
 .selected-date-box a button:hover {
-  background-color: #e64a19;
+  background-color: #ff5656;
 }
