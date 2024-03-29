@@ -83,7 +83,7 @@ const Login: React.FC = () => {
 
       dispatch(setUserId(userData.userid));
       console.log('로그인 성공');
-      router.push('/mainpage');
+      router.push('/');
     } catch (error) {
       console.log('로그인 실패!', error);
       setIsModalOpen(true);

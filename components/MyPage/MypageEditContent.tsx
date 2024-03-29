@@ -199,7 +199,7 @@ function MypageEditContent() {
         {/* 선호스타일 변경 */}
         <div className={styles.title_div}>
           <img src="/bar.png" alt="" />
-          <div className={styles.title}>선호스타일 (1개)</div>
+          <div className={styles.title}>선호스타일 (1개 선택)</div>
         </div>
         <div className={styles.like_Style_div}>
           {/* 각 선호 스타일 요소에 대해 매핑 */}

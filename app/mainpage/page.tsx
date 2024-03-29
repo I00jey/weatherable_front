@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { hideBackButton } from '../../Store/mainSlice/mainPageSlice';
 import { useDispatch } from 'react-redux';
 import MoveLoginModal from '../../components/MoveLoginModal';
-import Loading from '../../components/Loading';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
