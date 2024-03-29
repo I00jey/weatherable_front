@@ -9,16 +9,18 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { RootState } from '../Store/Store';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
   const router = useRouter();
 
-  const backButtonVisible = useSelector(
-    (state: RootState) => state.mainPage.backButtonVisible
-  );
-  console.log('backButtonVisible >', backButtonVisible);
+
+  const path = usePathname();
+
+  console.log(path);
+
   // 닫기 버튼
   const close = () => {
     setIsOpen(false);
@@ -51,14 +53,24 @@ export default function Header() {
         </li>
 
         <li>
-          <button
-            style={{ visibility: backButtonVisible ? 'visible' : 'hidden' }}
-            onClick={back}
-          >
-            <span className="material-symbols-outlined">
-              keyboard_backspace
-            </span>
-          </button>
+
+          {/* {backButtonVisible && (
+            <button onClick={back}>
+              <span className="material-symbols-outlined">
+                keyboard_backspace
+              </span>
+            </button>
+          )} */}
+          {path !== '/' ? (
+            <button onClick={back}>
+              <span className="material-symbols-outlined">
+                keyboard_backspace
+              </span>
+            </button>
+          ) : (
+            ''
+          )}
+
         </li>
       </ul>
       {/* {isOpen && <SideBar open={isOpen} close={close} width={width} />} */}
