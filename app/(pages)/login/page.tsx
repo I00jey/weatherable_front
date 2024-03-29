@@ -74,9 +74,13 @@ const Login: React.FC = () => {
     }
 
     try {
-      const res = await axios.post(`/login`, userData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_DB_HOST}/login`,
+        userData,
+        {
+          withCredentials: true,
+        }
+      );
       // 로그인 성공 후 세션 스토리지에 access token 저장 , refreshToken 저장
       sessionStorage.setItem('refreshToken', res.data.data[0]);
       sessionStorage.setItem('accessToken', res.data.data[1]);
