@@ -28,9 +28,6 @@ const MainPage: React.FC = () => {
     router.push('/login');
   };
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
   return (
     <div className={styles.all}>
       <hr />

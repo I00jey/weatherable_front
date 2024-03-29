@@ -35,7 +35,7 @@ const LocationWeather: React.FC = () => {
     longitude: number;
   } | null>(null);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [isTemp, setIsTemp] = useState<number>(0);
   const [isWeather, setIsWeather] = useState('');
 
@@ -54,7 +54,7 @@ const LocationWeather: React.FC = () => {
         setWeatherData(response.data);
         setIsTemp(Math.round((response.data.main.temp - 273) * 10) / 10);
         setIsWeather(response.data.weather[0].main);
-        setLoading(true);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }

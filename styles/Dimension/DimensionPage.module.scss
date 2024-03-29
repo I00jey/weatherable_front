@@ -10,7 +10,7 @@
 
     .components {
       @include flex();
-      border-bottom: 1px solid$lightgray;
+      border-bottom: 1px solid $lightgray;
       width: 25%;
       height: 2em;
       color: $lightgray;
@@ -20,7 +20,7 @@
       &.changedComponent {
         border-bottom: 3px solid black;
         color: black;
-        background-color: $theme-lavender;
+        background-color: $bg-gray;
       }
     }
   }
@@ -28,5 +28,5 @@
 .changedComponent2 {
   border-bottom: 3px solid black !important;
   color: black !important;
-  background-color: $theme-lavender;
+  background-color: $bg-gray;
 }
