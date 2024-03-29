@@ -100,7 +100,7 @@
         border-radius: $radius-s;
       }
       .thickClicked {
-        background: $theme-blue-3;
+        background: $theme-red-3;
         color: white;
       }
     }
@@ -119,7 +119,7 @@
         border-radius: $radius-s;
       }
       .weatherClicked {
-        background: $theme-blue-3;
+        background: $theme-red-3;
         color: white;
       }
     }
@@ -221,14 +221,14 @@
     background: none;
     height: 4vh;
     color: $theme-blue-3;
-    border: 1px solid $theme-blue-3;
+    border: 1px solid $theme-red-3;
     border-radius: $radius-m;
     padding: 0.2rem 0.9rem;
 
     width: 100%;
   }
   button:hover {
-    background: $theme-blue-3;
+    background: $theme-red-3;
     color: white;
   }
 }

@@ -130,7 +130,7 @@
       color: $gray;
     }
     .weatherClicked {
-      background: $theme-blue-3;
+      background: $theme-red-3;
       color: white;
     }
   }
@@ -146,7 +146,7 @@
       color: $gray;
     }
     .thickClicked {
-      background: $theme-blue-3;
+      background: $theme-red-3;
       color: white;
     }
   }
@@ -168,15 +168,15 @@
   button {
     border: none;
     background: none;
-    color: $theme-blue-3;
-    border: 1px solid $theme-blue-3;
+    color: $theme-red-3;
+    border: 1px solid $theme-red-3;
     border-radius: $radius-m;
     padding: 0.2rem 0.9rem;
     width: 30vw;
     min-width: 30vw;
   }
   button:hover {
-    background: $theme-blue-3;
+    background: $theme-red-3;
     color: white;
   }
 }

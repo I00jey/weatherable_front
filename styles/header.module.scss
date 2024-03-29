@@ -134,14 +134,14 @@
           }
         }
         a:hover {
-          color: $theme-blue-5;
+          color: $theme-red-5;
         }
         .path {
           position: absolute;
           left: 0;
-          background-color: $theme-blue-3;
+          background-color: $theme-red-3;
           height: 100%;
-          color: $theme-blue-3;
+          color: $theme-red-3;
           width: 6%;
           border-radius: 0 $radius-s $radius-s 0;
         }
@@ -172,7 +172,7 @@
           width: 100%;
           justify-content: space-evenly;
           span {
-            color: $theme-blue-4;
+            color: $theme-red-4;
           }
         }
       }

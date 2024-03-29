@@ -114,23 +114,6 @@ export default function Closet({ params: { userId } }) {
     fetchData();
   }, [selectMajorData, selectMiddleData]);
 
-  // 소분류 카테고리
-  useEffect(() => {
-    const userClothesData = async () => {
-      if (selectMajorData !== '') {
-        try {
-          const userClothesDataByCat = await getUserClothesByCatMiddle(
-            selectMiddleData
-          );
-          setUserClothesData(userClothesDataByCat);
-        } catch (error) {
-          console.log(error, '유저 옷장 데이터 가져오기 오류 (소분류)');
-        }
-      }
-    };
-    userClothesData();
-  }, [selectMiddleData]);
-
   console.log(userClothesData);
   return (
     <div className={styles.container}>
