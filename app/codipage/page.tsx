@@ -22,11 +22,10 @@ const CodiPage: React.FC<{ selectedDate?: string; userId?: string }> = () => {
 
   return (
     <div className={Styles.all}>
-      <div className={Styles.Datetext}>
-        <h1>코디 확인하기</h1>
+      <h1>코디 확인하기</h1>
 
-        <SelectedDateDisplay selectedDate={selectedDate} />
-      </div>
+      <SelectedDateDisplay selectedDate={selectedDate} />
+
       <Codicomponent />
     </div>
   );

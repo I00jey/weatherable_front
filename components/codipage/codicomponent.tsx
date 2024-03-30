@@ -58,6 +58,7 @@ const CodiPage: React.FC<{}> = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [codiName, setCodiName] = useState<string>('');
   const [codiInfo, setCodiInfo] = useState<any>(null); // 코디 정보 상태 추가
+  const [isCodiRegistered, setIsCodiRegistered] = useState<boolean>(false); // 코디 등록 여부 상태
 
   const userId = useSelector((state: RootState) => state.user.userId);
 
@@ -130,11 +131,16 @@ const CodiPage: React.FC<{}> = () => {
 
         // 상태 업데이트
         setTargetCodi(foundTargetCodi);
+
+        // 코디가 이미 등록되어 있는지 여부를 설정
+        setIsCodiRegistered(true);
+        setSelectedDate(formattedDate);
       }
     } catch (error) {
       console.error('초기 코디 정보 요청 실패: ', error);
     }
   };
+
   const openModal = (category: string) => {
     setSelectedCategory(category);
     setIsModalOpen(true);
@@ -155,12 +161,30 @@ const CodiPage: React.FC<{}> = () => {
 
   const handleRegister = async () => {
     try {
-      const codiDTO = { ...selectedIndexes, codiName, selectedDate, userId };
+      // 기존 코디 정보에서 사용자가 선택한 옷의 ID를 가져옵니다.
+      const selectedCodiIndexes = {
+        capIndex: targetCodi?.cap?.id || selectedIndexes.capIndex,
+        topIndex: targetCodi?.top?.id || selectedIndexes.topIndex,
+        outerIndex: targetCodi?.outer?.id || selectedIndexes.outerIndex,
+        bottomIndex: targetCodi?.bottom?.id || selectedIndexes.bottomIndex,
+        shoesIndex: targetCodi?.shoes?.id || selectedIndexes.shoesIndex,
+        accessoryIndex:
+          targetCodi?.accessory?.id || selectedIndexes.accessoryIndex,
+      };
+
+      // 선택한 옷의 ID와 기타 정보를 포함하여 서버로 데이터를 보냅니다.
+      const codiDTO = {
+        ...selectedCodiIndexes,
+        codiName,
+        selectedDate,
+        userId,
+      };
       let UTCdate = new Date(codiDTO['selectedDate']);
-      let localOffset = UTCdate.getTimezoneOffset() * 60000; // 현재 시간대 보정
+      let localOffset = UTCdate.getTimezoneOffset() * 60000;
       let localDate = new Date(UTCdate.getTime() - localOffset);
-      codiDTO['codiDate'] = localDate.toISOString(); // 시간대 보정 후 ISO 문자열 생성
+      codiDTO['codiDate'] = localDate.toISOString();
       await cookiesend(codiDTO);
+      window.location.reload();
       alert('등록되었습니다.');
     } catch (error) {
       console.error('데이터 전송 실패: ', error);
@@ -293,42 +317,22 @@ const CodiPage: React.FC<{}> = () => {
         </div>
       )}
 
-      {/* 추가된 부분 시작 */}
-      {/* <div>
-        {targetCodi && (
-          <div>
-            {targetCodi.top && (
-              <img src={targetCodi.top.imagePath} alt="Top Image" />
-            )}
-            {targetCodi.bottom && (
-              <img src={targetCodi.bottom.imagePath} alt="Bottom Image" />
-            )}
-            {targetCodi.outer && (
-              <img src={targetCodi.outer.imagePath} alt="Outer Image" />
-            )}
-            {targetCodi.shoes && (
-              <img src={targetCodi.shoes.imagePath} alt="Shoes Image" />
-            )}
-            {targetCodi.cap && (
-              <img src={targetCodi.cap.imagePath} alt="Cap Image" />
-            )}
-            {targetCodi.accessory && (
-              <img src={targetCodi.accessory.imagePath} alt="Accessory Image" />
-            )}
+      {!isCodiRegistered && (
+        <div className={styles.last}>
+          <input
+            className={styles.inp}
+            type="text"
+            value={codiName}
+            onChange={(e) => setCodiName(e.target.value)}
+            placeholder="코디 이름을 입력하세요."
+          />
+          <div className={styles.but}>
+            <button onClick={handleRegister} className={styles.add}>
+              등록하기
+            </button>
           </div>
-        )}
-      </div> */}
-      {/* 추가된 부분 끝 */}
-
-      <input
-        type="text"
-        value={codiName}
-        onChange={(e) => setCodiName(e.target.value)}
-        placeholder="코디 이름을 입력하세요."
-      />
-      <div>
-        <button onClick={handleRegister}>등록하기</button>
-      </div>
+        </div>
+      )}
     </div>
   );
 };

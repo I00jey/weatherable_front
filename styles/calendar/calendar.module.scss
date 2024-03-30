@@ -4,6 +4,8 @@
 /* calendar.module.scss */
 .h1 {
   @include flex();
+  // margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 .Datetext {
   display: flex;
@@ -11,19 +13,38 @@
   height: 60%;
   flex-direction: column;
   align-items: center; /* 수직 가운데 정렬 */
-  margin-top: 50px;
 }
 .today,
 .selectedDate {
-  background-color: #ff5c5c;
-  color: antiquewhite;
+  background-color: $theme-red-4;
+  color: $theme-red-1;
 }
-
 .calendar-container {
   width: 100%;
   margin: 0 auto;
   font-family: Arial, sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+}
+.calendar-container .check {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 세로 방향으로 상단과 하단 사이에 공간을 동일하게 분배 */
+  align-items: center; /* 가운데 정렬 */
+}
+.calendar-container .upload {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 세로 방향으로 상단과 하단 사이에 공간을 동일하게 분배 */
+  align-items: center; /* 가운데 정렬 */
 }
 
 .calendar-header {
@@ -88,6 +109,8 @@
 /* 코디 확인하기 버튼 스타일 */
 .selected-date-box {
   margin-top: 20px;
+  flex-direction: column;
+  align-items: center; /* 가운데 정렬 */
 }
 
 .selected-date-box button {
@@ -106,7 +129,7 @@
 
 /* 코디 등록하기 버튼 스타일 */
 .selected-date-box a button {
-  background-color: #ff5656;
+  background-color: $modal-no;
   color: white;
   border: none;
   cursor: pointer;
@@ -118,4 +141,41 @@
 
 .selected-date-box a button:hover {
   background-color: #ff5656;
+}
+.all {
+  justify-content: center;
+
+  width: 100%;
+  height: calc(100vh - 50px);
+  z-index: 1;
+}
+.all2 {
+  justify-content: center;
+  margin-top: 30px;
+  width: 80%;
+  height: auto;
+  height: calc(100vh - 50px);
+  z-index: 1;
+}
+
+.check {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  width: 80%;
+}
+.upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  width: 80%;
+}
+.ditto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
 }

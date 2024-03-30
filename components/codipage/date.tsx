@@ -18,7 +18,12 @@ function extractSelectedDateFromURL() {
     for (const param of queryParams) {
       if (param.startsWith('selectedDate=')) {
         const selectedDate = param.split('=')[1];
-        return decodeURIComponent(selectedDate);
+        const decodedDate = decodeURIComponent(selectedDate); // URL 디코딩
+        const dateObj = new Date(decodedDate); // 날짜 객체로 변환
+        const formattedDate = `${dateObj.getFullYear()}년 ${
+          dateObj.getMonth() + 1
+        }월 ${dateObj.getDate()}일`; // yyyy년 mm월 dd일 형식으로 변환
+        return formattedDate;
       }
     }
   }

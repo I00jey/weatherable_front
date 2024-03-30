@@ -4,9 +4,9 @@ import Calendar from '../../components/calendarpage/calendarpage';
 import Styles from '../../styles/calendar/calendar.module.scss';
 const CalendarPage: React.FC = () => {
   return (
-    <div className={Styles.all}>
+    <div className={Styles.all2}>
       <div className={Styles.h1}>
-        <h1>Calendar Page</h1>
+        <h2>당신의 코디를 등록해봐요!</h2>
       </div>
       <Calendar />
     </div>

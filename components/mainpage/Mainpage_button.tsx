@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import styles from '../../styles/mainpage/mainpage.module.scss';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectMajor,
+  selectMiddle,
+} from '../../Store/closetSlice/selectDataSlice';
 export default function Mainpagebutton() {
+  const dispatch = useDispatch();
   const weatherData = useSelector((state: any) => ({
     temp: state.aiRecommend.weather.temp,
     weather: state.aiRecommend.weather.weather,
@@ -38,6 +42,10 @@ export default function Mainpagebutton() {
     else if (temp >= 0) return 'Coat';
     else return 'Padded_jacket';
   }
+  const setMajorCategoryAll = () => {
+    dispatch(selectMajor({ value: '' }));
+    dispatch(selectMiddle({ value: '' }));
+  };
 
   return (
     <>
@@ -100,7 +108,10 @@ export default function Mainpagebutton() {
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Denim' } }}
           >
-            <button className={styles.Pants}></button>
+            <button
+              className={styles.Pants}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {bottomCategory === 'Slacks' && (
