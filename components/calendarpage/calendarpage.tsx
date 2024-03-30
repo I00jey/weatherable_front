@@ -103,7 +103,7 @@ const Calendar = () => {
         const path = `/codipage?selectedDate=${formattedDate}`;
         return (
           <a href={path}>
-            <button>등록하기</button>
+            <button className={styles.upload}>등록하기</button>
           </a>
         );
       }
@@ -131,44 +131,48 @@ const Calendar = () => {
   };
 
   return (
-    <div className={styles['calendar-container']}>
-      <div className={styles['calendar-header']}>
-        <div className={styles['calendar-buttons']}>
-          <button onClick={prevMonth}>이전 달</button>
+    <div>
+      {' '}
+      <div className={styles['calendar-container']}>
+        <div className={styles['calendar-header']}>
+          <div className={styles['calendar-buttons']}>
+            <button onClick={prevMonth}>이전 달</button>
+          </div>
+          <div className={styles['calendar-title']}>
+            {year}년 {month}월
+          </div>
+          <div className={styles['calendar-buttons']}>
+            <button onClick={nextMonth}>다음 달</button>
+          </div>
         </div>
-        <div className={styles['calendar-title']}>
-          {year}년 {month}월
+        <div className={styles['calendar-body']}>
+          <table>
+            <thead>
+              <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+              </tr>
+            </thead>
+            <tbody>{renderCalendar()}</tbody>
+          </table>
         </div>
-        <div className={styles['calendar-buttons']}>
-          <button onClick={nextMonth}>다음 달</button>
+        <div className={styles['selected-date-box']}>
+          {renderUploadButton()}
+          {hasCodi && (
+            <a
+              href={`/codipage?selectedDate=${encodeURIComponent(
+                selectedDate
+              )}`}
+            >
+              <button className={styles.check}>코디 확인하기</button>
+            </a>
+          )}
         </div>
-      </div>
-      <div className={styles['calendar-body']}>
-        <table>
-          <thead>
-            <tr>
-              <th>일</th>
-              <th>월</th>
-              <th>화</th>
-              <th>수</th>
-              <th>목</th>
-              <th>금</th>
-              <th>토</th>
-            </tr>
-          </thead>
-          <tbody>{renderCalendar()}</tbody>
-        </table>
-      </div>
-      <div className={styles['selected-date-box']}>
-        <p>선택한 날짜: {selectedDate || getFormattedDate(new Date())}</p>
-        {renderUploadButton()}
-        {hasCodi && (
-          <Link
-            href={`/codipage?selectedDate=${encodeURIComponent(selectedDate)}`}
-          >
-            <button>코디 확인하기</button>
-          </Link>
-        )}
       </div>
     </div>
   );

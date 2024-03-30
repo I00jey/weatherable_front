@@ -1,10 +1,10 @@
-'use client'; // nextjs에서 useState사용시 작성필
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../../styles/mainpage/mainpage.module.scss';
 import { useDispatch } from 'react-redux';
 import { setTemp, setWeather } from '../../Store/aiSlice/aiSlice';
 import Loading from '../../components/Loading';
+
 interface WeatherData {
   main: {
     temp: number;
@@ -40,6 +40,7 @@ const LocationWeather: React.FC = () => {
   const [isWeather, setIsWeather] = useState('');
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -139,9 +140,20 @@ const LocationWeather: React.FC = () => {
   // 위치 이름 가져오기
   const locationName = getLocationName(weatherData?.name || '');
 
-  // console.log('온도 정보', Math.round((weatherData.main.temp - 273) * 10) / 10);
+  useEffect(() => {
+    let refreshTimeout: NodeJS.Timeout;
 
-  // console.log('날씨 정보', weatherData.weather[0].main);
+    // 로딩이 3초 이상 지속되면 페이지를 새로고침
+    if (loading) {
+      refreshTimeout = setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(refreshTimeout);
+    };
+  }, [loading]);
 
   return (
     <div className={styles.weatherContainer}>
