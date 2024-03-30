@@ -49,6 +49,7 @@ export default function Clothes({ params: { id } }) {
   const [isLike, setIsLike] = useState<boolean>();
   const categoryArr = require('../../../../../data/categoryData');
 
+  const priceChange = isPrice.toLocaleString();
   // id 기반 옷 정보 가져오기
   useEffect(() => {
     const fetchData = async () => {
@@ -131,7 +132,7 @@ export default function Clothes({ params: { id } }) {
     };
     const response = await modifyCloth(modifyData);
     console.log(modifyData);
-    console.log('>>>>>>>>>>', response);
+    console.log(response);
     alert('수정이 완료되었습니다!');
   };
 
@@ -377,7 +378,7 @@ export default function Clothes({ params: { id } }) {
             name="price"
             id=""
             className={clothStyles.descPrice}
-            value={isPrice.toLocaleString()}
+            value={isPrice}
             onChange={(e) => {
               setIsPrice(e.target.value);
             }}
