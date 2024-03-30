@@ -119,34 +119,36 @@ export default function AllClothes() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.searchInputBox}>
-        <form onSubmit={searchClothes}>
-          <label htmlFor="search">
-            <span className="material-symbols-outlined">search</span>
-          </label>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="검색어를 입력해주세요"
-            onChange={(e) => {
-              setSearchData(e.target.value);
-            }}
-          />
-        </form>
-      </div>
-      <div className={styles.selectBox}>
-        <SelectBoxCrawling />
-      </div>
+    <>
+      <div className={styles.container}>
+        <div className={styles.searchInputBox}>
+          <form onSubmit={searchClothes}>
+            <label htmlFor="search">
+              <span className="material-symbols-outlined">search</span>
+            </label>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="검색어를 입력해주세요"
+              onChange={(e) => {
+                setSearchData(e.target.value);
+              }}
+            />
+          </form>
+        </div>
+        <div className={styles.selectBox}>
+          <SelectBoxCrawling />
+        </div>
 
-      <div className={styles.mainInfoBoxDefault}>
-        {crawClothes.map((clothes) => (
-          <Suspense fallback={<Loading />}>
-            <ClothesInfoBoxCrawling data={clothes} key={clothes.id} />
-          </Suspense>
-        ))}
+        <div className={styles.mainInfoBoxDefault}>
+          {crawClothes.map((clothes) => (
+            <Suspense fallback={<Loading />}>
+              <ClothesInfoBoxCrawling data={clothes} key={clothes.id} />
+            </Suspense>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

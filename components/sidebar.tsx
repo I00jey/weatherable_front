@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserId } from '../Store/userSlice/userSlice';
 import { RootState } from '../Store/Store';
+
 interface props {
   open: Boolean;
   close: () => void;
@@ -41,6 +42,12 @@ export default function SideBar({ open, close }: props) {
     close();
   };
 
+  const nickName = useSelector((state: any) => state.userData.userNickName);
+  const userImg = useSelector((state: any) => state.userData.userImg);
+
+  console.log(nickName.value);
+  console.log(userImg.value);
+
   // console.log(path);
 
   const sidebarLeft = open ? '0%' : '-100%';
@@ -62,7 +69,11 @@ export default function SideBar({ open, close }: props) {
               <ul className={styles.myPageBox}>
                 <li>
                   <Link href={'/mypage'}>
-                    <span>마이페이지</span>
+                    <img src={userImg.value} alt="" />
+                    <span>{nickName.value}</span>
+                    <span className="material-symbols-outlined">
+                      chevron_right
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -83,7 +94,8 @@ export default function SideBar({ open, close }: props) {
           </ul>
           <ul className={styles.navBox}>
             <li>
-              <Link href="/" onClick={close}>
+              <Link href="/AIrecommend" onClick={close}>
+                {path == `/AIrecommend` && <div className={styles.path}>-</div>}
                 <span className="material-symbols-outlined ">psychology</span>
                 <p>AI 옷 추천</p>
               </Link>
@@ -102,9 +114,12 @@ export default function SideBar({ open, close }: props) {
               </Link>
             </li>
             <li>
-              <Link href={`/closet/1`} onClick={close}>
-                <span className="material-symbols-outlined">star</span>
-                <p> 즐겨찾기 옷장</p>
+              <Link href={`/closet/${userId}/likedcloth`} onClick={close}>
+                {path == `/closet/${userId}/likedcloth` && (
+                  <div className={styles.path}>-</div>
+                )}
+                <span className="material-symbols-outlined">favorite</span>
+                <p> 좋아요한 옷</p>
               </Link>
             </li>
             <li className={styles.cat}>

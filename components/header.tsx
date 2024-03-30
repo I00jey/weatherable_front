@@ -10,6 +10,16 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { RootState } from '../Store/Store';
 import { usePathname } from 'next/navigation';
+import { getUser } from '../service/closetApiService';
+import { useDispatch } from 'react-redux';
+import {
+  setUserNickName,
+  setUserImg,
+} from '../Store/userSlice/userNickNameSlice';
+
+interface UserData {
+  nickname: string;
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
@@ -18,19 +28,37 @@ export default function Header() {
 
   const path = usePathname();
 
-  console.log(path);
+  // console.log(path);
 
   // 닫기 버튼
   const close = () => {
     setIsOpen(false);
   };
 
-  useEffect(() => {}, []);
-
   // 뒤로가기 버튼
   const back = () => {
     router.back();
   };
+
+  // const [userData, setUserData] = useState<UserData>({
+  //   nickname: '',
+  // });
+
+  const dispatch = useDispatch();
+  const fetchUserData = async () => {
+    try {
+      const fetchUser = await getUser();
+      // console.log('유저데이터', fetchUser);
+      dispatch(setUserNickName({ value: fetchUser.nickname }));
+      dispatch(setUserImg({ value: fetchUser.image_path }));
+    } catch (error) {
+      console.error('유저 데이터를 가져오는 도중 오류 발생', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <div className={styles.container}>

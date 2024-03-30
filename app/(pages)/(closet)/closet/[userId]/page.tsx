@@ -62,6 +62,8 @@ export default function Closet({ params: { userId } }) {
     (state: any) => state.search.selectMiddle
   );
 
+  const nickName = useSelector((state: any) => state.userData.userNickName);
+
   // console.log('검색분류 (중) >>', selectMajorData);
   // console.log('검색분류 (소) >>', selectMiddleData);
 
@@ -119,7 +121,7 @@ export default function Closet({ params: { userId } }) {
     <div className={styles.container}>
       <div className={styles.innerHeader}>
         <p>
-          <span>{getUserId}</span>님의 옷장
+          <span>{nickName.value}</span>님의 옷장
         </p>
         <div>
           {/* <button>

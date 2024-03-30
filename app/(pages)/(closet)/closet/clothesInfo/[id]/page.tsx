@@ -9,6 +9,7 @@ import {
   postAddClothes,
 } from '../../../../../../service/closetApiService';
 import { useRouter } from 'next/navigation';
+import { AddFormCheckModal } from '../../../../../../components/addFormCheckModal';
 
 interface clothes {
   image_path: string;
@@ -132,6 +133,8 @@ export default function ClothesInfo({ params: { id } }) {
     createdAt: new Date().toISOString(),
   };
 
+  const [showSaveModal, setShowSaveModal] = useState(false);
+
   const router = useRouter();
   const addClothes = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -140,352 +143,360 @@ export default function ClothesInfo({ params: { id } }) {
       await postAddClothes(closetDTO);
       console.log('post 완료');
       console.log(closetDTO);
-      alert('옷 추가 완료!');
-      router.back();
+      setShowSaveModal(true);
     } catch (error) {
       console.error('실패: ', error);
     }
   };
 
   return (
-    <form className={styles.container} onSubmit={addClothes}>
-      <div className={clothStyles.pNameContainer}>
-        <input
-          type="text"
-          name="productName"
-          id=""
-          className={clothStyles.desc}
-          value={productName}
-          onChange={changeValue}
-        />
-      </div>
-      <div className={clothStyles.imgContainer}>
-        <img src={image_path} alt="" />
-      </div>
-      <div className={clothStyles.infoContainer}>
-        <div>
-          <span className={clothStyles.title}>브랜드</span>
-          <span>{brand}</span>
-        </div>
-        <div>
-          <span className={clothStyles.title}>카테고리</span>
-          <span className={clothStyles.desc}>
-            {majorCategory} <span>-</span>
-            <span> {middleCategory}</span>
-          </span>
-        </div>
-        <div>
-          <span className={clothStyles.title}>사이즈</span>
-          <section className={clothStyles.sizeBox}>
-            <button
-              className={clothStyles.sizeBtn}
-              onClick={(e) => {
-                e.preventDefault();
-                setIsSizeDisabled(!isSizeDisabled);
-              }}
-            >
-              <span>{isSize}</span>
-              <span className="material-symbols-outlined">
-                keyboard_arrow_down
-              </span>
-            </button>
-            {isSizeDisabled && (
-              <section className={clothStyles.sizeSelectBox}>
-                {majorCategory !== 'Shoes' ? (
-                  <ul>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="sizeS"
-                        className="sizeInput"
-                        value="S"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="sizeM"
-                        className="sizeInput"
-                        value="M"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="sizeL"
-                        className="sizeInput"
-                        value="L"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="sizeXL"
-                        className="sizeInput"
-                        value="XL"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="sizeXXL"
-                        className="sizeInput"
-                        value="XXL"
-                        onClick={selectSize}
-                      />
-                    </li>
-                  </ul>
-                ) : (
-                  <ul>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size30"
-                        className="sizeInput"
-                        value="230"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size40"
-                        className="sizeInput"
-                        value="240"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size50"
-                        className="sizeInput"
-                        value="250"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size60"
-                        className="sizeInput"
-                        value="260"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size70"
-                        className="sizeInput"
-                        value="270"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size80"
-                        className="sizeInput"
-                        value="280"
-                        onClick={selectSize}
-                      />
-                    </li>
-                    <li>
-                      <input
-                        type="button"
-                        name=""
-                        id="size90"
-                        className="sizeInput"
-                        value="290"
-                        onClick={selectSize}
-                      />
-                    </li>
-                  </ul>
-                )}
-              </section>
-            )}
-          </section>
-        </div>
-        <div>
-          <span className={clothStyles.title}>계절</span>
-          <div className={clothStyles.weatherBox}>
-            <input
-              type="button"
-              name=""
-              id="weatherSpring"
-              value={'봄'}
-              onClick={() => setIsSeason('봄')}
-              className={`${isSeason === '봄' && clothStyles.weatherClicked}`}
-            />
-            <input
-              type="button"
-              name=""
-              id="weatherSummer"
-              value={'여름'}
-              onClick={() => setIsSeason('여름')}
-              className={`${isSeason === '여름' && clothStyles.weatherClicked}`}
-            />
-            <input
-              type="button"
-              name=""
-              id="weatherAuthum"
-              value={'가을'}
-              onClick={() => setIsSeason('가을')}
-              className={`${isSeason === '가을' && clothStyles.weatherClicked}`}
-            />
-            <input
-              type="button"
-              name=""
-              id="weatherWinter"
-              value={'겨울'}
-              onClick={() => setIsSeason('겨울')}
-              className={`${isSeason === '겨울' && clothStyles.weatherClicked}`}
-            />
-          </div>
-        </div>
-        <div>
-          <span className={clothStyles.title}>두께</span>
-          <div className={clothStyles.thicknessBox}>
-            <input
-              type="button"
-              name=""
-              id="thickNess1"
-              value={'얇음'}
-              onClick={() => setIsThickness('얇음')}
-              className={`${
-                isThickness === '얇음' && clothStyles.thickClicked
-              }`}
-            />
-            <input
-              type="button"
-              name=""
-              id="thickNess2"
-              value={'보통'}
-              onClick={() => setIsThickness('보통')}
-              className={`${
-                isThickness === '보통' && clothStyles.thickClicked
-              }`}
-            />
-            <input
-              type="button"
-              name=""
-              id="thickNess3"
-              value={'두꺼움'}
-              onClick={() => setIsThickness('두꺼움')}
-              className={`${
-                isThickness === '두꺼움' && clothStyles.thickClicked
-              }`}
-            />
-          </div>
-        </div>
-        <div>
-          <span className={clothStyles.title}>스타일</span>
-
-          <section className={clothStyles.sizeBox}>
-            <button
-              className={clothStyles.sizeBtn}
-              onClick={(e) => {
-                e.preventDefault();
-                setIsStyleDisabled(!isStyleDisabled);
-              }}
-            >
-              <span>{isStyleValue}</span>
-              <span className="material-symbols-outlined">
-                keyboard_arrow_down
-              </span>
-            </button>
-            {isStyleDisabled && (
-              <section className={clothStyles.sizeSelectBox}>
-                <ul>
-                  <li>
-                    <input
-                      type="button"
-                      name=""
-                      id="Casual"
-                      className="sizeInput"
-                      value="캐주얼"
-                      onClick={selectStyles}
-                    />
-                  </li>
-                  <li>
-                    <input
-                      type="button"
-                      name=""
-                      id="Sporty"
-                      className="sizeInput"
-                      value="스포티"
-                      onClick={selectStyles}
-                    />
-                  </li>
-                  <li>
-                    <input
-                      type="button"
-                      name=""
-                      id="Retro"
-                      className="sizeInput"
-                      value="레트로"
-                      onClick={selectStyles}
-                    />
-                  </li>
-                  <li>
-                    <input
-                      type="button"
-                      name=""
-                      id="Gorp_Core"
-                      className="sizeInput"
-                      value="고프 코어"
-                      onClick={selectStyles}
-                    />
-                  </li>
-                  <li>
-                    <input
-                      type="button"
-                      name=""
-                      id="Formal"
-                      className="sizeInput"
-                      value="포멀"
-                      onClick={selectStyles}
-                    />
-                  </li>
-                </ul>
-              </section>
-            )}
-          </section>
-        </div>
-        <div>
-          <span className={clothStyles.title}>구매가격</span>
+    <>
+      <form className={styles.container} onSubmit={addClothes}>
+        <div className={clothStyles.pNameContainer}>
           <input
             type="text"
-            name="price"
+            name="productName"
             id=""
-            className={clothStyles.priceInput}
-            value={price}
+            className={clothStyles.desc}
+            value={productName}
             onChange={changeValue}
           />
         </div>
-      </div>
-      <div
-        className={clothStyles.btnContainer}
-        style={{ justifyContent: 'center' }}
-      >
-        <button>저장하기</button>
-      </div>
-    </form>
+        <div className={clothStyles.imgContainer}>
+          <img src={image_path} alt="" />
+        </div>
+        <div className={clothStyles.infoContainer}>
+          <div>
+            <span className={clothStyles.title}>브랜드</span>
+            <span>{brand}</span>
+          </div>
+          <div>
+            <span className={clothStyles.title}>카테고리</span>
+            <span className={clothStyles.desc}>
+              {majorCategory} <span>-</span>
+              <span> {middleCategory}</span>
+            </span>
+          </div>
+          <div>
+            <span className={clothStyles.title}>사이즈</span>
+            <section className={clothStyles.sizeBox}>
+              <button
+                className={clothStyles.sizeBtn}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsSizeDisabled(!isSizeDisabled);
+                }}
+              >
+                <span>{isSize}</span>
+                <span className="material-symbols-outlined">
+                  keyboard_arrow_down
+                </span>
+              </button>
+              {isSizeDisabled && (
+                <section className={clothStyles.sizeSelectBox}>
+                  {majorCategory !== 'Shoes' ? (
+                    <ul>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="sizeS"
+                          className="sizeInput"
+                          value="S"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="sizeM"
+                          className="sizeInput"
+                          value="M"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="sizeL"
+                          className="sizeInput"
+                          value="L"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="sizeXL"
+                          className="sizeInput"
+                          value="XL"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="sizeXXL"
+                          className="sizeInput"
+                          value="XXL"
+                          onClick={selectSize}
+                        />
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size30"
+                          className="sizeInput"
+                          value="230"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size40"
+                          className="sizeInput"
+                          value="240"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size50"
+                          className="sizeInput"
+                          value="250"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size60"
+                          className="sizeInput"
+                          value="260"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size70"
+                          className="sizeInput"
+                          value="270"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size80"
+                          className="sizeInput"
+                          value="280"
+                          onClick={selectSize}
+                        />
+                      </li>
+                      <li>
+                        <input
+                          type="button"
+                          name=""
+                          id="size90"
+                          className="sizeInput"
+                          value="290"
+                          onClick={selectSize}
+                        />
+                      </li>
+                    </ul>
+                  )}
+                </section>
+              )}
+            </section>
+          </div>
+          <div>
+            <span className={clothStyles.title}>계절</span>
+            <div className={clothStyles.weatherBox}>
+              <input
+                type="button"
+                name=""
+                id="weatherSpring"
+                value={'봄'}
+                onClick={() => setIsSeason('봄')}
+                className={`${isSeason === '봄' && clothStyles.weatherClicked}`}
+              />
+              <input
+                type="button"
+                name=""
+                id="weatherSummer"
+                value={'여름'}
+                onClick={() => setIsSeason('여름')}
+                className={`${
+                  isSeason === '여름' && clothStyles.weatherClicked
+                }`}
+              />
+              <input
+                type="button"
+                name=""
+                id="weatherAuthum"
+                value={'가을'}
+                onClick={() => setIsSeason('가을')}
+                className={`${
+                  isSeason === '가을' && clothStyles.weatherClicked
+                }`}
+              />
+              <input
+                type="button"
+                name=""
+                id="weatherWinter"
+                value={'겨울'}
+                onClick={() => setIsSeason('겨울')}
+                className={`${
+                  isSeason === '겨울' && clothStyles.weatherClicked
+                }`}
+              />
+            </div>
+          </div>
+          <div>
+            <span className={clothStyles.title}>두께</span>
+            <div className={clothStyles.thicknessBox}>
+              <input
+                type="button"
+                name=""
+                id="thickNess1"
+                value={'얇음'}
+                onClick={() => setIsThickness('얇음')}
+                className={`${
+                  isThickness === '얇음' && clothStyles.thickClicked
+                }`}
+              />
+              <input
+                type="button"
+                name=""
+                id="thickNess2"
+                value={'보통'}
+                onClick={() => setIsThickness('보통')}
+                className={`${
+                  isThickness === '보통' && clothStyles.thickClicked
+                }`}
+              />
+              <input
+                type="button"
+                name=""
+                id="thickNess3"
+                value={'두꺼움'}
+                onClick={() => setIsThickness('두꺼움')}
+                className={`${
+                  isThickness === '두꺼움' && clothStyles.thickClicked
+                }`}
+              />
+            </div>
+          </div>
+          <div>
+            <span className={clothStyles.title}>스타일</span>
+
+            <section className={clothStyles.sizeBox}>
+              <button
+                className={clothStyles.sizeBtn}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsStyleDisabled(!isStyleDisabled);
+                }}
+              >
+                <span>{isStyleValue}</span>
+                <span className="material-symbols-outlined">
+                  keyboard_arrow_down
+                </span>
+              </button>
+              {isStyleDisabled && (
+                <section className={clothStyles.sizeSelectBox}>
+                  <ul>
+                    <li>
+                      <input
+                        type="button"
+                        name=""
+                        id="Casual"
+                        className="sizeInput"
+                        value="캐주얼"
+                        onClick={selectStyles}
+                      />
+                    </li>
+                    <li>
+                      <input
+                        type="button"
+                        name=""
+                        id="Sporty"
+                        className="sizeInput"
+                        value="스포티"
+                        onClick={selectStyles}
+                      />
+                    </li>
+                    <li>
+                      <input
+                        type="button"
+                        name=""
+                        id="Retro"
+                        className="sizeInput"
+                        value="레트로"
+                        onClick={selectStyles}
+                      />
+                    </li>
+                    <li>
+                      <input
+                        type="button"
+                        name=""
+                        id="Gorp_Core"
+                        className="sizeInput"
+                        value="고프 코어"
+                        onClick={selectStyles}
+                      />
+                    </li>
+                    <li>
+                      <input
+                        type="button"
+                        name=""
+                        id="Formal"
+                        className="sizeInput"
+                        value="포멀"
+                        onClick={selectStyles}
+                      />
+                    </li>
+                  </ul>
+                </section>
+              )}
+            </section>
+          </div>
+          <div>
+            <span className={clothStyles.title}>구매가격</span>
+            <input
+              type="text"
+              name="price"
+              id=""
+              className={clothStyles.priceInput}
+              value={price}
+              onChange={changeValue}
+            />
+          </div>
+        </div>
+        <div
+          className={clothStyles.btnContainer}
+          style={{ justifyContent: 'center' }}
+        >
+          <button>저장하기</button>
+        </div>
+      </form>
+      <AddFormCheckModal isOpen={showSaveModal} />
+    </>
   );
 }

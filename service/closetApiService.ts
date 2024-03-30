@@ -356,3 +356,23 @@ export const aiRecommendPost = async (aiData: any) => {
     throw new Error('Ai 오류');
   }
 };
+
+export const getUser = async () => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  try {
+    const response = await axios.get(
+      process.env.NEXT_PUBLIC_DB_HOST + '/user',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    );
+    // console.log('>>>>', response);
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('유저 정보 불러오기 오류');
+  }
+};
