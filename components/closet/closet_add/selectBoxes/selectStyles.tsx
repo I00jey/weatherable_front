@@ -18,12 +18,18 @@ export default function SelectStyles({ check }) {
   }));
 
   // console.log('스코어', aiStyles.score);
-
   const [styleState, setStyleState] = useState('');
+  useEffect(() => {
+    setStyleState('');
+    console.log(styleState);
+  }, []);
 
   useEffect(() => {
     // 초기 렌더링 시에는 아무것도 하지 않음
-    if (aiStyles.style_num === undefined) return;
+    if (aiStyles.style_num === undefined) {
+      setStyleState('');
+      return;
+    }
 
     switch (aiStyles.style_num) {
       case '0':
