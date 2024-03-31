@@ -34,7 +34,7 @@ export default function Mainpagebutton() {
   }
 
   function recommendOuterCategory(temp: number) {
-    if (temp >= 17) return '';
+    if (temp >= 18) return '';
     else if (temp >= 15) return 'Sport_Jacket';
     else if (temp >= 10) return 'Blazer';
     else if (temp >= 5) return 'Jacket';
@@ -55,7 +55,10 @@ export default function Mainpagebutton() {
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Shirt' } }}
           >
-            <div className={styles.Tshirt}></div>
+            <button
+              className={styles.Shirt}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {topCategory === 'Short_T_shirt' && (
@@ -65,7 +68,10 @@ export default function Mainpagebutton() {
               query: { category: 'Short_T_shirt' },
             }}
           >
-            <div className={styles.Tshirt}></div>
+            <button
+              className={styles.Short_T_shirt}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {topCategory === 'Long_T_shirt' && (
@@ -75,14 +81,20 @@ export default function Mainpagebutton() {
               query: { category: 'Long_T_shirt' },
             }}
           >
-            <div className={styles.Tshirt}></div>
+            <button
+              className={styles.Long_T_shirt}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {topCategory === 'Hoodies' && (
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
           >
-            <div className={styles.Tshirt}></div>
+            <button
+              className={styles.Hoodies}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {topCategory === 'Sweat_shirt' && (
@@ -92,14 +104,20 @@ export default function Mainpagebutton() {
               query: { category: 'Sweat_shirt' },
             }}
           >
-            <div className={styles.Tshirt}></div>
+            <button
+              className={styles.Sweat_shirt}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {topCategory === 'Sweater' && (
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Sweater' } }}
           >
-            <button className={styles.Tshirt}></button>
+            <button
+              className={styles.Sweater}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
 
@@ -109,7 +127,7 @@ export default function Mainpagebutton() {
             href={{ pathname: '../closet/1', query: { category: 'Denim' } }}
           >
             <button
-              className={styles.Pants}
+              className={styles.Denim}
               onClick={setMajorCategoryAll}
             ></button>
           </Link>
@@ -118,7 +136,10 @@ export default function Mainpagebutton() {
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Slacks' } }}
           >
-            <div className={styles.Pants}></div>
+            <button
+              className={styles.Slacks}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {bottomCategory === 'Sport_pants' && (
@@ -128,7 +149,10 @@ export default function Mainpagebutton() {
               query: { category: 'Sport_pants' },
             }}
           >
-            <div className={styles.Pants}></div>
+            <button
+              className={styles.Sport_pants}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {bottomCategory === 'Short_pants' && (
@@ -138,7 +162,10 @@ export default function Mainpagebutton() {
               query: { category: 'Short_pants' },
             }}
           >
-            <div className={styles.Pants}></div>
+            <button
+              className={styles.Short_pants}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
 
@@ -147,12 +174,18 @@ export default function Mainpagebutton() {
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Jacket' } }}
           >
-            <button className={styles.Outer}></button>
+            <button
+              className={styles.Jacket}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {outerCategory === 'Coat' && (
           <Link href={{ pathname: '../closet/1', query: { category: 'Coat' } }}>
-            <div className={styles.Outer}></div>
+            <button
+              className={styles.Coat}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {outerCategory === 'Padded_jacket' && (
@@ -162,21 +195,30 @@ export default function Mainpagebutton() {
               query: { category: 'Padded_jacket' },
             }}
           >
-            <div className={styles.Outer}></div>
+            <button
+              className={styles.Padded_jacket}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {outerCategory === 'Blazer' && (
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Blazer' } }}
           >
-            <div className={styles.Outer}></div>
+            <button
+              className={styles.Blazer}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {outerCategory === 'Mustang' && (
           <Link
             href={{ pathname: '../closet/1', query: { category: 'Mustang' } }}
           >
-            <div className={styles.Outer}></div>
+            <button
+              className={styles.Mustang}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {outerCategory === 'Sport_Jacket' && (
@@ -186,7 +228,10 @@ export default function Mainpagebutton() {
               query: { category: 'Sport_Jacket' },
             }}
           >
-            <div className={styles.Outer}></div>
+            <button
+              className={styles.Sport_Jacket}
+              onClick={setMajorCategoryAll}
+            ></button>
           </Link>
         )}
         {/* 기타 카테고리들 추가 */}
