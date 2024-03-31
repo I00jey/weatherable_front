@@ -9,10 +9,13 @@ const CalendarPage: React.FC = () => {
       <div className={Styles.h1}>
         <h2>당신의 코디를 등록해봐요!</h2>
       </div>
-      <Calendar />
-      <div>
+
+      <div className={Styles.ggg}>
+        {' '}
         <WetherLocation />
       </div>
+
+      <Calendar />
     </div>
   );
 };

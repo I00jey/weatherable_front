@@ -179,3 +179,6 @@
   font-weight: bold;
   font-size: 1.5rem;
 }
+.all2 > .ggg {
+  @include flex();
+}
