@@ -38,8 +38,19 @@ const LocationWeather: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isTemp, setIsTemp] = useState<number>(0);
   const [isWeather, setIsWeather] = useState('');
+  const [isTomorrowTemp, setIsTomorrowTemp] = useState<number>(0);
+  const [isTomorrowWeather, setIsTomorrowWeather] = useState('');
 
   const dispatch = useDispatch();
+
+  const saveDataToLocalStorage = (key, data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  };
+
+  const loadDataFromLocalStorage = (key) => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,22 +59,54 @@ const LocationWeather: React.FC = () => {
         const position = await getLocation();
         setLocation(position);
 
-        // 날씨 데이터 가져오기
+        // 현재 날씨 데이터 가져오기
         const apiKey = '15c5ec95f74fa746cc03e71ed9b610f5';
-        const apiURI = `https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${apiKey}`;
-        const response = await axios.get<WeatherData>(apiURI);
-        setWeatherData(response.data);
-        setIsTemp(Math.round((response.data.main.temp - 273) * 10) / 10);
-        setIsWeather(response.data.weather[0].main);
+        const currentApiURI = `https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${apiKey}`;
+        const currentResponse = await axios.get<WeatherData>(currentApiURI);
+
+        // 내일의 날씨 데이터 가져오기
+        const forecastApiURI = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.latitude}&lon=${position.longitude}&appid=${apiKey}`;
+        const forecastResponse = await axios.get(forecastApiURI);
+
+        // 현재 날씨 데이터 설정
+        setWeatherData(currentResponse.data);
+        setIsTemp(Math.round((currentResponse.data.main.temp - 273) * 10) / 10);
+        setIsWeather(currentResponse.data.weather[0].main);
+
+        // 내일의 날씨 데이터 필터링
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowDate = tomorrow.toISOString().slice(0, 10);
+        const tomorrowWeather = forecastResponse.data.list.find((item: any) =>
+          item.dt_txt.includes(tomorrowDate)
+        );
+        setIsTomorrowTemp(
+          Math.round((tomorrowWeather.main.temp - 273) * 10) / 10
+        );
+        setIsTomorrowWeather(tomorrowWeather.weather[0].main);
+
         setLoading(false);
+
+        // 받아온 데이터를 로컬 스토리지에 저장
+        saveDataToLocalStorage('weatherData', currentResponse.data);
+
+        // 내일의 날씨 데이터를 로컬 스토리지에 저장
+        saveDataToLocalStorage('tomorrowWeatherData', tomorrowWeather);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
     };
 
     fetchData();
-  }, []);
 
+    // 한 시간마다 데이터 업데이트
+    const interval = setInterval(() => {
+      fetchData();
+    }, 3600000); // 1시간마다 (1000 * 60 * 60)
+
+    // 컴포넌트가 unmount 되었을 때 interval 정리
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
     const tempData = async () => {
       try {

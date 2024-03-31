@@ -1,121 +1,58 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from '../../styles/mainpage/mainpage.module.scss';
+import React, { useState, useEffect } from 'react';
 
-export default function Mainpagebutton({
-  temperature,
-}: {
-  temperature: number;
-}) {
-  return (
-    <>
-      <div className={styles.mainpage__TopButton}>
-        {/* 온도에 따라 다른 카테고리에 대한 링크 생성 */}
-
-        {/* 아우터 */}
-
-        {temperature < 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Jacket' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature < 5 && (
-          <Link href={{ pathname: '../closet/1', query: { category: 'Coat' } }}>
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature < 10 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Blazer' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature < 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Mustang' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature < 7 && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Sport_Jacket' },
-            }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature < -5 && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Padded_jacket' },
-            }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {/* 아우터 끝 */}
-        {temperature > 10 && temperature <= 15 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Shirt' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {temperature > 0 && temperature <= 5 && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <div className={styles.Hoodies}></div>
-          </Link>
-        )}
-        {/* 다른 
-        온도 범위에 따른 링크 생성 */}
-        {temperature > 10 && temperature <= 20 && null}
-        {temperature > 20 && null}
-      </div>
-      <div className={styles.mainpage__BottomButton}>{/* 다른 버튼들 */}</div>
-    </>
+const WeatherFromLocalStorage: React.FC = () => {
+  const [currentTemperature, setCurrentTemperature] = useState<number | null>(
+    null
   );
-}
+  const [currentWeather, setCurrentWeather] = useState<string>('');
+  const [tomorrowTemperature, setTomorrowTemperature] = useState<number | null>(
+    null
+  );
+  const [tomorrowWeather, setTomorrowWeather] = useState<string>('');
+
+  useEffect(() => {
+    // 현재 날씨 데이터 가져오기
+    const currentWeatherDataString = localStorage.getItem('weatherData');
+    if (currentWeatherDataString) {
+      const currentWeatherData = JSON.parse(currentWeatherDataString);
+      setCurrentTemperature(
+        Math.round((currentWeatherData.main.temp - 273) * 10) / 10
+      );
+      setCurrentWeather(currentWeatherData.weather[0].main);
+    }
+
+    // 내일의 날씨 데이터 가져오기
+    const tomorrowWeatherDataString = localStorage.getItem(
+      'tomorrowWeatherData'
+    );
+    if (tomorrowWeatherDataString) {
+      const tomorrowWeatherData = JSON.parse(tomorrowWeatherDataString);
+      setTomorrowTemperature(
+        Math.round((tomorrowWeatherData.main.temp - 273) * 10) / 10
+      );
+      setTomorrowWeather(tomorrowWeatherData.weather[0].main);
+    }
+  }, []);
+
+  return (
+    <div>
+      {currentTemperature !== null &&
+      currentWeather !== '' &&
+      tomorrowTemperature !== null &&
+      tomorrowWeather !== '' ? (
+        <div>
+          <p>
+            현재 온도: {currentTemperature}°C, 날씨: {currentWeather}
+          </p>
+          <p>
+            내일 온도: {tomorrowTemperature}°C, 날씨: {tomorrowWeather}
+          </p>
+        </div>
+      ) : (
+        <p>날씨 데이터가 없습니다.</p>
+      )}
+    </div>
+  );
+};
+
+export default WeatherFromLocalStorage;

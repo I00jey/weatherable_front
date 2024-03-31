@@ -1,6 +1,7 @@
 'use client'; // nextjs에서 useState사용시 작성필
 import React from 'react';
 import Calendar from '../../components/calendarpage/calendarpage';
+import WetherLocation from '../../components/mainpage/Tmfprlxhd';
 import Styles from '../../styles/calendar/calendar.module.scss';
 const CalendarPage: React.FC = () => {
   return (
@@ -9,6 +10,9 @@ const CalendarPage: React.FC = () => {
         <h2>당신의 코디를 등록해봐요!</h2>
       </div>
       <Calendar />
+      <div>
+        <WetherLocation />
+      </div>
     </div>
   );
 };
