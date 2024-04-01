@@ -114,7 +114,6 @@ const Calendar = () => {
   const checkCodiExistence = async (selectedDate: string) => {
     try {
       const codiInfo = await getCodiInfo({ selectedDate });
-      console.log('코디 정보:', codiInfo);
 
       // 선택한 날짜의 코디 정보가 있는지 확인
       const matchingCodi = codiInfo.find((codi) => {
@@ -125,9 +124,7 @@ const Calendar = () => {
 
       // 코디 정보가 있고, 선택한 날짜와 일치하는 경우에만 버튼 표시
       setHasCodi(!!matchingCodi);
-    } catch (error) {
-      console.error('코디 정보를 불러오는 데 실패했습니다.', error);
-    }
+    } catch (error) {}
   };
 
   return (

@@ -93,7 +93,7 @@ const LocationWeather: React.FC = () => {
         // 내일의 날씨 데이터를 로컬 스토리지에 저장
         saveDataToLocalStorage('tomorrowWeatherData', tomorrowWeather);
       } catch (error) {
-        console.error('Error fetching weather data:', error);
+        ('');
       }
     };
 
@@ -121,7 +121,7 @@ const LocationWeather: React.FC = () => {
           })
         );
       } catch (error) {
-        console.log('온도 저장 에러', error);
+        ('');
       }
     };
     tempData();

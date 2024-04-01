@@ -144,14 +144,15 @@
 }
 .all {
   justify-content: center;
-  overflow: hidden;
+  @include scrollbar();
   width: 100%;
   height: calc(100vh - 50px);
   z-index: 1;
 }
 .all2 {
   justify-content: center;
-  overflow: hidden;
+  @include scrollbar();
+
   margin-top: 30px;
   width: 80%;
   height: auto;
@@ -180,9 +181,12 @@
   font-weight: bold;
   font-size: 1.5rem;
 }
-.all2 > .ggg {
+.mainContainer > .ggg {
   @include flex();
 }
 .mainContainer {
-  overflow: hidden;
+  width: $width;
+  max-width: $max-width;
+  width: 92%;
+  @include scrollbar();
 }
