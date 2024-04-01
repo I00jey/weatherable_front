@@ -48,7 +48,6 @@ function MypageEditContent() {
   const handleDivChange = async (index) => {
     try {
       const selectedStyle = Object.values(Style)[index]; // 열거형 저장
-      console.log(selectedStyle); // Causal, Sporty, Retro, Gorp_Core, Formal
 
       // 선택된 스타일을 확인합니다.
       if (!selectedDivs[index]) {
@@ -70,8 +69,6 @@ function MypageEditContent() {
           `${process.env.NEXT_PUBLIC_DB_HOST}/user/style`,
           data
         );
-
-        console.log('스타일 업로드 완료', response.data);
       }
     } catch (error) {
       console.error('스타일 업데이트 중 오류 발생', error);
@@ -108,7 +105,6 @@ function MypageEditContent() {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user/physical`,
         userData
       );
-      console.log('저장 완료', response);
       setEditableHeight(false); // 저장 시 다시 readonly 상태로
       setEditableWeight(false);
     } catch (error) {
@@ -123,7 +119,6 @@ function MypageEditContent() {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user`
       );
       const { height, weight, userid, favoriteStyle } = response.data.data;
-      console.log(response.data.data);
 
       setUserData({ height, weight, userid, favoriteStyle });
 
@@ -169,7 +164,6 @@ function MypageEditContent() {
       const response = await axios.delete(
         `${process.env.NEXT_PUBLIC_DB_HOST}/user`
       );
-      console.log('계정 삭제 완료', response);
       dispatch(setUserId(''));
       sessionStorage.clear();
       router.push('/login');

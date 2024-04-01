@@ -64,7 +64,6 @@ const MypageEditHeader: React.FC = () => {
           withCredentials: true,
         }
       );
-      console.log('이미지 업로드 완료', response);
 
       // 이미지 업로드 후 유저 데이터 갱신
       fetchUserData();
@@ -87,7 +86,6 @@ const MypageEditHeader: React.FC = () => {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user/nickname`,
         userData
       );
-      console.log('저장 완료', response);
       setEditable(false); // 저장 후 수정 불가능하게 상태 변경
     } catch (error) {
       console.error('오류 발생', error);

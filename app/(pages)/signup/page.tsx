@@ -58,8 +58,6 @@ const SignUp: React.FC = () => {
             `${process.env.NEXT_PUBLIC_DB_HOST}/validation`,
             userData
           );
-          console.log('res > ', res);
-          console.log('중복 없음');
           setUseridError(null);
         } catch (error) {
           console.error('오류 발생', error);
@@ -92,8 +90,6 @@ const SignUp: React.FC = () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_DB_HOST}/signup`, userData)
       .then((res) => {
-        console.log('회원가입 성공');
-        console.log('확인 >>', res);
         router.push('/login');
       })
       .catch((error) => {

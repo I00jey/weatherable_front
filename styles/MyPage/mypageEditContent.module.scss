@@ -16,7 +16,6 @@
 
   .like_Style_div {
     @include flex();
-    // flex-wrap: wrap;
     justify-content: flex-end;
     cursor: pointer;
 
