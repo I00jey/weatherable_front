@@ -11,8 +11,8 @@ $primary-color: rgb(0, 0, 0);
   text-align: center;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem; /* 상단 여백 추가 */
-  margin-bottom: 2rem; /* 하단 여백 추가 */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .all {
@@ -393,4 +393,10 @@ $primary-color: rgb(0, 0, 0);
   background-size: 100% 100%; /* 이미지가 컨테이너에 가득 차도록 설정 */
   background-position: center;
   margin: 0.5rem; /* 버튼 간의 간격 조정 */
+}
+.today {
+  font-size: 18px;
+}
+.temperatureTextBox {
+  font-size: 13px;
 }

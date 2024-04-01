@@ -14,18 +14,6 @@ const MainPage: React.FC = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
 
-  // useEffect(() => {
-  //   const accessToken = sessionStorage.getItem('accessToken');
-  //   if (!accessToken) {
-  //     setIsModalOpen(true); // 모달 열기
-  //   }
-  //   dispatch(hideBackButton());
-  // }, [dispatch]);
-
-  // const handleModalConfirm = () => {
-  //   setIsModalOpen(false);
-  //   router.push('/login');
-  // };
 
   return (
     <div className={styles.all}>
@@ -39,7 +27,7 @@ const MainPage: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} /> */}
+
     </div>
   );
 };

@@ -5,6 +5,8 @@ import AddToggleBtn from '../../../../../components/closet/closet_add/addToggleB
 import SelectBox from '../../../../../components/closet/closet_main/selectBox';
 import styles from '../../../../../styles/closet/closet.module.scss';
 import SortBox from '../../../../../components/closet/closet_main/sortBox';
+import { hideBackButton } from '../../../../../Store/mainSlice/mainPageSlice';
+import MoveLoginModal from '../../../../../components/MoveLoginModal';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -14,7 +16,11 @@ import {
 } from '../../../../../service/closetApiService';
 import { RootState } from '../../../../../Store/Store';
 import { useRouter } from 'next/navigation';
+
+import { useDispatch } from 'react-redux';
+
 import MoveLoginModal from '../../../../../components/MoveLoginModal';
+
 
 interface clothes {
   brand: string;
@@ -37,6 +43,9 @@ interface clothes {
   userid: string;
 }
 export default function Closet({ params: { userId } }) {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const sortStatus = useSelector((state: any) => state.status.status);
   // console.log('sort 상태', sortStatus);
   const getUserId = useSelector((state: RootState) => state.user.userId);
@@ -133,6 +142,18 @@ export default function Closet({ params: { userId } }) {
     };
     fetchData();
   }, [selectMajorData, selectMiddleData]);
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (!accessToken) {
+      setIsModalOpen(true); // 모달 열기
+    }
+    dispatch(hideBackButton());
+  }, [dispatch]);
+
+  const handleModalConfirm = () => {
+    setIsModalOpen(false);
+    router.push('/login'); // 모달 확인 후 로그인 페이지로 이동
+  };
 
   // console.log(userClothesData);
   return (
@@ -172,7 +193,10 @@ export default function Closet({ params: { userId } }) {
         </div>
         <AddToggleBtn />
       </div>
+
+      <AddToggleBtn />
       <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
-    </>
+    </div>
+
   );
 }
