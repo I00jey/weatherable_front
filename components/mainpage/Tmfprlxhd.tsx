@@ -62,7 +62,9 @@ const WeatherFromLocalStorage: React.FC = () => {
               alt="Current Weather Icon"
               className={styles.weatherIcon}
             />
-            <p>현재 온도 {currentWeatherData.temperature}°C</p>
+            <p className={styles.wetext}>
+              현재 온도 {currentWeatherData.temperature}°C
+            </p>
           </div>
 
           <div className={styles.hi}></div>
@@ -72,7 +74,9 @@ const WeatherFromLocalStorage: React.FC = () => {
               alt="Tomorrow Weather Icon"
               className={styles.weatherIcon}
             />
-            <p>내일 온도 {tomorrowWeatherData.temperature}°C</p>
+            <p className={styles.wetext}>
+              내일 온도 {tomorrowWeatherData.temperature}°C
+            </p>
           </div>
         </div>
       ) : (
