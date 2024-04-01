@@ -10,7 +10,10 @@ import ClosetPage from '../../components/uploadcloset/uploadcloset';
 import { getCodiInfo } from '../../service/getCodiInfoApi';
 import MyComponent from '../codipage/image';
 import { RootState } from '../../Store/Store';
-import { selectMajor } from '../../Store/closetSlice/selectDataSlice'; // 추가된 import
+import {
+  selectMajor,
+  selectMiddle,
+} from '../../Store/closetSlice/selectDataSlice'; // 추가된 import
 
 // 선택된 날짜를 URL에서 추출하는 함수
 function extractSelectedDateFromURL() {
@@ -203,6 +206,7 @@ const CodiPage: React.FC<{}> = () => {
   // 부위를 클릭할 때 해당하는 카테고리 값을 로컬 스토리지에 저장
   const handlePartClick = (category: string) => {
     dispatch(selectMajor({ value: category }));
+    dispatch(selectMiddle({ value: '' }));
   };
   return (
     <div>
