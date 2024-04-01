@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles/closet/aiRecommend.module.scss';
 import Link from 'next/link';
+import MoveLoginModal from '../../components/MoveLoginModal';
+import { WeatherCheckModal } from '../../components/weatherCheckModal';
 
 interface clothes {
   brand: string;
@@ -57,12 +59,25 @@ export default function AiRecommend() {
     weather: [weatherData.temp, weatherData.weather],
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
+  const [weatherModal, setWeatherModal] = useState(false);
+
+  const handleModalConfirm = () => {
+    setIsModalOpen(false);
+    router.push('/login');
+  };
+
   useEffect(() => {
     // 날씨 정보가 없으면 뒤로가기 (너무 빨리 접속 시 날씨 데이터를 못불러옴)
-    if (weatherData.weather === '') {
-      alert('날씨 정보가 없습니다! 메인 화면에서 정보를 불러와주세요');
-      window.location.href = '/';
+
+    const accessToken = sessionStorage.getItem('accessToken');
+
+    if (!accessToken) {
+      setIsModalOpen(true); // 모달 열기
+    } else if (weatherData.weather === '') {
+      setWeatherModal(true);
     }
+
     const fetchData = async () => {
       try {
         // 유저 옷 정보 불러오기
@@ -180,92 +195,102 @@ export default function AiRecommend() {
   // console.log(isShoes[0]);
 
   return (
-    <div className={styles.container}>
-      <button onClick={aiRecommendBtn} className={styles.refreshBtn}>
-        AI 옷 추천 받기
-      </button>
+    <>
+      <div className={styles.container}>
+        <button onClick={aiRecommendBtn} className={styles.refreshBtn}>
+          AI 옷 추천 받기
+        </button>
 
-      <div className={styles.mainContainer}>
-        <span className={styles.descText}>
-          버튼을 눌러 AI 추천 코디를 받아보세요!
-        </span>
-        <img
-          src="https://weatherable.s3.ap-northeast-2.amazonaws.com/default_ai.png"
-          alt=""
-        />
-        <div className={styles.outerBox}>
-          <span className="material-symbols-outlined">add_circle</span>
-          <Link
-            href={
-              isOuter && isOuter.length > 0 && isOuter[0].id
-                ? `/clothes/${isOuter[0].id}`
-                : ''
-            }
-          >
-            {isOuter && isOuter.length > 0 && isOuter[0].imagePath !== null && (
-              <img src={isOuter[0].imagePath} alt="" />
-            )}
-          </Link>
-        </div>
-        <div className={styles.topBox}>
-          <span className="material-symbols-outlined">add_circle</span>
-          <Link
-            href={
-              isTop && isTop.length > 0 && isTop[0].id
-                ? `/clothes/${isTop[0].id}`
-                : ''
-            }
-          >
-            {isTop && isTop.length > 0 && isTop[0].imagePath !== null && (
-              <img src={isTop[0].imagePath} alt="" />
-            )}
-          </Link>
-        </div>
-        <div className={styles.pantsBox}>
-          <span className="material-symbols-outlined">add_circle</span>
-          <Link
-            href={
-              isPants && isPants.length > 0 && isPants[0].id
-                ? `/clothes/${isPants[0].id}`
-                : ''
-            }
-          >
-            {isPants && isPants.length > 0 && isPants[0].imagePath !== null && (
-              <img src={isPants[0].imagePath} alt="" />
-            )}
-          </Link>
-        </div>
-        <div className={styles.shoesBox}>
-          <span className="material-symbols-outlined">add_circle</span>
-          <Link
-            href={
-              isShoes && isShoes.length > 0 && isShoes[0].id
-                ? `/clothes/${isShoes[0].id}`
-                : ''
-            }
-          >
-            {isShoes && isShoes.length > 0 && isShoes[0].imagePath !== null && (
-              <img src={isShoes[0].imagePath} alt="" />
-            )}
-          </Link>
-        </div>
-        <div className={styles.accessoryBox}>
-          <span className="material-symbols-outlined">add_circle</span>
-          <Link
-            href={
-              isAccessory && isAccessory.length > 0 && isAccessory[0].id
-                ? `/clothes/${isAccessory[0].id}`
-                : ''
-            }
-          >
-            {isAccessory &&
-              isAccessory.length > 0 &&
-              isAccessory[0].imagePath !== null && (
-                <img src={isAccessory[0].imagePath} alt="" />
+        <div className={styles.mainContainer}>
+          <span className={styles.descText}>
+            버튼을 눌러 AI 추천 코디를 받아보세요!
+          </span>
+          <img
+            src="https://weatherable.s3.ap-northeast-2.amazonaws.com/default_ai.png"
+            alt=""
+          />
+          <div className={styles.outerBox}>
+            <span className="material-symbols-outlined">add_circle</span>
+            <Link
+              href={
+                isOuter && isOuter.length > 0 && isOuter[0].id
+                  ? `/clothes/${isOuter[0].id}`
+                  : ''
+              }
+            >
+              {isOuter &&
+                isOuter.length > 0 &&
+                isOuter[0].imagePath !== null && (
+                  <img src={isOuter[0].imagePath} alt="" />
+                )}
+            </Link>
+          </div>
+          <div className={styles.topBox}>
+            <span className="material-symbols-outlined">add_circle</span>
+            <Link
+              href={
+                isTop && isTop.length > 0 && isTop[0].id
+                  ? `/clothes/${isTop[0].id}`
+                  : ''
+              }
+            >
+              {isTop && isTop.length > 0 && isTop[0].imagePath !== null && (
+                <img src={isTop[0].imagePath} alt="" />
               )}
-          </Link>
+            </Link>
+          </div>
+          <div className={styles.pantsBox}>
+            <span className="material-symbols-outlined">add_circle</span>
+            <Link
+              href={
+                isPants && isPants.length > 0 && isPants[0].id
+                  ? `/clothes/${isPants[0].id}`
+                  : ''
+              }
+            >
+              {isPants &&
+                isPants.length > 0 &&
+                isPants[0].imagePath !== null && (
+                  <img src={isPants[0].imagePath} alt="" />
+                )}
+            </Link>
+          </div>
+          <div className={styles.shoesBox}>
+            <span className="material-symbols-outlined">add_circle</span>
+            <Link
+              href={
+                isShoes && isShoes.length > 0 && isShoes[0].id
+                  ? `/clothes/${isShoes[0].id}`
+                  : ''
+              }
+            >
+              {isShoes &&
+                isShoes.length > 0 &&
+                isShoes[0].imagePath !== null && (
+                  <img src={isShoes[0].imagePath} alt="" />
+                )}
+            </Link>
+          </div>
+          <div className={styles.accessoryBox}>
+            <span className="material-symbols-outlined">add_circle</span>
+            <Link
+              href={
+                isAccessory && isAccessory.length > 0 && isAccessory[0].id
+                  ? `/clothes/${isAccessory[0].id}`
+                  : ''
+              }
+            >
+              {isAccessory &&
+                isAccessory.length > 0 &&
+                isAccessory[0].imagePath !== null && (
+                  <img src={isAccessory[0].imagePath} alt="" />
+                )}
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+      <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
+      <WeatherCheckModal isOpen={weatherModal} />
+    </>
   );
 }

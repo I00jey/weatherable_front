@@ -13,8 +13,8 @@ export default function SelectBox() {
   const selectMiddleData = useSelector(
     (state: any) => state.search.selectMiddle
   );
-  const [isMajorCat, setIsMajorCat] = useState(selectMajorData);
-  const [isMiddleCat, setIsMiddleCat] = useState('All');
+  const [isMajorCat, setIsMajorCat] = useState('');
+  // const [isMiddleCat, setIsMiddleCat] = useState('All');
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -27,6 +27,7 @@ export default function SelectBox() {
   const dispatch = useDispatch();
 
   const majorSelected = (value) => {
+    // console.log(isMajorCat);
     // console.log('대분류', value);
     setIsMajorCat(value);
     if (value == 'All') {
@@ -39,7 +40,7 @@ export default function SelectBox() {
 
   const midSelected = (value) => {
     // console.log('중분류', value);
-    setIsMiddleCat(value);
+    // setIsMiddleCat(value);
     if (value == 'All') {
       dispatch(selectMiddle({ value: '' }));
     } else {
@@ -121,22 +122,15 @@ export default function SelectBox() {
                   : cat
               }
               className={
-                selectMajorData === '' || cat !== selectMajorData
+                isMajorCat === 'All' ||
+                selectMajorData === '' ||
+                cat !== selectMajorData
                   ? styles.bigCat
                   : styles.bigCatChecked
               }
               onClick={() => {
                 majorSelected(cat);
               }}
-              // style={
-              //   cat === 'All'
-              //     ? {
-              //         color: '#ff5656',
-              //         fontWeight: '900',
-              //         fontSize: '1rem',
-              //       }
-              //     : {}
-              // }
             />
           </li>
         ))}
