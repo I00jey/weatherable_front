@@ -8,7 +8,7 @@ export const imgSend = async (file: File) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    console.log(file);
+    // console.log(file);
     const response = await axios.post(
       process.env.NEXT_PUBLIC_DB_HOST + '/closet/image',
       formData,
@@ -20,7 +20,7 @@ export const imgSend = async (file: File) => {
         withCredentials: true,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.log(process.env.NEXT_PUBLIC_DB_HOST + '/closet/image', error);
@@ -42,7 +42,7 @@ export const postAddClothes = async (closetDTO: any) => {
         withCredentials: true,
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log('http://localhost:8080/closet', error);
@@ -52,7 +52,7 @@ export const postAddClothes = async (closetDTO: any) => {
 //옷장 등록시 스타일 부분 gpt 활용 (파이썬)
 export const postAddStyles = async (data: any) => {
   try {
-    console.log(data);
+    // console.log(data);
     const formData = new FormData();
     for (const key in data) {
       formData.append(key, data[key]);
@@ -68,7 +68,7 @@ export const postAddStyles = async (data: any) => {
         withCredentials: true,
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(process.env.NEXT_PUBLIC_PYTHON + '/sendmessage', error);
@@ -114,7 +114,7 @@ export const getCrawlingClothesByCat = async (category: string) => {
       }
     );
 
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -139,7 +139,7 @@ export const getUserClothes = async () => {
       }
     );
 
-    console.log('>>>>', response.data.data);
+    // console.log('>>>>', response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -163,7 +163,7 @@ export const getUserClothesByCatMajor = async (category: string) => {
         withCredentials: true,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -189,7 +189,7 @@ export const getUserClothesByCatMiddle = async (category: string) => {
         withCredentials: true,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -215,7 +215,7 @@ export const getMyClosetById = async (id: string) => {
       }
     );
 
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.log(error);
@@ -239,7 +239,7 @@ export const getCrawlingClothesById = async (id: string) => {
         withCredentials: true,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.log(error);
@@ -264,7 +264,7 @@ export const searchClothesGet = async (keyWord: string) => {
         withCredentials: true,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -304,7 +304,7 @@ export const likedCloth = async (likeData: any) => {
         },
       }
     );
-    console.log(response.data.statusCode);
+    // console.log(response.data.statusCode);
     return response;
   } catch (error) {
     console.log(error);
@@ -325,7 +325,7 @@ export const modifyCloth = async (clothData: any) => {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -349,7 +349,7 @@ export const aiRecommendPost = async (aiData: any) => {
         withCredentials: true,
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.message; // 응답 데이터만 반환
   } catch (error) {
     console.log(error);

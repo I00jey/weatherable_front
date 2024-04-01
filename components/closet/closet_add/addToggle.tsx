@@ -9,7 +9,7 @@ interface props {
 export default function AddToggle(open: props) {
   const getUserId = useSelector((state: RootState) => state.user.userId);
 
-  console.log(open);
+  // console.log(open);
   // const toggleHeight = open ? '15vh' : '0';
   // const toggleOpacity = open ? '1' : '0';
   return (

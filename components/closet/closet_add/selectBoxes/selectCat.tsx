@@ -123,10 +123,10 @@ export default function SelectCat({ check }) {
   useEffect(() => {
     const postStyles = async () => {
       try {
-        console.log('파이썬 전송 카테고리', pythonCategory);
+        // console.log('파이썬 전송 카테고리', pythonCategory);
 
         const aiStyle = await postAddStyles(formData);
-        console.log('실제 전송 데이터', formData);
+        // console.log('실제 전송 데이터', formData);
 
         dispatch(selectStyle_num({ value: Object.keys(aiStyle)[0] as string }));
         dispatch(selectScore({ value: Object.values(aiStyle)[0] as string }));

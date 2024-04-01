@@ -20,7 +20,7 @@ export default function SelectImg() {
 
   const addImg = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
 
     if (file) {
       const reader = new FileReader();
@@ -41,7 +41,7 @@ export default function SelectImg() {
           }
         };
         fetchData();
-        console.log('s3저장 경로', imgUrl);
+        // console.log('s3저장 경로', imgUrl);
       };
       reader.readAsDataURL(file);
     }

@@ -22,11 +22,6 @@ const dimensionCategory: React.FC<DimensionProps> = ({ params }) => {
   // console.log({ params });
   const [selectedComponent, setSelectedComponent] = useState<String>('');
 
-  // *before
-  // const handleComponentChange = (component: String) => {
-  //   setSelectedComponent(component);
-  // };
-
   // *after
   const handleComponentChange = (component: string) => {
     // 모든 components 요소에서 changedComponent2 클래스를 제거합니다.

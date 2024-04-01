@@ -88,23 +88,13 @@ export default function ClothesInfo({ params: { id } }) {
   // 옷 정보 수정
   const changeValue = (e) => {
     const { value, name } = e.target;
-    console.log(value);
-    console.log(name);
+    // console.log(value);
+    // console.log(name);
     setClothes((prevClothes) => ({
       ...prevClothes,
       [name]: value,
     }));
   };
-
-  // const addCloth = async () => {
-  //   // console.log(clothes);
-  //   try {
-  //     await postAddClothes(clothes);
-  //     console.log('완료');
-  //   } catch (error) {
-  //     console.log('옷 저장 오류', error);
-  //   }
-  // };
 
   const selectSize = (e) => {
     const selectedSize = e.target.value;
@@ -113,7 +103,7 @@ export default function ClothesInfo({ params: { id } }) {
   };
 
   const selectStyles = (e) => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     setIsStyleDisabled(!isStyleDisabled);
     setIsStyle(e.target.id);
     setIsStyleValue(e.target.value);
@@ -138,11 +128,11 @@ export default function ClothesInfo({ params: { id } }) {
   const router = useRouter();
   const addClothes = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(closetDTO);
+    // console.log(closetDTO);
     try {
       await postAddClothes(closetDTO);
-      console.log('post 완료');
-      console.log(closetDTO);
+      // console.log('post 완료');
+      // console.log(closetDTO);
       setShowSaveModal(true);
     } catch (error) {
       console.error('실패: ', error);
