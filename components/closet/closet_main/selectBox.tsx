@@ -27,7 +27,7 @@ export default function SelectBox() {
   const dispatch = useDispatch();
 
   const majorSelected = (value) => {
-    console.log('대분류', value);
+    // console.log('대분류', value);
     setIsMajorCat(value);
     if (value == 'All') {
       dispatch(selectMajor({ value: '' }));
@@ -38,7 +38,7 @@ export default function SelectBox() {
   };
 
   const midSelected = (value) => {
-    console.log('중분류', value);
+    // console.log('중분류', value);
     setIsMiddleCat(value);
     if (value == 'All') {
       dispatch(selectMiddle({ value: '' }));

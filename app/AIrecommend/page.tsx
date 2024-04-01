@@ -111,54 +111,66 @@ export default function AiRecommend() {
 
   // ai 추천 새로고침
   const aiRecommendBtn = async () => {
-    try {
-      // console.log(isAiData);
-      const userClothData = await aiRecommendPost(isAiData);
-      setIsRecommend(userClothData);
-      // console.log(userClothData);
-      // console.log(userClothData[0]);
+    const button = document.querySelector(
+      `.${styles.refreshBtn}`
+    ) as HTMLButtonElement;
+    const disabledClassName = `${styles.refreshBtnDisabled}`;
 
-      // 데이터를 majorCategory를 기준으로 그룹화
-      const groupByMajorCategory = (isRecommend) => {
-        const groups = {};
-        isRecommend.forEach((item) => {
-          const { majorCategory } = item;
-          if (!groups[majorCategory]) {
-            groups[majorCategory] = [];
-          }
-          groups[majorCategory].push(item);
-        });
-        return groups;
-      };
-      const groupedData = groupByMajorCategory(userClothData);
+    if (!button.classList.contains(disabledClassName)) {
+      button.classList.add(disabledClassName);
 
-      setIsAccessory(groupedData['Accessory']);
-      setIsTop(groupedData['Top']);
-      setIsPants(groupedData['Pants']);
-      setIsOuter(groupedData['Outer']);
-      setIsShoes(groupedData['Shoes']);
+      try {
+        // console.log(isAiData);
+        const userClothData = await aiRecommendPost(isAiData);
+        setIsRecommend(userClothData);
+        // console.log(userClothData);
+        // console.log(userClothData[0]);
 
-      // console.log(isAccessory[0]);
-      // console.log(isTop[0]);
-      // console.log(isOuter[0]);
-      // console.log(isPants[0]);
-      // console.log(isShoes[0]);
+        // 데이터를 majorCategory를 기준으로 그룹화
+        const groupByMajorCategory = (isRecommend) => {
+          const groups = {};
+          isRecommend.forEach((item) => {
+            const { majorCategory } = item;
+            if (!groups[majorCategory]) {
+              groups[majorCategory] = [];
+            }
+            groups[majorCategory].push(item);
+          });
+          return groups;
+        };
+        const groupedData = groupByMajorCategory(userClothData);
 
-      console.log(isAccessory);
-      console.log(isTop);
-      console.log(isOuter);
-      console.log(isPants);
-      console.log(isShoes);
+        setIsAccessory(groupedData['Accessory']);
+        setIsTop(groupedData['Top']);
+        setIsPants(groupedData['Pants']);
+        setIsOuter(groupedData['Outer']);
+        setIsShoes(groupedData['Shoes']);
 
-      // console.log(isAccessory[0].imagePath);
-      // console.log(isTop[0].imagePath);
-      // console.log(isOuter[0].imagePath);
-      // console.log(isPants[0].imagePath);
-      // console.log(isShoes[0].imagePath);
-    } catch (error) {
-      console.log(error);
+        // console.log(isAccessory[0]);
+        // console.log(isTop[0]);
+        // console.log(isOuter[0]);
+        // console.log(isPants[0]);
+        // console.log(isShoes[0]);
+
+        // console.log(isAccessory);
+        // console.log(isTop);
+        // console.log(isOuter);
+        // console.log(isPants);
+        // console.log(isShoes);
+
+        // console.log(isAccessory[0].imagePath);
+        // console.log(isTop[0].imagePath);
+        // console.log(isOuter[0].imagePath);
+        // console.log(isPants[0].imagePath);
+        // console.log(isShoes[0].imagePath);
+      } catch (error) {
+        console.log(error);
+      }
+
+      setTimeout(() => {
+        button.classList.remove(disabledClassName); // 비활성화 클래스 제거
+      }, 5000);
     }
-    console.log('ai 옷 정보 가져오기');
   };
 
   // console.log(isAccessory[0]);
@@ -166,10 +178,6 @@ export default function AiRecommend() {
   // console.log(isOuter[0]);
   // console.log(isPants[0]);
   // console.log(isShoes[0]);
-
-  if (isUserData.length === 0) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className={styles.container}>

@@ -57,7 +57,7 @@ export default function Clothes({ params: { id } }) {
     const fetchData = async () => {
       try {
         const crawlingClothes = await getMyClosetById(id);
-        console.log(crawlingClothes);
+        // console.log(crawlingClothes);
         setClothes(crawlingClothes);
         setIsSize(crawlingClothes.size);
         setIsName(crawlingClothes.productName);
@@ -136,8 +136,8 @@ export default function Clothes({ params: { id } }) {
       price: isPrice,
     };
     const response = await modifyCloth(modifyData);
-    console.log(modifyData);
-    console.log(response);
+    // console.log(modifyData);
+    // console.log(response);
     setShowSaveModal(true);
   };
 
@@ -158,8 +158,8 @@ export default function Clothes({ params: { id } }) {
   };
 
   useEffect(() => {
-    console.log(isLike);
-    console.log('좋아요 여부', liked);
+    // console.log(isLike);
+    // console.log('좋아요 여부', liked);
   }, [isLike]);
 
   return (

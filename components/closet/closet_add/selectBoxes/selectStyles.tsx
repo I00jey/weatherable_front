@@ -21,7 +21,7 @@ export default function SelectStyles({ check }) {
   const [styleState, setStyleState] = useState('');
   useEffect(() => {
     setStyleState('');
-    console.log(styleState);
+    // console.log(styleState);
   }, []);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function SelectStyles({ check }) {
         dispatch(selectStyle_str({ value: 'Formal' }));
         break;
     }
-    console.log('스타일', aiStyles.style_num);
+    // console.log('스타일', aiStyles.style_num);
   }, [aiStyles.style_num]);
 
   return (

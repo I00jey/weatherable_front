@@ -80,30 +80,29 @@
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
-
       a {
         color: #333;
       }
-      // .loginBtn {
-      //   background-color: #333;
-      //   height: 50%;
-      //   width: 40%;
-      //   border-radius: $radius-m;
-      //   @include flex();
-      //   a {
-      //     color: white;
-      //   }
-      // }
-      // .registerBtn {
-      //   background-color: #333;
-      //   height: 50%;
-      //   width: 40%;
-      //   border-radius: $radius-m;
-      //   @include flex();
-      //   a {
-      //     color: white;
-      //   }
-      // }
+      .loginBtn {
+        background-color: $black;
+        height: 50%;
+        width: 40%;
+        border-radius: $radius-m;
+        @include flex();
+        a {
+          color: white;
+        }
+      }
+      .registerBtn {
+        background-color: $theme-red-5;
+        height: 50%;
+        width: 40%;
+        border-radius: $radius-m;
+        @include flex();
+        a {
+          color: white;
+        }
+      }
     }
     .navBox {
       @include flex();
@@ -151,7 +150,7 @@
         justify-content: flex-start;
         span {
           margin-left: 2rem;
-          color: #cecece;
+          color: $theme-red-5;
         }
       }
     }
@@ -166,6 +165,9 @@
           @include flex();
           justify-content: space-around;
           flex-direction: row;
+          img {
+            overflow: hidden;
+          }
         }
       }
     }
@@ -180,7 +182,7 @@
           width: 100%;
           justify-content: space-evenly;
           span {
-            color: $theme-red-4;
+            color: $theme-red-5;
           }
         }
       }

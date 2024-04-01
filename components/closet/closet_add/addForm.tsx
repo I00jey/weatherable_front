@@ -72,16 +72,16 @@ export default function AddForm() {
     try {
       const closetDTO = convertToClosetDTO(totalData);
       if (Object.values(closetDTO).some((value) => value === '')) {
-        console.log(Object.values(closetDTO));
-        console.log('...');
+        // console.log(Object.values(closetDTO));
+        // console.log('...');
         setCheckValue(false);
         return;
       }
       // setCheckValue(true);
       // console.log(checkValue);
       await postAddClothes(closetDTO);
-      console.log('post 완료');
-      console.log(closetDTO);
+      // console.log('post 완료');
+      // console.log(closetDTO);
       setShowSaveModal(true);
       // router.back();
     } catch (error) {

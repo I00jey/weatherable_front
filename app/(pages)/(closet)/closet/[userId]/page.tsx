@@ -34,24 +34,6 @@ interface clothes {
   user_id: number;
   userid: string;
 }
-function findCategory() {
-  if (typeof window !== 'undefined') {
-    const url = window.location.href;
-    const queryString = url.split('?')[1];
-    if (!queryString) return null;
-
-    const queryParams = queryString.split('&');
-
-    for (const param of queryParams) {
-      if (param.startsWith('category=')) {
-        const category = param.split('=')[1];
-        return decodeURIComponent(category);
-      }
-    }
-  }
-
-  return null;
-}
 export default function Closet({ params: { userId } }) {
   const sortStatus = useSelector((state: any) => state.status.status);
   // console.log('sort 상태', sortStatus);
@@ -68,6 +50,25 @@ export default function Closet({ params: { userId } }) {
   // console.log('검색분류 (소) >>', selectMiddleData);
 
   const [userClothesData, setUserClothesData] = useState<clothes[]>([]);
+
+  function findCategory() {
+    if (typeof window !== 'undefined') {
+      const url = window.location.href;
+      const queryString = url.split('?')[1];
+      if (!queryString) return null;
+
+      const queryParams = queryString.split('&');
+
+      for (const param of queryParams) {
+        if (param.startsWith('category=')) {
+          const category = param.split('=')[1];
+          return decodeURIComponent(category);
+        }
+      }
+    }
+
+    return null;
+  }
 
   const selectedCategory = findCategory();
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function Closet({ params: { userId } }) {
     };
     fetchUserClothesData();
   }, [selectMajorData, selectedCategory]);
-  console.log(selectedCategory);
+
   // 하나로 합침
   useEffect(() => {
     const fetchData = async () => {
@@ -112,11 +113,10 @@ export default function Closet({ params: { userId } }) {
         console.log(error, '유저 옷장 데이터 가져오기 오류');
       }
     };
-
     fetchData();
   }, [selectMajorData, selectMiddleData]);
 
-  console.log(userClothesData);
+  // console.log(userClothesData);
   return (
     <div className={styles.container}>
       <div className={styles.innerHeader}>

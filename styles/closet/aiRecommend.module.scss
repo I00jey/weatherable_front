@@ -17,8 +17,13 @@
     font-weight: 900;
     border-radius: $radius-m;
     color: white;
-    background: $black;
+    background: $theme-red-5;
   }
+  .refreshBtnDisabled {
+    background: $black;
+    opacity: 0.1;
+  }
+
   .mainContainer {
     position: relative;
     width: 70%;

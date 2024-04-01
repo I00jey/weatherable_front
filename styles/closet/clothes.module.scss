@@ -137,7 +137,7 @@
       color: $gray;
     }
     .weatherClicked {
-      background: $theme-red-3;
+      background: $black;
       color: white;
     }
   }
@@ -153,11 +153,14 @@
       color: $gray;
     }
     .thickClicked {
-      background: $theme-red-3;
+      background: $black;
       color: white;
     }
   }
   .priceInput {
+    // background-color: pink;
+    padding: 0.4rem 0.2rem;
+    box-sizing: border-box;
     border: 0.5px solid $lightgray;
     border-radius: $radius-s;
     width: 70%;

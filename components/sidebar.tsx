@@ -45,8 +45,8 @@ export default function SideBar({ open, close }: props) {
   const nickName = useSelector((state: any) => state.userData.userNickName);
   const userImg = useSelector((state: any) => state.userData.userImg);
 
-  console.log(nickName.value);
-  console.log(userImg.value);
+  // console.log(nickName.value);
+  // console.log(userImg.value);
 
   // console.log(path);
 
@@ -70,8 +70,11 @@ export default function SideBar({ open, close }: props) {
                 <li>
                   <Link href={'/mypage'}>
                     <img src={userImg.value} alt="" />
-                    <span>{nickName.value}</span>
-                    <span className="material-symbols-outlined">
+                    <span style={{ fontWeight: '900' }}>{nickName.value}</span>
+                    <span
+                      className="material-symbols-outlined"
+                      style={{ color: '#ff5656' }}
+                    >
                       chevron_right
                     </span>
                   </Link>
@@ -96,7 +99,12 @@ export default function SideBar({ open, close }: props) {
             <li>
               <Link href="/AIrecommend" onClick={close}>
                 {path == `/AIrecommend` && <div className={styles.path}>-</div>}
-                <span className="material-symbols-outlined ">psychology</span>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ color: '#cecece' }}
+                >
+                  psychology
+                </span>
                 <p>AI 옷 추천</p>
               </Link>
             </li>
@@ -109,7 +117,12 @@ export default function SideBar({ open, close }: props) {
                 {path == `/closet/${userId}` && (
                   <div className={styles.path}>-</div>
                 )}
-                <span className="material-symbols-outlined">apparel</span>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ color: '#cecece' }}
+                >
+                  apparel
+                </span>
                 <p>옷장 보기</p>
               </Link>
             </li>
@@ -118,7 +131,12 @@ export default function SideBar({ open, close }: props) {
                 {path == `/closet/${userId}/likedcloth` && (
                   <div className={styles.path}>-</div>
                 )}
-                <span className="material-symbols-outlined">favorite</span>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ color: '#cecece' }}
+                >
+                  favorite
+                </span>
                 <p> 좋아요한 옷</p>
               </Link>
             </li>
@@ -128,16 +146,13 @@ export default function SideBar({ open, close }: props) {
             <li>
               <Link href={'/codipage'} onClick={close}>
                 {path == '/codipage' && <div className={styles.path}>-</div>}
-                <span className="material-symbols-outlined">
+                <span
+                  className="material-symbols-outlined"
+                  style={{ color: '#cecece' }}
+                >
                   deployed_code_account
                 </span>
                 <p>내 코디</p>
-              </Link>
-            </li>
-            <li>
-              <Link href="/" onClick={close}>
-                <span className="material-symbols-outlined">star</span>
-                <p>즐겨찾기 코디</p>
               </Link>
             </li>
           </ul>

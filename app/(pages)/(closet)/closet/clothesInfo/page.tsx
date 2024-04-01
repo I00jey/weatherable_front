@@ -34,21 +34,8 @@ export default function AllClothes() {
     (state: any) => state.searchCrawling.selectMiddleCraw
   );
 
-  console.log('검색분류 중 >>', selectMajorDataCraw);
-  console.log('검색분류 소 >>', selectMiddleDataCraw);
-
-  // useEffect(() => {
-  //   const crawlingData = async () => {
-  //     try {
-  //       const crawlingClothes = await getCrawlingClothes();
-  //       setCrawClothes(crawlingClothes.slice(0, 20));
-  //       setAllCrawClothes(crawlingClothes);
-  //     } catch (error) {
-  //       console.log(error, '크롤링 데이터 가져오기 오류 (전체)');
-  //     }
-  //   };
-  //   crawlingData();
-  // }, []);
+  // console.log('검색분류 중 >>', selectMajorDataCraw);
+  // console.log('검색분류 소 >>', selectMiddleDataCraw);
 
   const dispatch = useDispatch();
 
@@ -74,7 +61,7 @@ export default function AllClothes() {
               return clothes.majorCategory === selectMajorDataCraw;
             });
             data = filteredMajorClothes;
-            console.log(filteredMajorClothes);
+            // console.log(filteredMajorClothes);
             setCrawClothes(data.slice(0, 20));
           }
         } else {
@@ -82,6 +69,7 @@ export default function AllClothes() {
           setCrawClothes(data.slice(0, 20));
           setAllCrawClothes(data);
         }
+        // console.log(data);
       } catch (error) {
         console.log(error, '크롤링 데이터 가져오기 오류');
       }
@@ -89,24 +77,9 @@ export default function AllClothes() {
     fetchData();
   }, [selectMajorDataCraw, selectMiddleDataCraw]);
 
-  // const test = () => {
-  //   const filteredMajorClothes = allCrawClothes.filter((clothes) => {
-  //     return clothes.majorCategory === selectMajorDataCraw;
-  //   });
-  //   console.log(filteredMajorClothes);
-  //   setCrawClothes(filteredMajorClothes.slice(0, 20));
-  // };
-
-  // const testadd = () => {
-  //   const filteredMiddleClothes = allCrawClothes.filter((clothes) => {
-  //     return clothes.middleCategory === selectMiddleDataCraw;
-  //   });
-  //   console.log(filteredMiddleClothes);
-  // };
-
   const searchClothes = async (e: any) => {
     e.preventDefault();
-    console.log(searchData);
+    // console.log(searchData);
 
     if (searchData === '') {
       const crawlingClothes = await getCrawlingClothes();
@@ -142,8 +115,8 @@ export default function AllClothes() {
         </div>
 
         <div className={styles.mainInfoBoxDefault}>
-          {crawClothes.map((clothes) => (
-            <Suspense fallback={<Loading />}>
+          {crawClothes.map((clothes, index) => (
+            <Suspense fallback={<Loading />} key={index}>
               <ClothesInfoBoxCrawling data={clothes} key={clothes.id} />
             </Suspense>
           ))}

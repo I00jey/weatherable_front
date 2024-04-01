@@ -31,7 +31,7 @@ export default function SelectBoxCrawling() {
   const dispatch = useDispatch();
 
   const majorSelected = (value) => {
-    console.log('대분류', value);
+    // console.log('대분류', value);
     setIsMajorCat(value);
     if (value == 'All') {
       dispatch(selectMajorCraw({ value: '' }));
@@ -42,7 +42,7 @@ export default function SelectBoxCrawling() {
   };
 
   const midSelected = (value) => {
-    console.log('중분류', value);
+    // console.log('중분류', value);
     setIsMiddleCat(value);
     if (value == 'All') {
       dispatch(selectMiddleCraw({ value: '' }));

@@ -54,7 +54,7 @@ export default function LikedCloth({ params: { userId } }) {
     fetchUserClothesData();
   }, []);
 
-  console.log(likedCloth);
+  //   console.log(likedCloth);
 
   return (
     <div className={styles.container}>
