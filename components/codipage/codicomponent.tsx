@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../styles/codi/codi.module.scss';
 import styles2 from '../../styles/codi/codi2.module.scss';
 import Cookies from 'js-cookie';
@@ -10,6 +10,7 @@ import ClosetPage from '../../components/uploadcloset/uploadcloset';
 import { getCodiInfo } from '../../service/getCodiInfoApi';
 import MyComponent from '../codipage/image';
 import { RootState } from '../../Store/Store';
+import { selectMajor } from '../../Store/closetSlice/selectDataSlice'; // 추가된 import
 
 // 선택된 날짜를 URL에서 추출하는 함수
 function extractSelectedDateFromURL() {
@@ -59,7 +60,7 @@ const CodiPage: React.FC<{}> = () => {
   const [codiName, setCodiName] = useState<string>('');
   const [codiInfo, setCodiInfo] = useState<any>(null); // 코디 정보 상태 추가
   const [isCodiRegistered, setIsCodiRegistered] = useState<boolean>(false); // 코디 등록 여부 상태
-
+  const dispatch = useDispatch();
   const userId = useSelector((state: RootState) => state.user.userId);
 
   useEffect(() => {
@@ -201,8 +202,7 @@ const CodiPage: React.FC<{}> = () => {
 
   // 부위를 클릭할 때 해당하는 카테고리 값을 로컬 스토리지에 저장
   const handlePartClick = (category: string) => {
-    setSelectedCategory(category);
-    localStorage.setItem('selectedCategory', category);
+    dispatch(selectMajor({ value: category }));
   };
   return (
     <div>
@@ -214,7 +214,10 @@ const CodiPage: React.FC<{}> = () => {
           />
           <div
             className={`${styles2.uploadButton} ${styles2.accessoryBox}`}
-            onClick={() => openModal('capIndex')}
+            onClick={() => {
+              openModal('capIndex');
+              handlePartClick('Accessory');
+            }}
           >
             {selectedImages['capIndex'] ? (
               <MyComponent
@@ -234,7 +237,10 @@ const CodiPage: React.FC<{}> = () => {
           </div>
           <div
             className={`${styles2.uploadButton} ${styles2.outerBox}`}
-            onClick={() => openModal('outerIndex')}
+            onClick={() => {
+              openModal('outerIndex');
+              handlePartClick('Outer');
+            }}
           >
             {selectedImages['outerIndex'] ? (
               <MyComponent
@@ -255,7 +261,10 @@ const CodiPage: React.FC<{}> = () => {
 
           <div
             className={`${styles2.uploadButton} ${styles2.topBox}`}
-            onClick={() => openModal('topIndex')}
+            onClick={() => {
+              openModal('topIndex');
+              handlePartClick('Top');
+            }}
           >
             {selectedImages['topIndex'] ? (
               <MyComponent
@@ -276,7 +285,10 @@ const CodiPage: React.FC<{}> = () => {
 
           <div
             className={`${styles2.uploadButton} ${styles2.pantsBox}`}
-            onClick={() => openModal('bottomIndex')}
+            onClick={() => {
+              openModal('pantsIndex');
+              handlePartClick('Pants');
+            }}
           >
             {selectedImages['bottomIndex'] ? (
               <MyComponent
@@ -299,7 +311,10 @@ const CodiPage: React.FC<{}> = () => {
 
           <div
             className={`${styles2.uploadButton} ${styles2.shoesBox}`}
-            onClick={() => openModal('shoesIndex')}
+            onClick={() => {
+              openModal('shoesIndex');
+              handlePartClick('Shoes');
+            }}
           >
             {selectedImages['shoesIndex'] ? (
               <MyComponent
@@ -326,10 +341,7 @@ const CodiPage: React.FC<{}> = () => {
             Close Modal
           </button>
           <div className={styles.modalContent}>
-            <ClosetPage
-              onImageSelect={handleImageSelect}
-              onPartClick={handlePartClick}
-            />
+            <ClosetPage onImageSelect={handleImageSelect} />
           </div>
         </div>
       )}
