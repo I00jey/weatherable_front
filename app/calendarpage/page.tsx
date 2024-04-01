@@ -29,7 +29,6 @@ const CalendarPage: React.FC = () => {
   return (
     <div className={Styles.mainContainer}>
       {/* 모달 */}
-      <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
 
       <div className={Styles.h1}>
         <h2 className={Styles.h2}>당신의 코디를 등록해봐요!</h2>

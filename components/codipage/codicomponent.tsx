@@ -43,7 +43,7 @@ const CodiPage: React.FC<{}> = () => {
     capIndex: null,
     topIndex: null,
     outerIndex: null,
-    pantsIndex: null,
+    bottomIndex: null,
     shoesIndex: null,
     accessoryIndex: null,
   });
@@ -54,7 +54,7 @@ const CodiPage: React.FC<{}> = () => {
     capIndex: null,
     topIndex: null,
     outerIndex: null,
-    pantsIndex: null,
+    bottomIndex: null,
     shoesIndex: null,
     accessoryIndex: null,
   });
@@ -122,7 +122,7 @@ const CodiPage: React.FC<{}> = () => {
         );
         console.log(
           'Bottom:',
-          foundTargetCodi.pants ? foundTargetCodi.pants.imagePath : null
+          foundTargetCodi.Bottom ? foundTargetCodi.bottom.imagePath : null
         );
         console.log(
           'Outer:',
@@ -177,7 +177,7 @@ const CodiPage: React.FC<{}> = () => {
         capIndex: targetCodi?.cap?.id || selectedIndexes.capIndex,
         topIndex: targetCodi?.top?.id || selectedIndexes.topIndex,
         outerIndex: targetCodi?.outer?.id || selectedIndexes.outerIndex,
-        pantsIndex: targetCodi?.pants?.id || selectedIndexes.pantsIndex,
+        bottomIndex: targetCodi?.bottom?.id || selectedIndexes.bottomIndex,
         shoesIndex: targetCodi?.shoes?.id || selectedIndexes.shoesIndex,
         accessoryIndex:
           targetCodi?.accessory?.id || selectedIndexes.accessoryIndex,
@@ -290,22 +290,24 @@ const CodiPage: React.FC<{}> = () => {
           <div
             className={`${styles2.uploadButton} ${styles2.pantsBox}`}
             onClick={() => {
-              openModal('pantsIndex');
+              openModal('bottomIndex');
               handlePartClick('Pants');
             }}
           >
-            {selectedImages['pantsIndex'] ? (
+            {selectedImages['bottomIndex'] ? (
               <MyComponent
-                imageSrc={selectedImages['pantsIndex']}
-                onClick={() => openModal('pantsIndex')}
+                imageSrc={selectedImages['bottomIndex']}
+                onClick={() => openModal('bottomIndex')}
               />
             ) : (
-              (targetCodi && targetCodi.pants && targetCodi.pants.imagePath && (
-                <MyComponent
-                  imageSrc={targetCodi.pants.imagePath}
-                  onClick={() => openModal('pantsIndex')}
-                />
-              )) || (
+              (targetCodi &&
+                targetCodi.bottom &&
+                targetCodi.bottom.imagePath && (
+                  <MyComponent
+                    imageSrc={targetCodi.bottom.imagePath}
+                    onClick={() => openModal('bottomIndex')}
+                  />
+                )) || (
                 <span className="material-symbols-outlined">add_circle</span>
               )
             )}
