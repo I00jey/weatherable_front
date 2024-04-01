@@ -63,7 +63,7 @@ export default function SideBar({ open, close }: props) {
       }
     };
     fetchUserData();
-  }, [sessionStorage.getItem('accessToken')]);
+  }, []);
 
   const nickName = useSelector((state: any) => state.userData.userNickName);
   const userImg = useSelector((state: any) => state.userData.userImg);
