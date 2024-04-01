@@ -82,7 +82,6 @@ const Login: React.FC = () => {
       sessionStorage.setItem('accessToken', res.data.data[1]);
 
       dispatch(setUserId(userData.userid));
-      console.log('로그인 성공');
       router.push('/');
     } catch (error) {
       console.log('로그인 실패!', error);

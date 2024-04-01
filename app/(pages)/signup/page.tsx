@@ -42,7 +42,6 @@ const SignUp: React.FC = () => {
   };
 
   const handleBlur = async (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('e.target >', e.target);
     // name : userid
     // value : banana
 
