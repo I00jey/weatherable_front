@@ -3,6 +3,7 @@ import React from 'react';
 import Calendar from '../../components/calendarpage/calendarpage';
 import WetherLocation from '../../components/mainpage/Tmfprlxhd';
 import Styles from '../../styles/calendar/calendar.module.scss';
+
 const CalendarPage: React.FC = () => {
   return (
     <div className={Styles.all2}>

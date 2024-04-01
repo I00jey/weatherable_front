@@ -9,6 +9,7 @@ import { getUserClothes } from '../../service/closetApiService';
 
 interface ClosetPageProps {
   onImageSelect: (imageSrc: string, index: number) => void;
+  onPartClick: (category: string) => void; // 추가된 부분
   clothes?: {
     imagePath: string;
     id: number;

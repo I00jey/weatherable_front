@@ -76,6 +76,14 @@ const CodiPage: React.FC<{}> = () => {
     console.log(extractedDate);
   }, []);
 
+  useEffect(() => {
+    // 로컬 스토리지에서 선택한 부위에 해당하는 카테고리 값을 불러옴
+    const savedSelectedCategory = localStorage.getItem('selectedCategory');
+    if (savedSelectedCategory) {
+      setSelectedCategory(savedSelectedCategory);
+    }
+  }, []);
+
   const getCodiData = async (formattedDate) => {
     try {
       const codiInfo = await getCodiInfo({});
@@ -151,12 +159,11 @@ const CodiPage: React.FC<{}> = () => {
   };
 
   const handleImageSelect = (imageSrc: string, id: number) => {
-    // ID를 전달받도록 수정
     const updatedSelectedIndexes = { ...selectedIndexes };
     updatedSelectedIndexes[selectedCategory!] = id; // 선택된 옷의 ID로 업데이트
     setSelectedIndexes(updatedSelectedIndexes);
     setSelectedImages({ ...selectedImages, [selectedCategory!]: imageSrc });
-    closeModal();
+    closeModal(); // 모달을 닫음
   };
 
   const handleRegister = async () => {
@@ -192,6 +199,11 @@ const CodiPage: React.FC<{}> = () => {
     }
   };
 
+  // 부위를 클릭할 때 해당하는 카테고리 값을 로컬 스토리지에 저장
+  const handlePartClick = (category: string) => {
+    setSelectedCategory(category);
+    localStorage.setItem('selectedCategory', category);
+  };
   return (
     <div>
       <div className={styles2.container}>
@@ -312,7 +324,10 @@ const CodiPage: React.FC<{}> = () => {
         <div className={styles.modal}>
           <button onClick={closeModal}>Close Modal</button>
           <div className={styles.modalContent}>
-            <ClosetPage onImageSelect={handleImageSelect} />
+            <ClosetPage
+              onImageSelect={handleImageSelect}
+              onPartClick={handlePartClick}
+            />
           </div>
         </div>
       )}
