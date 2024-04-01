@@ -74,10 +74,9 @@ const CodiPage: React.FC<{}> = () => {
       ).toISOString();
 
       setSelectedDate(formattedDate);
-      console.log('페이지 selectedDate:', formattedDate);
+
       getCodiData(formattedDate); // formattedDate를 매개변수로 전달
     }
-    console.log(extractedDate);
   }, []);
 
   useEffect(() => {
@@ -91,7 +90,7 @@ const CodiPage: React.FC<{}> = () => {
   const getCodiData = async (formattedDate) => {
     try {
       const codiInfo = await getCodiInfo({});
-      console.log('초기 코디 정보:', codiInfo);
+
       // 받아온 코디 정보를 상태에 저장
       setCodiInfo(codiInfo);
 
@@ -111,36 +110,8 @@ const CodiPage: React.FC<{}> = () => {
       const foundTargetCodi =
         targetCodis.length > 0 ? targetCodis[targetCodis.length - 1] : null;
 
-      console.log(formattedDate);
-      console.log(foundTargetCodi);
-
       // 코디 정보가 있을 경우에만 상태 업데이트
       if (foundTargetCodi) {
-        console.log(
-          'Top:',
-          foundTargetCodi.top ? foundTargetCodi.top.imagePath : null
-        );
-        console.log(
-          'Bottom:',
-          foundTargetCodi.Bottom ? foundTargetCodi.bottom.imagePath : null
-        );
-        console.log(
-          'Outer:',
-          foundTargetCodi.outer ? foundTargetCodi.outer.imagePath : null
-        );
-        console.log(
-          'Shoes:',
-          foundTargetCodi.shoes ? foundTargetCodi.shoes.imagePath : null
-        );
-        console.log(
-          'Cap:',
-          foundTargetCodi.cap ? foundTargetCodi.cap.imagePath : null
-        );
-        console.log(
-          'Accessory:',
-          foundTargetCodi.accessory ? foundTargetCodi.accessory.imagePath : null
-        );
-
         // 상태 업데이트
         setTargetCodi(foundTargetCodi);
 
