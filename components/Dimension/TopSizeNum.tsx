@@ -102,7 +102,13 @@ const TopSizeNum: React.FC = () => {
   }, []);
 
   const handleChange = (key: string, value: string) => {
-    setInputValues({ ...inputValues, [key]: parseFloat(value) });
+    // 입력값이 숫자인지 확인하는 정규식
+    const regex = /^[0-9\b]+$/;
+
+    // 입력값이 숫자이거나 빈 문자열일 경우에만 setState
+    if (value === '' || regex.test(value)) {
+      setInputValues({ ...inputValues, [key]: parseFloat(value) });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
