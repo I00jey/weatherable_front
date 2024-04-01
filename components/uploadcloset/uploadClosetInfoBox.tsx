@@ -15,15 +15,11 @@ const ClothesInfoBox: React.FC<ClothesInfoBoxProps> = ({
   clothes,
   onImageSelect,
 }) => {
-  const liked = () => {
-    console.log('좋아요!');
-  };
+  const liked = () => {};
 
   const { id, imagePath, productName } = clothes; // 옷의 ID를 비구조화 할당
 
   const onClick = () => {
-    console.log('이미지 URL:', imagePath);
-    console.log('ID:', id); // 옷의 ID 출력
     onImageSelect(imagePath, id); // 이미지 클릭 시 선택된 이미지 정보와 ID를 상위 컴포넌트로 전달
   };
 
