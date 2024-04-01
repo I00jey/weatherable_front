@@ -32,9 +32,6 @@ const ShoesSizeNum: React.FC = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_DB_HOST}/user`
       );
-      console.log(response);
-
-      console.log(response.data.data.userSizeDTO);
       const userSizeDTO: InputValues = response.data.data.userSizeDTO;
       setInputValues(userSizeDTO);
     } catch (error) {
@@ -58,8 +55,6 @@ const ShoesSizeNum: React.FC = () => {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user/size`,
         inputValues
       );
-      console.log('inputValues >', inputValues);
-      console.log('수치 저장 성공', response);
     } catch (error) {
       console.error('데이터를 저장하는 도중 오류 발생', error);
     }

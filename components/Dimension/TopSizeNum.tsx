@@ -88,9 +88,6 @@ const TopSizeNum: React.FC = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_DB_HOST}/user`
       );
-      console.log(response);
-
-      console.log(response.data.data.userSizeDTO);
       const userSizeDTO: InputValues = response.data.data.userSizeDTO;
       // 가져온 데이터를 state에 설정
       setInputValues(userSizeDTO);
@@ -116,8 +113,6 @@ const TopSizeNum: React.FC = () => {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user/size`,
         inputValues
       );
-      console.log('inputValues >', inputValues);
-      console.log('수치 저장 성공', response);
     } catch (error) {
       console.error('데이터를 저장하는 도중 오류 발생', error);
       // 오류 처리 로직 추가

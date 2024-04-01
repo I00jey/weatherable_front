@@ -46,9 +46,6 @@ const BottomSizeNum: React.FC = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_DB_HOST}/user`
       );
-      console.log(response);
-
-      console.log(response.data.data.userSizeDTO);
       const userSizeDTO: InputValues = response.data.data.userSizeDTO;
       // 가져온 데이터를 state에 설정
       setInputValues(userSizeDTO);
