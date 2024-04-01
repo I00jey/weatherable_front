@@ -5,6 +5,7 @@ import {
   selectMajor,
   selectMiddle,
 } from '../../Store/closetSlice/selectDataSlice';
+
 export default function Mainpagebutton() {
   const dispatch = useDispatch();
   const weatherData = useSelector((state: any) => ({
@@ -42,207 +43,190 @@ export default function Mainpagebutton() {
     else if (temp >= 0) return 'Coat';
     else return 'Padded_jacket';
   }
+
   const setMajorCategoryAll = () => {
     dispatch(selectMajor({ value: '' }));
     dispatch(selectMiddle({ value: '' }));
   };
 
+  const handleTopCategoryClick = (category: string) => {
+    dispatch(selectMajor({ value: 'Top' }));
+    dispatch(selectMiddle({ value: category }));
+  };
+
+  const handleBottomCategoryClick = (category: string) => {
+    dispatch(selectMajor({ value: 'Pants' }));
+    dispatch(selectMiddle({ value: category }));
+  };
+
+  const handleOuterCategoryClick = (category: string) => {
+    dispatch(selectMajor({ value: 'Outer' }));
+    dispatch(selectMiddle({ value: category }));
+  };
+
+  // 로컬 스토리지에서 사용자 정보 가져오기
+  const getUserInfoFromLocalStorage = () => {
+    const userInfo = localStorage.getItem('persist:user');
+    if (userInfo) {
+      const { userId } = JSON.parse(userInfo);
+      return userId;
+    }
+    return '';
+  };
+
   return (
     <>
-      <div className={styles.mainpage__TopButton}>
-        {/* 상의 */}
-        {topCategory === 'Shirt' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Shirt' } }}
-          >
-            <button
-              className={styles.Shirt}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {topCategory === 'Short_T_shirt' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Short_T_shirt' },
-            }}
-          >
-            <button
-              className={styles.Short_T_shirt}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {topCategory === 'Long_T_shirt' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Long_T_shirt' },
-            }}
-          >
-            <button
-              className={styles.Long_T_shirt}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {topCategory === 'Hoodies' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Hoodies' } }}
-          >
-            <button
-              className={styles.Hoodies}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {topCategory === 'Sweat_shirt' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Sweat_shirt' },
-            }}
-          >
-            <button
-              className={styles.Sweat_shirt}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {topCategory === 'Sweater' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Sweater' } }}
-          >
-            <button
-              className={styles.Sweater}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
+      <div className={styles.borderline}>
+        <div className={styles.mainpage__TopButton}>
+          {/* 상의 */}
+          {topCategory === 'Shirt' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Shirt}
+                onClick={() => handleTopCategoryClick('Shirt')}
+              ></button>
+            </Link>
+          )}
+          {topCategory === 'Short_T_shirt' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Short_T_shirt}
+                onClick={() => handleTopCategoryClick('Short_T_shirt')}
+              ></button>
+            </Link>
+          )}
+          {topCategory === 'Long_T_shirt' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Long_T_shirt}
+                onClick={() => handleTopCategoryClick('Long_T_shirt')}
+              ></button>
+            </Link>
+          )}
+          {topCategory === 'Hoodies' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Hoodies}
+                onClick={() => handleTopCategoryClick('Hoodies')}
+              ></button>
+            </Link>
+          )}
+          {topCategory === 'Sweat_shirt' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Sweat_shirt}
+                onClick={() => handleTopCategoryClick('Sweat_shirt')}
+              ></button>
+            </Link>
+          )}
+          {topCategory === 'Sweater' && (
+            <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+              <button
+                className={styles.Sweater}
+                onClick={() => handleTopCategoryClick('Sweater')}
+              ></button>
+            </Link>
+          )}
+          {/* 나머지 상의 카테고리 추가 */}
 
-        {/* 바지 */}
-        {bottomCategory === 'Denim' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Denim' } }}
-          >
-            <button
-              className={styles.Denim}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {bottomCategory === 'Slacks' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Slacks' } }}
-          >
-            <button
-              className={styles.Slacks}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {bottomCategory === 'Sport_pants' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Sport_pants' },
-            }}
-          >
-            <button
-              className={styles.Sport_pants}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {bottomCategory === 'Short_pants' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Short_pants' },
-            }}
-          >
-            <button
-              className={styles.Short_pants}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
+          <div className={styles.mainpage__BottomButton}>
+            {/* 바지 */}
+            {bottomCategory === 'Denim' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Denim}
+                  onClick={() => handleBottomCategoryClick('Denim')}
+                ></button>
+              </Link>
+            )}
+            {bottomCategory === 'Slacks' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Slacks}
+                  onClick={() => handleBottomCategoryClick('Slacks')}
+                ></button>
+              </Link>
+            )}
+            {bottomCategory === 'Sport_pants' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Sport_pants}
+                  onClick={() => handleBottomCategoryClick('Sport_pants')}
+                ></button>
+              </Link>
+            )}
+            {bottomCategory === 'Short_pants' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Short_pants}
+                  onClick={() => handleBottomCategoryClick('Short_pants')}
+                ></button>
+              </Link>
+            )}
+            {/* 나머지 바지 카테고리 추가 */}
+          </div>
 
-        {/* 아우터 */}
-        {outerCategory === 'Jacket' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Jacket' } }}
-          >
-            <button
-              className={styles.Jacket}
-              onClick={setMajorCategoryAll}
-            ></button>
+          <div className={styles.mainpage__OuterButton}>
+            {/* 아우터 */}
+            {outerCategory === 'Jacket' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Jacket}
+                  onClick={() => handleOuterCategoryClick('Jacket')}
+                ></button>
+              </Link>
+            )}
+            {outerCategory === 'Coat' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Coat}
+                  onClick={() => handleOuterCategoryClick('Coat')}
+                ></button>
+              </Link>
+            )}
+            {outerCategory === 'Padded_jacket' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Padded_jacket}
+                  onClick={() => handleOuterCategoryClick('Padded_jacket')}
+                ></button>
+              </Link>
+            )}
+            {outerCategory === 'Blazer' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Blazer}
+                  onClick={() => handleOuterCategoryClick('Blazer')}
+                ></button>
+              </Link>
+            )}
+            {outerCategory === 'Mustang' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Mustang}
+                  onClick={() => handleOuterCategoryClick('Mustang')}
+                ></button>
+              </Link>
+            )}
+            {outerCategory === 'Sport_Jacket' && (
+              <Link href={`/closet/${getUserInfoFromLocalStorage()}`}>
+                <button
+                  className={styles.Sport_Jacket}
+                  onClick={() => handleOuterCategoryClick('Sport_Jacket')}
+                ></button>
+              </Link>
+            )}
+            {/* 나머지 아우터 카테고리 추가 */}
+          </div>
+        </div>
+        <div className={styles.mainpage__BottomButton}>
+          <Link href="/AIrecommend">
+            <button className={styles.Ai}></button>
           </Link>
-        )}
-        {outerCategory === 'Coat' && (
-          <Link href={{ pathname: '../closet/1', query: { category: 'Coat' } }}>
-            <button
-              className={styles.Coat}
-              onClick={setMajorCategoryAll}
-            ></button>
+          <Link href={{ pathname: '../calendarpage' }}>
+            <button className={styles.Report}></button>
           </Link>
-        )}
-        {outerCategory === 'Padded_jacket' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Padded_jacket' },
-            }}
-          >
-            <button
-              className={styles.Padded_jacket}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {outerCategory === 'Blazer' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Blazer' } }}
-          >
-            <button
-              className={styles.Blazer}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {outerCategory === 'Mustang' && (
-          <Link
-            href={{ pathname: '../closet/1', query: { category: 'Mustang' } }}
-          >
-            <button
-              className={styles.Mustang}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {outerCategory === 'Sport_Jacket' && (
-          <Link
-            href={{
-              pathname: '../closet/1',
-              query: { category: 'Sport_Jacket' },
-            }}
-          >
-            <button
-              className={styles.Sport_Jacket}
-              onClick={setMajorCategoryAll}
-            ></button>
-          </Link>
-        )}
-        {/* 기타 카테고리들 추가 */}
-      </div>
-      <div className={styles.mainpage__BottomButton}>
-        <Link href="/AIrecommend">
-          <button className={styles.Ai}></button>
-        </Link>
-        <Link href={{ pathname: '../calendarpage' }}>
-          <button className={styles.Report}></button>
-        </Link>
+        </div>
       </div>
     </>
   );
