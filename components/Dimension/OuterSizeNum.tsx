@@ -65,8 +65,6 @@ const OuterSizeNum: React.FC = () => {
         `${process.env.NEXT_PUBLIC_DB_HOST}/user/size`,
         inputValues
       );
-      console.log('inputValues >', inputValues);
-      console.log('수치 저장 성공', response);
     } catch (error) {
       console.error('데이터를 저장하는 도중 오류 발생', error);
       // 오류 처리 로직 추가
