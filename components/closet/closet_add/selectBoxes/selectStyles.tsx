@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectStyle_str } from '../../../../Store/closetSlice/addClothesSlice';
 
+interface aiStyles {
+  style_num: string;
+  score: string;
+}
 export default function SelectStyles({ check }) {
-  interface aiStyles {
-    style_num: string;
-    score: string;
-  }
   const dispatch = useDispatch();
 
   const aiStyles: aiStyles = useSelector((state: any) => ({
@@ -19,15 +19,16 @@ export default function SelectStyles({ check }) {
 
   // console.log('스코어', aiStyles.score);
   const [styleState, setStyleState] = useState('');
+
   useEffect(() => {
     setStyleState('');
-    // console.log(styleState);
   }, []);
 
   useEffect(() => {
     // 초기 렌더링 시에는 아무것도 하지 않음
     if (aiStyles.style_num === undefined) {
       setStyleState('');
+      dispatch(selectStyle_str({ value: '' }));
       return;
     }
 

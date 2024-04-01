@@ -69,7 +69,9 @@ export default function SideBar({ open, close }: props) {
               <ul className={styles.myPageBox}>
                 <li>
                   <Link href={'/mypage'}>
-                    <img src={userImg.value} alt="" />
+                    <div>
+                      <img src={userImg.value} alt="" />
+                    </div>
                     <span style={{ fontWeight: '900' }}>{nickName.value}</span>
                     <span
                       className="material-symbols-outlined"

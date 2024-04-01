@@ -17,7 +17,6 @@ function MyPage() {
   const handleComponentChange = (component) => {
     setSelectedComponent(component);
   };
-
   const router = useRouter();
 
   useEffect(() => {
