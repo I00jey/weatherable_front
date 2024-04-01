@@ -322,7 +322,9 @@ const CodiPage: React.FC<{}> = () => {
 
       {isModalOpen && (
         <div className={styles.modal}>
-          <button onClick={closeModal}>Close Modal</button>
+          <button className={`${styles.modalButton}`} onClick={closeModal}>
+            Close Modal
+          </button>
           <div className={styles.modalContent}>
             <ClosetPage
               onImageSelect={handleImageSelect}
