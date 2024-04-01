@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserId } from '../Store/userSlice/userSlice';
 import { RootState } from '../Store/Store';
+import { getUser } from '../service/closetApiService';
+import {
+  setUserNickName,
+  setUserImg,
+} from '../Store/userSlice/userNickNameSlice';
 
 interface props {
   open: Boolean;
@@ -42,6 +47,24 @@ export default function SideBar({ open, close }: props) {
     close();
   };
 
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem('accessToken');
+
+    const fetchUserData = async () => {
+      if (accessToken) {
+        try {
+          const fetchUser = await getUser();
+          // console.log('유저데이터', fetchUser);
+          dispatch(setUserNickName({ value: fetchUser.nickname }));
+          dispatch(setUserImg({ value: fetchUser.image_path }));
+        } catch (error) {
+          console.error('유저 데이터를 가져오는 도중 오류 발생', error);
+        }
+      }
+    };
+    fetchUserData();
+  }, []);
+
   const nickName = useSelector((state: any) => state.userData.userNickName);
   const userImg = useSelector((state: any) => state.userData.userImg);
 
@@ -69,7 +92,9 @@ export default function SideBar({ open, close }: props) {
               <ul className={styles.myPageBox}>
                 <li>
                   <Link href={'/mypage'}>
-                    <img src={userImg.value} alt="" />
+                    <div>
+                      <img src={userImg.value} alt="" />
+                    </div>
                     <span style={{ fontWeight: '900' }}>{nickName.value}</span>
                     <span
                       className="material-symbols-outlined"

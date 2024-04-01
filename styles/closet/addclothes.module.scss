@@ -62,12 +62,12 @@
 
   .bigCatChecked {
     color: $theme-red-5 !important;
-    font-weight: 700 !important;
+    font-weight: 900 !important;
     font-size: 1rem;
   }
   .smallCatChecked {
-    color: $theme-red-3 !important;
-    font-weight: 700 !important;
+    color: $gray !important;
+    font-weight: 900 !important;
     font-size: 0.9rem;
   }
   .bigCat {

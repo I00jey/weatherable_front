@@ -14,6 +14,7 @@ const MainPage: React.FC = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
 
+
   return (
     <div className={styles.all}>
       <div className={styles.maincontainer}>
@@ -26,6 +27,7 @@ const MainPage: React.FC = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

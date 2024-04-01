@@ -16,7 +16,12 @@ import {
 } from '../../../../../service/closetApiService';
 import { RootState } from '../../../../../Store/Store';
 import { useRouter } from 'next/navigation';
+
 import { useDispatch } from 'react-redux';
+
+import MoveLoginModal from '../../../../../components/MoveLoginModal';
+
+
 interface clothes {
   brand: string;
   color: string | null;
@@ -54,6 +59,22 @@ export default function Closet({ params: { userId } }) {
 
   // console.log('검색분류 (중) >>', selectMajorData);
   // console.log('검색분류 (소) >>', selectMiddleData);
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
+
+  const router = useRouter();
+  const handleModalConfirm = () => {
+    setIsModalOpen(false);
+    router.push('/login');
+  };
+
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem('accessToken');
+
+    if (!accessToken) {
+      setIsModalOpen(true); // 모달 열기
+    }
+  }, []);
 
   const [userClothesData, setUserClothesData] = useState<clothes[]>([]);
 
@@ -136,41 +157,46 @@ export default function Closet({ params: { userId } }) {
 
   // console.log(userClothesData);
   return (
-    <div className={styles.container}>
-      <div className={styles.innerHeader}>
-        <p>
-          <span>{nickName.value}</span>님의 옷장
-        </p>
-        <div>
-          {/* <button>
+    <>
+      <div className={styles.container}>
+        <div className={styles.innerHeader}>
+          <p>
+            <span>{nickName.value}</span>님의 옷장
+          </p>
+          <div>
+            {/* <button>
             <span className="material-symbols-outlined">bookmark</span>
           </button>
           <span>50</span> */}
-        </div>
-      </div>
-      <div className={styles.selectBox}>
-        <SelectBox />
-      </div>
-      <div className={styles.sortBox}>
-        <SortBox />
-      </div>
-      <div
-        className={
-          sortStatus ? styles.mainInfoBoxDefault : styles.mainInfoBoxSmall
-        }
-      >
-        {userClothesData.length == 0 && (
-          <div className={styles.noResultBox}>
-            <span>옷 정보가 없습니다.</span>
-            <span>새로운 옷을 등록해주세요!</span>
           </div>
-        )}
-        {userClothesData.map((clothes) => (
-          <ClothesInfoBox key={clothes.id} clothes={clothes} />
-        ))}
+        </div>
+        <div className={styles.selectBox}>
+          <SelectBox />
+        </div>
+        <div className={styles.sortBox}>
+          <SortBox />
+        </div>
+        <div
+          className={
+            sortStatus ? styles.mainInfoBoxDefault : styles.mainInfoBoxSmall
+          }
+        >
+          {userClothesData.length == 0 && (
+            <div className={styles.noResultBox}>
+              <span>옷 정보가 없습니다.</span>
+              <span>새로운 옷을 등록해주세요!</span>
+            </div>
+          )}
+          {userClothesData.map((clothes) => (
+            <ClothesInfoBox key={clothes.id} clothes={clothes} />
+          ))}
+        </div>
+        <AddToggleBtn />
       </div>
+
       <AddToggleBtn />
       <MoveLoginModal isOpen={isModalOpen} onConfirm={handleModalConfirm} />
     </div>
+
   );
 }
