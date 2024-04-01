@@ -22,8 +22,6 @@ const CodiPage: React.FC<{ selectedDate?: string; userId?: string }> = () => {
 
   return (
     <div className={Styles.all}>
-      <h1>코디 확인하기</h1>
-
       <SelectedDateDisplay selectedDate={selectedDate} />
 
       <Codicomponent />
