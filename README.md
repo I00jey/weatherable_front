@@ -15,7 +15,6 @@
 > 개발기간 : 24.03.02 ~ 24.04.01
 
 <br>
-<br>
 
 ## 팀 소개
 이름|담당| Git
@@ -87,6 +86,7 @@ Reference : [Weatherable-Python](https://github.com/dydgjs200/Weatherable_python
 <br>
 
 ## 화면 구성
-### 메인페이지
-<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/614427bd-0fd8-464d-9822-f684ccfa8e63"/>
+메인페이지|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/614427bd-0fd8-464d-9822-f684ccfa8e63"/>|
 
