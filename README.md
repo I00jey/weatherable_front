@@ -90,3 +90,48 @@ Reference : [Weatherable-Python](https://github.com/dydgjs200/Weatherable_python
 ---|
 <img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/614427bd-0fd8-464d-9822-f684ccfa8e63"/>|
 
+<br>
+
+옷장페이지|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/f4ea06d0-3d06-49f1-83e6-d8465d923cb5"/>|
+
+<br>
+
+코디페이지|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/bbf04588-928b-4383-88cd-4715a1aa73ad"/>|
+
+<br>
+
+마이페이지||수정페이지|
+---|---|---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/3ce20671-427b-4c3d-95b0-ad14d1649c0f"/>|<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/de742d58-9b18-4972-a0b2-f407a6018b38"/>|<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/0c893c9e-bd65-4486-a170-ed1cb2139868"/>|
+
+<br>
+
+사이즈 기록 페이지|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/dc071e70-0494-4d28-84b8-d14d4cb25a76"/>|
+
+<br>
+<br>
+
+## 주요 기능
+AI 스타일 자동 제공 기능|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/598f060b-3d56-4e83-9382-707fe5e670e0"/>|
+
+* When a user uploads an image file of clothing, the system retrieves the image address from Amazon S3.
+  Then, the image is read and analyzed by a trained model using Teachable Machine to automatically classify the style of the clothing.
+  This allows the user to immediately obtain information about the style of the clothing.
+
+<br>
+
+기상 데이터를 기반으로 한 AI 패션 추천 기능|
+---|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/ae8608b0-2221-4f21-b0ce-73aba621d1cd"/>|
+
+* Based on real-time GPS location, weather temperature data, and information about all items in the user's wardrobe, the system sends this data to GPT.
+  GPT then generates responses based on its implemented logic.
+* These text responses are processed to suggest outfits by applying them to the items in the wardrobe and randomly selecting items that meet the specified conditions, providing outfit recommendations tailored to the current weather.
