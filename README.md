@@ -100,7 +100,7 @@ Reference : [Weatherable-Python](https://github.com/dydgjs200/Weatherable_python
 
 코디페이지|
 ---|
-<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/bbf04588-928b-4383-88cd-4715a1aa73ad"/>|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/eb56b197-9a24-4c90-a57a-f7b8a9f6f640"/>|
 
 <br>
 
@@ -120,7 +120,7 @@ Reference : [Weatherable-Python](https://github.com/dydgjs200/Weatherable_python
 ## 주요 기능
 AI 스타일 자동 제공 기능|
 ---|
-<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/598f060b-3d56-4e83-9382-707fe5e670e0"/>|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/386c6288-a578-49e3-90ff-81d21df431f6"/>|
 
 * When a user uploads an image file of clothing, the system retrieves the image address from Amazon S3.
 * Then, the image is read and analyzed by a trained model using Teachable Machine to automatically classify the style of the clothing.
@@ -130,7 +130,7 @@ AI 스타일 자동 제공 기능|
 
 기상 데이터를 기반으로 한 AI 패션 추천 기능|
 ---|
-<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/ae8608b0-2221-4f21-b0ce-73aba621d1cd"/>|
+<img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/2122ec2e-b35c-4eab-94a3-76a46db07421"/>|
 
 * Based on real-time GPS location, weather temperature data, and information about all items in the user's wardrobe, the system sends this data to GPT.
   GPT then generates responses based on its implemented logic.
