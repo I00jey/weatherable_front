@@ -123,7 +123,7 @@ AI 스타일 자동 제공 기능|
 <img src="https://github.com/dydgjs200/Weatherable_front/assets/121750853/598f060b-3d56-4e83-9382-707fe5e670e0"/>|
 
 * When a user uploads an image file of clothing, the system retrieves the image address from Amazon S3.
-  Then, the image is read and analyzed by a trained model using Teachable Machine to automatically classify the style of the clothing.
+* Then, the image is read and analyzed by a trained model using Teachable Machine to automatically classify the style of the clothing.
   This allows the user to immediately obtain information about the style of the clothing.
 
 <br>
