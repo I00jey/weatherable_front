@@ -147,6 +147,24 @@ export const getUserClothes = async () => {
   }
 };
 
+// 테스트 유저 옷장 데이터 불러오기
+export const getTestUserClothes = async () => {
+  try {
+    const response = await axios.get(
+      process.env.NEXT_PUBLIC_DB_HOST + '/closet/dbfree',
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      '예상치 못한 오류가 발생했습니다! (테스트 계정 옷장 데이터 불러오기)'
+    );
+  }
+};
+
 // 유저 옷 정보 카테고리 기준으로 불러오기 (중분류)
 export const getUserClothesByCatMajor = async (category: string) => {
   const accessToken = sessionStorage.getItem('accessToken');

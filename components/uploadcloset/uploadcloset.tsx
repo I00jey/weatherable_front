@@ -5,7 +5,7 @@ import SelectBox from '../../components/closet/closet_main/selectBox';
 import SortBox from '../../components/closet/closet_main/sortBox';
 import ClothesInfoBox from '../../components/uploadcloset/uploadClosetInfoBox';
 import { useSelector } from 'react-redux';
-import { getUserClothes } from '../../service/closetApiService';
+import { getTestUserClothes } from '../../service/closetApiService';
 
 interface ClosetPageProps {
   onImageSelect: (imageSrc: string, index: number) => void;
@@ -30,7 +30,7 @@ const ClothesInfoBoxComponent: React.FC<ClosetPageProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getUserClothes();
+        const data = await getTestUserClothes();
         setUserClothesData(data);
       } catch (error) {
         console.error('사용자 옷 데이터를 불러오는 중 오류 발생:', error);
