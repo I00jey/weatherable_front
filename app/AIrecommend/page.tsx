@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import {
-  getUserClothes,
+  getTestUserClothes,
   aiRecommendPost,
 } from '../../service/closetApiService';
 import { useSelector } from 'react-redux';
@@ -81,7 +81,7 @@ export default function AiRecommend() {
     const fetchData = async () => {
       try {
         // 유저 옷 정보 불러오기
-        const userClothData = await getUserClothes();
+        const userClothData = await getTestUserClothes();
         setIsUserData(userClothData);
       } catch (error) {
         console.log(error);

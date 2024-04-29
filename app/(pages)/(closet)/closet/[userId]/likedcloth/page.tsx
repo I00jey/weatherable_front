@@ -4,7 +4,7 @@ import styles from '../../../../../../styles/closet/closet.module.scss';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
-  getUserClothes,
+  getTestUserClothes,
   getUserClothesByCatMajor,
   getUserClothesByCatMiddle,
 } from '../../../../../../service/closetApiService';
@@ -41,7 +41,7 @@ export default function LikedCloth({ params: { userId } }) {
   useEffect(() => {
     const fetchUserClothesData = async () => {
       try {
-        const clothesData = await getUserClothes();
+        const clothesData = await getTestUserClothes();
 
         const filteredMiddleClothes = clothesData.filter((clothes) => {
           return clothes.liked == true;

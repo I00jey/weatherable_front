@@ -8,7 +8,7 @@ import SortBox from '../../../../../components/closet/closet_main/sortBox';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
-  getUserClothes,
+  getTestUserClothes,
   getUserClothesByCatMajor,
   getUserClothesByCatMiddle,
 } from '../../../../../service/closetApiService';
@@ -96,7 +96,7 @@ export default function Closet({ params: { userId } }) {
         if (selectMajorData !== '') {
           clothesData = await getUserClothesByCatMajor(selectMajorData);
         } else {
-          clothesData = await getUserClothes();
+          clothesData = await getTestUserClothes();
         }
         // 카테고리 필터링
         if (selectedCategory) {
@@ -124,7 +124,7 @@ export default function Closet({ params: { userId } }) {
             data = await getUserClothesByCatMajor(selectMajorData);
           }
         } else {
-          data = await getUserClothes();
+          data = await getTestUserClothes();
         }
         setUserClothesData(data);
       } catch (error) {
