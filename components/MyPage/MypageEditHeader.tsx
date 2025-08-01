@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 interface UserData {
   nickname: string;
-  image_path: string;
+  image_path: string | null;
 }
 
 const MypageEditHeader: React.FC = () => {
@@ -103,7 +103,11 @@ const MypageEditHeader: React.FC = () => {
   };
   // 이미지 변경을 위해 파일 입력 실행
   const handleImageDivClick = () => {
-    document.getElementById('file').click();
+    if (typeof window !== 'undefined') {
+      const fileInput = document.getElementById('file') as HTMLInputElement;
+      if (fileInput) fileInput.click();
+    }
+
   };
 
   return (
@@ -145,9 +149,8 @@ const MypageEditHeader: React.FC = () => {
         <div className={styles.nick_Div}>
           {/* 수정 가능한 상태에 따라 input의 readonly 속성 적용 */}
           <input
-            className={`${styles.mypage_Profile_nickname} ${
-              !editable ? styles.centerText : styles.centerText2
-            }`}
+            className={`${styles.mypage_Profile_nickname} ${!editable ? styles.centerText : styles.centerText2
+              }`}
             type="text"
             value={userData.nickname}
             onChange={handleNicknameChange}

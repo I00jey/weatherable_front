@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   getUserClothes,
   aiRecommendPost,
@@ -124,14 +124,20 @@ export default function AiRecommend() {
     setIsAiData(transformedData);
   }, [isUserData]);
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
   // ai 추천 새로고침
   const aiRecommendBtn = async () => {
-    const button = document.querySelector(
-      `.${styles.refreshBtn}`
-    ) as HTMLButtonElement;
-    const disabledClassName = `${styles.refreshBtnDisabled}`;
+    // const button = document.querySelector(
+    //   `.${styles.refreshBtn}`
+    // ) as HTMLButtonElement;
+    // const disabledClassName = `${styles.refreshBtnDisabled}`;
 
-    if (!button.classList.contains(disabledClassName)) {
+    // if (!button.classList.contains(disabledClassName)) {
+    //   button.classList.add(disabledClassName);
+
+    const button = buttonRef.current;
+    const disabledClassName = `${styles.refreshBtnDisabled}`;
+    if (button && !button.classList.contains(disabledClassName)) {
       button.classList.add(disabledClassName);
 
       try {
