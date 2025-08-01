@@ -61,32 +61,31 @@ const dimensionCategory: React.FC<DimensionProps> = ({ params }) => {
       components.forEach((component) => {
         component.classList.remove(styles.changedComponent2);
       });
-    }
-
-    // 선택된 컴포넌트에 changedComponent2 클래스를 추가합니다.
-    switch (params.category) {
-      case 'top':
-        document
-          .querySelector(`.${styles.components}:nth-child(1)`)
-          ?.classList.add(styles.changedComponent2);
-        break;
-      case 'bottom':
-        document
-          .querySelector(`.${styles.components}:nth-child(2)`)
-          ?.classList.add(styles.changedComponent2);
-        break;
-      case 'outer':
-        document
-          .querySelector(`.${styles.components}:nth-child(3)`)
-          ?.classList.add(styles.changedComponent2);
-        break;
-      case 'shoes':
-        document
-          .querySelector(`.${styles.components}:nth-child(4)`)
-          ?.classList.add(styles.changedComponent2);
-        break;
-      default:
-        break;
+      // 선택된 컴포넌트에 changedComponent2 클래스를 추가합니다.
+      switch (params.category) {
+        case 'top':
+          document
+            .querySelector(`.${styles.components}:nth-child(1)`)
+            ?.classList.add(styles.changedComponent2);
+          break;
+        case 'bottom':
+          document
+            .querySelector(`.${styles.components}:nth-child(2)`)
+            ?.classList.add(styles.changedComponent2);
+          break;
+        case 'outer':
+          document
+            .querySelector(`.${styles.components}:nth-child(3)`)
+            ?.classList.add(styles.changedComponent2);
+          break;
+        case 'shoes':
+          document
+            .querySelector(`.${styles.components}:nth-child(4)`)
+            ?.classList.add(styles.changedComponent2);
+          break;
+        default:
+          break;
+      }
     }
   }, [params.category]);
 
