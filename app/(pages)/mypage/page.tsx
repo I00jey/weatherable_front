@@ -20,9 +20,11 @@ function MyPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const accessToken = sessionStorage.getItem('accessToken');
-    if (!accessToken) {
-      setIsModalOpen(true); // 모달 열기
+    if (typeof window !== 'undefined') {
+      const accessToken = sessionStorage.getItem('accessToken');
+      if (!accessToken) {
+        setIsModalOpen(true); // 모달 열기
+      }
     }
   }, []);
 
@@ -37,17 +39,15 @@ function MyPage() {
         <div className={styles.mypage_underbar}></div>
         <div className={styles.mypage_components}>
           <div
-            className={`${styles.mypage_components_info} ${
-              selectedComponent === '기본정보' ? styles.changedComponent : ''
-            }`}
+            className={`${styles.mypage_components_info} ${selectedComponent === '기본정보' ? styles.changedComponent : ''
+              }`}
             onClick={() => handleComponentChange('기본정보')}
           >
             Info
           </div>
           <div
-            className={`${styles.mypage_components_info} ${
-              selectedComponent === '치수' ? styles.changedComponent : ''
-            }`}
+            className={`${styles.mypage_components_info} ${selectedComponent === '치수' ? styles.changedComponent : ''
+              }`}
             onClick={() => handleComponentChange('치수')}
           >
             <Image
@@ -59,9 +59,8 @@ function MyPage() {
             />
           </div>
           <div
-            className={`${styles.mypage_components_info} ${
-              selectedComponent === '통계' ? styles.changedComponent : ''
-            }`}
+            className={`${styles.mypage_components_info} ${selectedComponent === '통계' ? styles.changedComponent : ''
+              }`}
             onClick={() => handleComponentChange('통계')}
           >
             Report
