@@ -51,42 +51,29 @@ const dimensionCategory: React.FC<DimensionProps> = ({ params }) => {
 
   // 리렌더링 시켜주면서 해당 컴포넌트에 해당하는 div에 class 추가해주기.
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const accessToken = sessionStorage.getItem('accessToken');
     if (!accessToken) {
       setIsModalOpen(true); // 모달 열기
     }
-    if (typeof window !== 'undefined') {
-      const components = document.querySelectorAll(`.${styles.components}`);
-      // 모든 components 요소에서 changedComponent2 클래스를 제거합니다.
-      components.forEach((component) => {
-        component.classList.remove(styles.changedComponent2);
-      });
-      // 선택된 컴포넌트에 changedComponent2 클래스를 추가합니다.
-      switch (params.category) {
-        case 'top':
-          document
-            .querySelector(`.${styles.components}:nth-child(1)`)
-            ?.classList.add(styles.changedComponent2);
-          break;
-        case 'bottom':
-          document
-            .querySelector(`.${styles.components}:nth-child(2)`)
-            ?.classList.add(styles.changedComponent2);
-          break;
-        case 'outer':
-          document
-            .querySelector(`.${styles.components}:nth-child(3)`)
-            ?.classList.add(styles.changedComponent2);
-          break;
-        case 'shoes':
-          document
-            .querySelector(`.${styles.components}:nth-child(4)`)
-            ?.classList.add(styles.changedComponent2);
-          break;
-        default:
-          break;
-      }
+    const components = document.querySelectorAll(`.${styles.components}`);
+    // 모든 components 요소에서 changedComponent2 클래스를 제거합니다.
+    components.forEach((component) => {
+      component.classList.remove(styles.changedComponent2);
+    });
+
+    const indexMap: { [key: string]: number } = {
+      top: 1,
+      bottom: 2,
+      outer: 3,
+      shoes: 4
     }
+    const targetIndex = indexMap[params.category];
+    if (targetIndex) {
+      document.querySelector(`.${styles.components}:nth-child(${targetIndex})`).classList.add(styles.changedComponent2)
+    }
+
   }, [params.category]);
 
   const handleModalConfirm = () => {
