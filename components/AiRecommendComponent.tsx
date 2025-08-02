@@ -7,7 +7,7 @@ import {
 } from '../service/closetApiService';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import styles from '../../styles/closet/aiRecommend.module.scss';
+import styles from '../styles/closet/aiRecommend.module.scss'
 import Link from 'next/link';
 import MoveLoginModal from './MoveLoginModal';
 import { WeatherCheckModal } from './weatherCheckModal';
