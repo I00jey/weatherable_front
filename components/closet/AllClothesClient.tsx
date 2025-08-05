@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../../../styles/closet/addclothes.module.scss';
+import styles from '../../addclothes.module.scss';
 import SelectBoxCrawling from '../closet/all_clothes/selectBoxCrawling';
 import ClothesInfoBoxCrawling from '../closet/all_clothes/clothesInfoBoxCrawling';
 import { useEffect, useState } from 'react';
