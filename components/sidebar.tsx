@@ -122,8 +122,8 @@ export default function SideBar({ open, close }: props) {
           </ul>
           <ul className={styles.navBox}>
             <li>
-              <Link href="/AIrecommend" onClick={close}>
-                {path == `/AIrecommend` && <div className={styles.path}>-</div>}
+              <Link href="/airecommend" onClick={close}>
+                {path == `/airecommend` && <div className={styles.path}>-</div>}
                 <span
                   className="material-symbols-outlined"
                   style={{ color: '#cecece' }}

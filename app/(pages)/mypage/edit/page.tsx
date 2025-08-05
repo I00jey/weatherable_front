@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import MypageEditContent from '../../../../components/MyPage/MypageEditContent';
-import MypageEditHeader from '../../../../components/MyPage/MypageEditHeader';
+import MypageEditContent from '../../../../components/mypage/MypageEditContent';
+import MypageEditHeader from '../../../../components/mypage/MypageEditHeader';
 import styles from '../../../../styles/MyPage/mypageEdit.module.scss';
 import { useEffect, useState } from 'react';
 import MoveLoginModal from '../../../../components/MoveLoginModal';

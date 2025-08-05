@@ -153,7 +153,7 @@ const LocationWeather: React.FC = () => {
     });
   };
 
-  const iconUrl = `http://openweathermap.org/img/w/${weatherData?.weather[0].icon}.png`;
+  const iconUrl = `https://openweathermap.org/img/w/${weatherData?.weather[0].icon}.png`;
   const temperatureText = weatherData?.main.temp
     ? Math.round((weatherData.main.temp - 273) * 10) / 10
     : null;
@@ -217,7 +217,7 @@ const LocationWeather: React.FC = () => {
               <span style={{ color: 'red' }}>
                 ▲{Math.round((weatherData?.main.temp_max - 273) * 10) / 10}°C
               </span>{' '}
-              &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {} &nbsp; {}
+              &nbsp; { } &nbsp; { } &nbsp; { } &nbsp; { } &nbsp; { }
               <span style={{ color: 'blue' }}>
                 ▼{Math.round((weatherData?.main.temp_min - 273) * 10) / 10}°C
               </span>{' '}

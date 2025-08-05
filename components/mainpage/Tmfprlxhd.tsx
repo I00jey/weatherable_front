@@ -52,13 +52,13 @@ const WeatherFromLocalStorage: React.FC = () => {
   return (
     <div className={styles.weatherContainer}>
       {currentWeatherData.temperature !== null &&
-      currentWeatherData.weather &&
-      tomorrowWeatherData.temperature !== null &&
-      tomorrowWeatherData.weather ? (
+        currentWeatherData.weather &&
+        tomorrowWeatherData.temperature !== null &&
+        tomorrowWeatherData.weather ? (
         <div className={styles.weatherInfo}>
           <div className={styles.weatherItem}>
             <img
-              src={`http://openweathermap.org/img/w/${currentWeatherData.icon}.png`}
+              src={`https://openweathermap.org/img/w/${currentWeatherData.icon}.png`}
               alt="Current Weather Icon"
               className={styles.weatherIcon}
             />
@@ -70,7 +70,7 @@ const WeatherFromLocalStorage: React.FC = () => {
           <div className={styles.hi}></div>
           <div className={styles.weatherItem}>
             <img
-              src={`http://openweathermap.org/img/w/${tomorrowWeatherData.icon}.png`}
+              src={`https://openweathermap.org/img/w/${tomorrowWeatherData.icon}.png`}
               alt="Tomorrow Weather Icon"
               className={styles.weatherIcon}
             />
