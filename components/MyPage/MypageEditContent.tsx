@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../../styles/MyPage/mypageEditContent.module.scss';
+import styles from '../../styles/mypage/mypageEditContent.module.scss';
 import axios from 'axios';
 import WithdrawalModal from '../WithdrawalModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -200,9 +200,8 @@ function MypageEditContent() {
           {likeStyles.map((style, index) => (
             <div
               key={index}
-              className={`${styles.like_Style} ${
-                selectedDivs[index] ? styles.clicked : ''
-              }`}
+              className={`${styles.like_Style} ${selectedDivs[index] ? styles.clicked : ''
+                }`}
               onClick={() => handleDivChange(index)}
             >
               {style}
@@ -220,9 +219,8 @@ function MypageEditContent() {
             <div className={styles.height_title}>키 (cm)</div>
             <div className={styles.height_input_div}>
               <input
-                className={`${styles.height_input} ${
-                  !editableHeight ? styles.none_border : ''
-                } `}
+                className={`${styles.height_input} ${!editableHeight ? styles.none_border : ''
+                  } `}
                 value={userData.height !== null ? userData.height : ''}
                 type="text"
                 placeholder="수치를 입력해주세요."
@@ -250,9 +248,8 @@ function MypageEditContent() {
             <div className={styles.weight_title}>몸무게 (kg)</div>
             <div className={styles.weight_input_div}>
               <input
-                className={`${styles.weight_input} ${
-                  !editableWeight ? styles.none_border : ''
-                } `}
+                className={`${styles.weight_input} ${!editableWeight ? styles.none_border : ''
+                  } `}
                 type="text"
                 value={userData.weight !== null ? userData.weight : ''}
                 placeholder="수치를 입력해주세요."

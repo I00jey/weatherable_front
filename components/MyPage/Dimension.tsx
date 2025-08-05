@@ -1,6 +1,6 @@
 // Dimension 컴포넌트
 import Link from 'next/link';
-import styles from '../../styles/MyPage/Dimension.module.scss';
+import styles from '../../styles/mypage/Dimension.module.scss';
 import Image from 'next/image';
 
 function Dimension() {

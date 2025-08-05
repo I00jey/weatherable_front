@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../../styles/MyPage/mypageFavorite.module.scss';
+import styles from '../../styles/mypage/mypageFavorite.module.scss';
 import { Token } from '../../service/common';
 import axios from 'axios';
 

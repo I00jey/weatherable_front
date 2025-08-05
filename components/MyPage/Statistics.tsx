@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie-player';
 import lottieJson from '../../public/working.json';
-import styles from '../../styles/MyPage/Statistics.module.scss';
+import styles from '../../styles/mypage/Statistics.module.scss';
 
 function Statistics() {
   return (

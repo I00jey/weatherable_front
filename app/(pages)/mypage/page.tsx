@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-const MypageClient = dynamic(() => import('../../../components/mypage/MypageClient'), {
+const MypageClient = dynamic(() => import('../../../components/mypage/mypageClient'), {
   ssr: false
 });
 

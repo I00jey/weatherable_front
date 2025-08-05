@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../../styles/MyPage/PersonalInfo.module.scss';
+import styles from '../../styles/mypage/PersonalInfo.module.scss';
 import axios from 'axios';
 import { Token } from '../../service/common';
 import Image from 'next/image';

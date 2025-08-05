@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import MypageHeader from './MypageHeader';
-import styles from '../../styles/MyPage/mypage.module.scss';
+import MypageHeader from './mypageHeader';
+import styles from '../../styles/mypage/mypage.module.scss';
 import PersonalInfo from './PersonalInfo';
 import Dimension from './Dimension';
 import Statistics from './Statistics';
