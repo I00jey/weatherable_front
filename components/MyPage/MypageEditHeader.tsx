@@ -104,8 +104,10 @@ const MypageEditHeader: React.FC = () => {
   // 이미지 변경을 위해 파일 입력 실행
   const handleImageDivClick = () => {
     if (typeof window !== 'undefined') {
-      const fileInput = document.getElementById('file') as HTMLInputElement;
-      if (fileInput) fileInput.click();
+      const fileInput = document.getElementById('file');
+      if (fileInput && fileInput instanceof HTMLInputElement) {
+        fileInput.click();
+      }
     }
 
   };

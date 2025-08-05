@@ -17,23 +17,51 @@ interface DimensionProps {
 }
 
 const dimensionCategory: React.FC<DimensionProps> = ({ params }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false); // 모달 닫힌 상태
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedComponent, setSelectedComponent] = useState<string>('');
     const router = useRouter();
-    // console.log({ params });
-    const [selectedComponent, setSelectedComponent] = useState<String>('');
 
-    // *after
     const handleComponentChange = (component: string) => {
-        if (typeof window != 'undefined') {
-            // 모든 components 요소에서 changedComponent2 클래스를 제거합니다.
-            const components = document.querySelectorAll(`.${styles.components}`);
-            components.forEach((comp) => {
-                comp.classList.remove(styles.changedComponent2);
-            });
+        setSelectedComponent(component);
 
-            setSelectedComponent(component);
-        }
+        // DOM 조작은 useEffect에서 하도록 수정했기 때문에 여긴 state만 변경
     };
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const accessToken = sessionStorage.getItem('accessToken');
+        if (!accessToken) {
+            setIsModalOpen(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const components = document.querySelectorAll(`.${styles.components}`);
+        components.forEach((component) => {
+            component.classList.remove(styles.changedComponent2);
+        });
+
+        const indexMap: { [key: string]: number } = {
+            top: 1,
+            bottom: 2,
+            outer: 3,
+            shoes: 4,
+        };
+
+        const targetIndex = indexMap[params.category];
+        if (targetIndex) {
+            const target = document.querySelector(
+                `.${styles.components_Div} > .${styles.components}:nth-child(${targetIndex})`
+            );
+            if (target) {
+                target.classList.add(styles.changedComponent2);
+            }
+        }
+    }, [params.category]);
+
     const renderComponent = () => {
         switch (params.category) {
             case 'top':
@@ -48,33 +76,6 @@ const dimensionCategory: React.FC<DimensionProps> = ({ params }) => {
                 return null;
         }
     };
-
-    // 리렌더링 시켜주면서 해당 컴포넌트에 해당하는 div에 class 추가해주기.
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-
-        const accessToken = sessionStorage.getItem('accessToken');
-        if (!accessToken) {
-            setIsModalOpen(true); // 모달 열기
-        }
-        const components = document.querySelectorAll(`.${styles.components}`);
-        // 모든 components 요소에서 changedComponent2 클래스를 제거합니다.
-        components.forEach((component) => {
-            component.classList.remove(styles.changedComponent2);
-        });
-
-        const indexMap: { [key: string]: number } = {
-            top: 1,
-            bottom: 2,
-            outer: 3,
-            shoes: 4
-        }
-        const targetIndex = indexMap[params.category];
-        if (targetIndex) {
-            document.querySelector(`.${styles.components}:nth-child(${targetIndex})`).classList.add(styles.changedComponent2)
-        }
-
-    }, [params.category]);
 
     const handleModalConfirm = () => {
         setIsModalOpen(false);
