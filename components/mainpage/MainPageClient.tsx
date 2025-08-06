@@ -1,13 +1,20 @@
 'use client';
 
-import LocationWeather from '../../app/mainpage/MapPage';
+
+import dynamic from 'next/dynamic';
 import Mainpage_button from '../../components/mainpage/Mainpage_button';
 import styles from '../../styles/mainpage/mainpage.module.scss';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { hideBackButton } from '../../Store/mainSlice/mainPageSlice';
 import { useDispatch } from 'react-redux';
-import MoveLoginModal from '../MoveLoginModal';
+const MoveLoginModal = dynamic(() => import('../MoveLoginModal'), {
+    ssr: false,
+});
+const LocationWeather = dynamic(() =>
+    import('../../app/mainpage/MapPage'), {
+    ssr: false
+});
 
 const MainPageClient: React.FC = () => {
     const dispatch = useDispatch();
@@ -27,7 +34,6 @@ const MainPageClient: React.FC = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
