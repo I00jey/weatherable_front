@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../../styles/mypage/MypageEditHeader.module.scss';
+import styles from '../../styles/mypage/mypageEditHeader.module.scss';
 import axios from 'axios';
 import { Token } from '../../service/common';
 import Image from 'next/image';

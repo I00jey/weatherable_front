@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../../styles/mypage/MypageEditContent.module.scss';
+import styles from '../../styles/mypage/mypageEditContent.module.scss';
 import axios from 'axios';
 import WithdrawalModal from '../WithdrawalModal';
 import { useDispatch, useSelector } from 'react-redux';
