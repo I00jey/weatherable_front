@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic';
 
 const MainPageClient = dynamic(() => import('../components/mainpage/MainPageClient'), {
