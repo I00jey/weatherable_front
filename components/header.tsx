@@ -78,7 +78,7 @@ export default function Header() {
         </li>
         <li>
           <Link href="/">
-            <Image src="/logo.png" alt="로고" width={75} height={48} priority />
+            <Image src="logo.png" alt="로고" width={75} height={48} priority />
             {/* <img src="logo.png" alt="로고" /> */}
           </Link>
         </li>
