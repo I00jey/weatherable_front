@@ -7,8 +7,10 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUserId } from '../../../Store/userSlice/userSlice';
+import { setUserNickName, setUserImg } from '../../../Store/userSlice/userNickNameSlice';
 import Loading from '../../../components/Loading';
 import LoginFailModal from '../../../components/LoginFailModal';
+import { getUser } from '../../../service/closetApiService';
 
 interface UserData {
   userid: string;
@@ -82,6 +84,12 @@ const Login: React.FC = () => {
       sessionStorage.setItem('accessToken', res.data.data[1]);
 
       dispatch(setUserId(userData.userid));
+
+      const userResponse = await getUser();
+      dispatch(setUserNickName({ value: userResponse.nickname }));
+      dispatch(setUserImg({ value: userResponse.image_path }));
+
+
       router.push('/');
     } catch (error) {
       console.log('로그인 실패!', error);
