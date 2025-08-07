@@ -93,12 +93,14 @@ export default function SideBar({ open, close }: props) {
                 <li>
                   <Link href={'/mypage'}>
                     <div>
-                      <img src={userImg || 'https://ant-work.s3.ap-northeast-2.amazonaws.com/default_profile.png'} alt="프로필 이미지" />
+                      <img src={userImg || 'https://ant-work.s3.ap-northeast-2.amazonaws.com/default_profile.png'} alt="프로필 이미지" width={40} height={40} />
                     </div>
                     <span style={{ fontWeight: '900' }}>{nickName}</span>
                     <span
                       className="material-symbols-outlined"
-                      style={{ color: '#ff5656' }}
+                      style={{
+                        color: '#ff5656',
+                      }}
                     >
                       chevron_right
                     </span>
