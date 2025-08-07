@@ -15,6 +15,7 @@ import {
 import { RootState } from '../../../../../Store/Store';
 import { useRouter } from 'next/navigation';
 import MoveLoginModal from '../../../../../components/MoveLoginModal';
+import { Value } from 'sass';
 
 interface clothes {
   brand: string;
@@ -140,7 +141,7 @@ export default function Closet({ params: { userId } }) {
       <div className={styles.container}>
         <div className={styles.innerHeader}>
           <p>
-            <span>{nickName.value}</span>님의 옷장
+            <span>{nickName}</span>님의 옷장
           </p>
           <div>
             {/* <button>
