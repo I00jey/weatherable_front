@@ -40,29 +40,26 @@ export default function Header() {
     router.back();
   };
 
-  // const [userData, setUserData] = useState<UserData>({
-  //   nickname: '',
-  // });
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const accessToken = sessionStorage.getItem('accessToken');
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem('accessToken');
 
-  //   const fetchUserData = async () => {
-  //     if (accessToken) {
-  //       try {
-  //         const fetchUser = await getUser();
-  //         // console.log('유저데이터', fetchUser);
-  //         dispatch(setUserNickName({ value: fetchUser.nickname }));
-  //         dispatch(setUserImg({ value: fetchUser.image_path }));
-  //       } catch (error) {
-  //         console.error('유저 데이터를 가져오는 도중 오류 발생', error);
-  //       }
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, []);
+    const fetchUserData = async () => {
+      if (accessToken) {
+        try {
+          const fetchUser = await getUser();
+          // console.log('유저데이터', fetchUser);
+          dispatch(setUserNickName(fetchUser.nickname));
+          dispatch(setUserImg(fetchUser.image_path));
+        } catch (error) {
+          console.error('유저 데이터를 가져오는 도중 오류 발생', error);
+        }
+      }
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <div className={styles.container}>

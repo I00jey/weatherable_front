@@ -55,8 +55,8 @@ export default function SideBar({ open, close }: props) {
         try {
           const fetchUser = await getUser();
           // console.log('유저데이터', fetchUser);
-          dispatch(setUserNickName({ value: fetchUser.nickname }));
-          dispatch(setUserImg({ value: fetchUser.image_path }));
+          dispatch(setUserNickName(fetchUser.nickname));
+          dispatch(setUserImg(fetchUser.image_path));
         } catch (error) {
           console.error('유저 데이터를 가져오는 도중 오류 발생', error);
         }
@@ -65,8 +65,8 @@ export default function SideBar({ open, close }: props) {
     fetchUserData();
   }, []);
 
-  const nickName = useSelector((state: any) => state.userData.userNickName);
-  const userImg = useSelector((state: any) => state.userData.userImg);
+  const nickName = useSelector((state: RootState) => state.userData.userNickName);
+  const userImg = useSelector((state: RootState) => state.userData.userImg);
 
   // console.log(nickName.value);
   // console.log(userImg.value);
@@ -93,9 +93,9 @@ export default function SideBar({ open, close }: props) {
                 <li>
                   <Link href={'/mypage'}>
                     <div>
-                      <img src={userImg.value} alt="" />
+                      <img src={userImg || 'https://ant-work.s3.ap-northeast-2.amazonaws.com/default_profile.png'} alt="프로필 이미지" />
                     </div>
-                    <span style={{ fontWeight: '900' }}>{nickName.value}</span>
+                    <span style={{ fontWeight: '900' }}>{nickName}</span>
                     <span
                       className="material-symbols-outlined"
                       style={{ color: '#ff5656' }}
