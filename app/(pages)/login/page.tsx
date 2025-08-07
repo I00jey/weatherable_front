@@ -86,9 +86,8 @@ const Login: React.FC = () => {
       dispatch(setUserId(userData.userid));
 
       const userResponse = await getUser();
-      dispatch(setUserNickName({ value: userResponse.nickname }));
-      dispatch(setUserImg({ value: userResponse.image_path }));
-
+      dispatch(setUserNickName(userResponse.nickname));
+      dispatch(setUserImg(userResponse.image_path));
 
       router.push('/');
     } catch (error) {
