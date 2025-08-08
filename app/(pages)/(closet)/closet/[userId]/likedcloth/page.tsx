@@ -60,7 +60,7 @@ export default function LikedCloth({ params: { userId } }) {
     <div className={styles.container}>
       <div className={styles.innerHeader}>
         <p>
-          <span>{nickName.value}</span>님이 선호하는 옷
+          <span>{nickName}</span>님이 선호하는 옷
         </p>
       </div>
       <div className={styles.mainInfoBoxDefault}>
